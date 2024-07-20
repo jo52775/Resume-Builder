@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es2016",                                  /* Set the JavaScript language version. */
+    "module": "esnext",                                 /* Use 'esnext' to enable modern module features. */
+    "jsx": "react-jsx",                                /* Use 'react-jsx' for the new JSX transform. */
+    "strict": true,                                      /* Enable all strict type-checking options. */
+    "moduleResolution": "node",                         /* Module resolution strategy. */
+    "esModuleInterop": true,                             /* Enable compatibility with CommonJS modules. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure consistent casing in file names. */
+    "skipLibCheck": true,                               /* Skip type checking of declaration files. */
+    "resolveJsonModule": true,                          /* Enable importing JSON modules. */
+    "isolatedModules": true,                            /* Ensure files can be transpiled independently. */
+    "noEmit": true,                                    /* Disable emitting files (useful during development). */
+    "baseUrl": "./",                                  /* Set the base directory for module resolution. */
+    "paths": {                                         /* Configure paths for module resolution. */
+      "@/*": ["src/*"]
+    },
+    "lib": ["dom", "dom.iterable", "esnext"],           /* Specify library files for the project. */
+  },
+  "include": ["src"],                                  /* Specify the directories to include. */
+  "exclude": ["node_modules", "build"]                  /* Specify the directories to exclude. */
+}
