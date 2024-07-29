@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Login from "./screens/Login";
 
 function App() {
-  // This is just testing to see if API call works
   useEffect(() => {
     fetch("http://localhost:5000/test")
       .then((response) => response.json())
@@ -11,7 +12,11 @@ function App() {
 
   return (
     <>
-      <h1>hello world.</h1>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
     </>
   );
 }
