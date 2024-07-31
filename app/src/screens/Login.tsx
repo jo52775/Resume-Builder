@@ -36,6 +36,9 @@ const Login: FC = () => {
     else{
       alert("Login failed, please try again.") // this is temporary
     }
+
+    setUsername("")
+    setPassword("")
     })
     
     .catch(error => console.error(error))
