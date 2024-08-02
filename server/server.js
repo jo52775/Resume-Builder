@@ -1,10 +1,26 @@
 const express = require('express')
+require("dotenv").config()
+const mongoose = require("mongoose")
+const cors = require("cors")
 const app = express()
 
-const cors = require("cors")
 app.use(cors())
-
 app.use(express.json())
+
+const uri = process.env.DATABASE_URI
+
+async function DBconnect(){
+    try{
+        await mongoose.connect(uri)
+        console.log("Successfully connected to MongoDB!")
+    }
+
+    catch(error){
+        console.log(error)
+    }
+}
+
+DBconnect()
 
 // **TODO: Need to access database with this endpoint to retrieve and verify user login credentials**
 app.post("/login", (req,res) => {
