@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 
 const Login: FC = () => {
@@ -7,12 +7,52 @@ const Login: FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
+  const handleRegister = (e: any) => {
+    e.preventDefault()
+    const registerCredentials = {
+      fullName, 
+      email,
+      password,
+      confirmPassword
+    }
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(registerCredentials),
+    }
+
+    fetch("http://localhost:5000/register", options)
+    .then(response => response.json())
+    .then(data => {
+    console.log(data)
+
+    if(data.message == "User created"){
+      alert("User created!")            // temporary alert
+      navigate("/")
+    }
+
+    else if(data.message == "password does not match"){
+      alert("Provided passwords do not match.") // temporary alert
+    }
+
+    else{
+      alert("User could not be created.") // temporary alert 
+    }
+
+    })
+    .catch(error => console.error(error))
+
+  }
   return (
     <div className="register-container">
       <div className="form-section">
         <h2>Register</h2>
-        <form>
+        <form onSubmit={handleRegister}>
           <div className="form-group">
             <label htmlFor="fullName">Full Name</label>
             <input
