@@ -34,11 +34,16 @@ app.post("/register", async (req, res) => {
     const password = req.body.password
     const confirmPassword = req.body.confirmPassword
 
+    // Query for checking if provided email already exists
+    const result = await User.find({email: email})
+
     if(password != confirmPassword){
         res.send({"message": "password does not match"})
     }
 
-    // TO DO: Make an 'else if' for if an email already exists
+    else if(result.length > 0){
+        res.send({"message": "email already exists"})
+    }
 
     else{
         const user = new User({
