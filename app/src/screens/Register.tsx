@@ -40,6 +40,10 @@ const Login: FC = () => {
       alert("Provided passwords do not match.") // temporary alert
     }
 
+    else if(data.message == "email already exists"){
+      alert("Email already exists. Please try again.") // temporary alert
+    }
+
     else{
       alert("User could not be created.") // temporary alert 
     }
