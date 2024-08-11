@@ -34,11 +34,16 @@ app.post("/register", async (req, res) => {
     const password = req.body.password
     const confirmPassword = req.body.confirmPassword
 
+    // Query for checking if provided email already exists
+    const result = await User.find({email: email})
+
     if(password != confirmPassword){
         res.send({"message": "password does not match"})
     }
 
-    // TO DO: Make an 'else if' for if an email already exists
+    else if(result.length > 0){
+        res.send({"message": "email already exists"})
+    }
 
     else{
         const user = new User({
@@ -59,15 +64,14 @@ app.post("/register", async (req, res) => {
     }
 })
 
-// **TO DO: Need to access database with this endpoint to retrieve and verify user login credentials**
-app.post("/login", (req,res) => {
+app.post("/login", async (req,res) => {
     const username = req.body.username
     const password = req.body.password
 
-    const tempUsername = "josh" // temporary username
-    const tempPassword = "naraine" // temporary password
+    // Query for checking if a user exists with provided email and password
+    const result = await User.find({email: username, password: password})
 
-    if(username == tempUsername && password == tempPassword){
+    if(result.length > 0){
         res.send({"message": "login successful"})
     }
     else{
