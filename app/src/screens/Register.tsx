@@ -1,57 +1,77 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
+import Message from "../components/Message";
 
-const Login: FC = () => {
+const Register: FC = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [message, setMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
+
   const navigate = useNavigate();
 
   const handleRegister = (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     const registerCredentials = {
-      fullName, 
+      fullName,
       email,
       password,
-      confirmPassword
-    }
+      confirmPassword,
+    };
 
     const options = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(registerCredentials),
-    }
+    };
 
     fetch("http://localhost:5000/register", options)
-    .then(response => response.json())
-    .then(data => {
-    console.log(data)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
 
-    if(data.message == "User created"){
-      alert("User created!")            // temporary alert
-      navigate("/")
-    }
-
-    else if(data.message == "password does not match"){
-      alert("Provided passwords do not match.") // temporary alert
-    }
-
-    else if(data.message == "email already exists"){
-      alert("Email already exists. Please try again.") // temporary alert
-    }
-
-    else{
-      alert("User could not be created.") // temporary alert 
-    }
-
-    })
-    .catch(error => console.error(error))
-
-  }
+        switch (data.message) {
+          case "User created":
+            setMessage({
+              type: "success",
+              text: "User created successfully! Redirecting to dashboard...",
+            });
+            setTimeout(() => navigate("/dashboard"), 2000);
+            break;
+          case "password does not match":
+            setMessage({
+              type: "error",
+              text: "Provided passwords do not match.",
+            });
+            break;
+          case "email already exists":
+            setMessage({
+              type: "error",
+              text: "Email already exists. Please try again.",
+            });
+            break;
+          default:
+            setMessage({
+              type: "error",
+              text: "User could not be created.",
+            });
+            break;
+        }
+      })
+      .catch(() => {
+        setMessage({
+          type: "error",
+          text: "An error occurred. Please try again later.",
+        });
+      });
+  };
   return (
     <div className="register-container">
       <div className="form-section">
@@ -102,6 +122,7 @@ const Login: FC = () => {
           </div>
           <button type="submit">Sign in</button>
         </form>
+        {message && <Message type={message.type} text={message.text} />}{" "}
         <div className="links">
           <p>Already have an account?</p>
           <Link to="/login" className="link">
@@ -113,4 +134,4 @@ const Login: FC = () => {
   );
 };
 
-export default Login;
+export default Register;
