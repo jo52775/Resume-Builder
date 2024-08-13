@@ -4,12 +4,19 @@ import "./Dashboard.css";
 import Navbar from "../components/Navbar";
 
 const Dashboard: FC = () => {
+  const navigate = useNavigate()
+  
+  const createResume = async(e: any) => {
+    e.preventDefault()
+    navigate("/resume-details-form")
+  }
+  
   return (
     <div className="dashboard-container">
       <Navbar />
       <div className="dashboard-header">
         <h1> Welcome to the Dashboard</h1>
-        <button id="resumeCreateButton"> Create New Resume</button>
+        <button id="resumeCreateButton" onClick={createResume}> Create New Resume</button>
       </div>
 
       <div className="saved-resume-container">
