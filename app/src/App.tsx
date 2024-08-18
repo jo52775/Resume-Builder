@@ -4,6 +4,8 @@ import "./App.css";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Dashboard from "./screens/Dashboard";
+import AITest from "./screens/AITest";
+import Experience from "./screens/Experience";
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/experience" element={<Experience />} />
         </Routes>
       </Router>
     </>
