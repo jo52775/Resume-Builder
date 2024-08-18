@@ -4,8 +4,9 @@ import "./App.css";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Dashboard from "./screens/Dashboard";
-import AITest from "./screens/AITest";
 import Experience from "./screens/Experience";
+import DetailsForm from "./screens/ResumeDetailsForm";
+>>>>>>> main
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/experience" element={<Experience />} />
+          <Route path="/resume-details-form" element={<DetailsForm />} />
         </Routes>
       </Router>
     </>
