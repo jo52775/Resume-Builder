@@ -1,5 +1,6 @@
 const express = require("express");
 require("dotenv").config();
+const { generateContent } = require("./gemini");
 
 const mongoose = require("mongoose");
 const User = require("./models/user");
@@ -68,35 +69,28 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/generate", async (req, res) => {
-  const userInput = req.body.prompt;
-
-  if (!userInput) {
-    return res.status(400).send("Prompt is required");
+app.post("/generate-experience", async (req, res) => {
+  const { companyName, positionTitle, startDate, endDate, city } = req.body;
+  const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. These bullet points should be formatted in HTML list items (<li>) and reflect typical responsibilities, achievements, and skills relevant to the position, without requesting additional information.`;
+  try {
+    const text = await generateContent(prompt);
+    res.json({ content: text });
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
+});
+
+// AI Test route to handle user input
+app.post("/generate", async (req, res) => {
+  const { prompt } = req.body;
 
   try {
-    const response = await axios.post(
-      "https://api.gemini.com/generate_content", // Confirm this endpoint
-      { prompt: userInput },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.GEMINI_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    console.log("Gemini API response:", response.data);
-    res.json(response.data);
-  } catch (error) {
-    console.error("Error generating suggestions:", error.message);
-    if (error.response) {
-      console.error("Response data:", error.response.data);
-      console.error("Response status:", error.response.status);
-      console.error("Response headers:", error.response.headers);
-    }
-    res.status(500).send("Failed to generate suggestions");
+    const text = await generateContent(prompt);
+    res.json({ text });
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
