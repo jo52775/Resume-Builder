@@ -6,7 +6,6 @@ import Register from "./screens/Register";
 import Dashboard from "./screens/Dashboard";
 import Experience from "./screens/Experience";
 import DetailsForm from "./screens/ResumeDetailsForm";
->>>>>>> main
 
 function App() {
   return (
