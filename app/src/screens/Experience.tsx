@@ -4,6 +4,7 @@ const ExperienceForm: React.FC = () => {
   const [formData, setFormData] = useState({
     companyName: "",
     positionTitle: "",
+    keyResponsibilities: "",
     startDate: "",
     endDate: "",
     city: "",
@@ -51,7 +52,7 @@ const ExperienceForm: React.FC = () => {
     <div>
       <h2>Experience Form</h2>
       <form onSubmit={handleSubmit}>
-        {["companyName", "positionTitle", "startDate", "endDate", "city"].map(
+        {["companyName", "positionTitle", "keyResponsibilities", "startDate", "endDate", "city"].map(
           (field) => (
             <div key={field}>
               <label htmlFor={field}>{field.replace(/([A-Z])/g, " $1")}</label>
