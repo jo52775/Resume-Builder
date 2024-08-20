@@ -6,6 +6,8 @@ import Register from "./screens/Register";
 import Dashboard from "./screens/Dashboard";
 import Experience from "./screens/Experience";
 import DetailsForm from "./screens/ResumeDetailsForm";
+import ResumePreview from "./screens/ResumePreview";
+import SplitViewManager from "./screens/SplitViewManager"
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/experience" element={<Experience />} />
+          <Route path="/resume-preview" element={<ResumePreview />} />
+          <Route path="/resume-split-screen" element={<SplitViewManager />} />
           <Route path="/resume-details-form" element={<DetailsForm />} />
         </Routes>
       </Router>
