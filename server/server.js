@@ -55,6 +55,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
+// Login
 app.post("/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -70,24 +71,11 @@ app.post("/login", async (req, res) => {
 });
 
 app.post("/generate-experience", async (req, res) => {
-  const { companyName, positionTitle, startDate, endDate, city } = req.body;
-  const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. These bullet points should be formatted in HTML list items (<li>) and reflect typical responsibilities, achievements, and skills relevant to the position, without requesting additional information.`;
+  const { companyName, positionTitle, keyResponsibilities, startDate, endDate, city } = req.body;
+  const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. These bullet points should be formatted in HTML list items (<li>) and should highlight a mix of typical responsibilities, achievements, and skills relevant to the position, and some points should focus on the provided key responsibilities, which are described as follows: ${keyResponsibilities}.`;
   try {
     const text = await generateContent(prompt);
     res.json({ content: text });
-  } catch (err) {
-    console.error("Error:", err);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-});
-
-// AI Test route to handle user input
-app.post("/generate", async (req, res) => {
-  const { prompt } = req.body;
-
-  try {
-    const text = await generateContent(prompt);
-    res.json({ text });
   } catch (err) {
     console.error("Error:", err);
     res.status(500).json({ message: "Internal Server Error" });
