@@ -42,6 +42,8 @@ const Education: FC = () => {
                         </select>
                     </div>
                 </div>
+                
+                <button type="submit" className="submit-education"> Submit </button>
             </form>
         </div>
     )
