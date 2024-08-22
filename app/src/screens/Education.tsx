@@ -1,9 +1,14 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Education: FC = () => {
-    const [degreeLevelOption, setDegreeLevelOption] = useState("")
 
+interface EducationProps{
+    nextView: () => void
+    prevView: () => void
+}
+
+const Education: FC<EducationProps> = (props) => {
+    const [degreeLevelOption, setDegreeLevelOption] = useState("")
 
     const handleDegreeLevelSelect = (e:any) => {
         setDegreeLevelOption(e.target.value)
@@ -12,6 +17,7 @@ const Education: FC = () => {
     return(
         <div className="education-form-container">
            <h2 className="education-form-title"> Education Form </h2>
+           <button className="next-view-button" onClick={props.nextView}> Next </button>
            <form> 
                 <div className="education-entry-container">
                     <h3 className="education-entry-title"> Education 1 </h3>
@@ -42,7 +48,7 @@ const Education: FC = () => {
                         </select>
                     </div>
                 </div>
-                
+
                 <button type="submit" className="submit-education"> Submit </button>
             </form>
         </div>
