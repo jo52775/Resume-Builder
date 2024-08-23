@@ -5,7 +5,7 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-.register-container {
+.register_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +13,7 @@ body {
   min-height: 100vh;
 }
 
-.form-section {
+.register_form-section {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -29,17 +29,17 @@ h2 {
   font-family: "Poppins", sans-serif;
 }
 
-.form-group {
+.register_form-group {
   margin-bottom: 15px;
 }
 
-.form-group label {
+.register_form-group label {
   display: block;
   margin-bottom: 5px;
   font-family: "Poppins", sans-serif;
 }
 
-.form-group input {
+.register_form-group input {
   width: calc(100% - 20px);
   padding: 10px;
   border: 1px solid #ccc;
@@ -47,7 +47,7 @@ h2 {
   margin: 0 auto;
 }
 
-button {
+.register_form-section button {
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
@@ -58,37 +58,37 @@ button {
   font-family: "Poppins", sans-serif;
 }
 
-button:hover {
+.register_form-section button:hover {
   background-color: #eb7424;
 }
 
-.links {
+.register_links {
   margin-top: 15px;
   text-align: center;
   font-family: "Poppins", sans-serif;
 }
 
-.link {
+.register_link {
   color: #e07b39;
   text-decoration: none;
   font-size: 14px;
 }
 
-.link:hover {
+.register_link:hover {
   text-decoration: underline;
 }
 
 @media (max-width: 600px) {
-  .form-section {
+  .register_form-section {
     padding: 15px;
     max-width: 100%;
   }
 
-  .form-group {
+  .register_form-group {
     margin-bottom: 10px;
   }
 
-  button {
+  .register_form-section button {
     width: 100%;
   }
 }
