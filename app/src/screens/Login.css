@@ -5,7 +5,7 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-.login-container {
+.login__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +13,7 @@ body {
   min-height: 100vh;
 }
 
-.form-section {
+.login__form-section {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
@@ -23,17 +23,17 @@ body {
   box-sizing: border-box;
 }
 
-.form-group {
+.login__form-group {
   margin-bottom: 15px;
 }
 
-label {
+.login__form-group label {
   display: block;
   margin-bottom: 5px;
   font-family: "Poppins", sans-serif;
 }
 
-input {
+.login__form-group input {
   width: calc(100% - 20px);
   padding: 10px;
   border: 1px solid #ccc;
@@ -41,7 +41,7 @@ input {
   margin: 0 auto;
 }
 
-button {
+.login__form-section button {
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
@@ -52,37 +52,37 @@ button {
   font-family: "Poppins", sans-serif;
 }
 
-button:hover {
+.login__form-section button:hover {
   background-color: #eb7424;
 }
 
-.links {
+.login__links {
   margin-top: 15px;
   text-align: center;
   font-family: "Poppins", sans-serif;
 }
 
-.link {
+.login__link {
   color: #e07b39;
   text-decoration: none;
   font-size: 14px;
 }
 
-.link:hover {
+.login__link:hover {
   text-decoration: underline;
 }
 
 @media (max-width: 600px) {
-  .form-section {
+  .login__form-section {
     padding: 15px;
     max-width: 100%;
   }
 
-  .form-group {
+  .login__form-group {
     margin-bottom: 10px;
   }
 
-  button {
+  .login__form-section button {
     width: 100%;
   }
 }

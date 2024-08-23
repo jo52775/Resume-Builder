@@ -5,52 +5,44 @@ import "./Login.css";
 const Login: FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const loginCredentials = {
-      username,
-      password
-    }
+    const loginCredentials = { username, password };
 
     const options = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(loginCredentials),
-    }
+    };
 
     fetch("http://localhost:5000/login", options)
-    .then(response => response.json())
-    
-    .then(data => {
-    console.log(data)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
 
-    if(data.message == "login successful"){
-    navigate("/dashboard")
-    }
+        if (data.message === "login successful") {
+          navigate("/dashboard");
+        } else {
+          alert("Login failed, please try again."); // this is temporary
+        }
 
-    else{
-      alert("Login failed, please try again.") // this is temporary
-    }
-
-    setUsername("")
-    setPassword("")
-    })
-    
-    .catch(error => console.error(error))
-  }
-
+        setUsername("");
+        setPassword("");
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
-    <div className="login-container">
-      <div className="image-section"></div>
-      <div className="form-section">
+    <div className="login__container">
+      <div className="login__image-section"></div>
+      <div className="login__form-section">
         <form onSubmit={handleLogin}>
-          <div className="form-group">
+          <div className="login__form-group">
             <label htmlFor="username">Your email</label>
             <input
               type="text"
@@ -60,7 +52,7 @@ const Login: FC = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <div className="form-group">
+          <div className="login__form-group">
             <label htmlFor="password">Your password</label>
             <input
               type="password"
@@ -72,12 +64,12 @@ const Login: FC = () => {
           </div>
           <button type="submit">Sign in</button>
         </form>
-        <div className="links">
-          <Link to="/forgot-password" className="link">
+        <div className="login__links">
+          <Link to="/forgot-password" className="login__link">
             Forgot Password?
           </Link>
           <br />
-          <Link to="/register" className="link">
+          <Link to="/register" className="login__link">
             Don’t have an account? Sign up
           </Link>
         </div>
