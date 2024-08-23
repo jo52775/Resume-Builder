@@ -7,7 +7,7 @@ import Dashboard from "./screens/Dashboard";
 import Experience from "./screens/Experience";
 import DetailsForm from "./screens/ResumeDetailsForm";
 import ResumePreview from "./screens/ResumePreview";
-import SplitViewManager from "./screens/SplitViewManager"
+import SplitViewManager from "./screens/SplitViewManager";
 
 function App() {
   return (
