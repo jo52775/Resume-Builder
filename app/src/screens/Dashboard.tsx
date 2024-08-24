@@ -8,7 +8,7 @@ const Dashboard: FC = () => {
   
   const createResume = async(e: any) => {
     e.preventDefault()
-    navigate("/resume-details-form")
+    navigate("/resume-split-screen")
   }
   
   return (
