@@ -6,7 +6,7 @@ import Register from "./screens/Register";
 import Dashboard from "./screens/Dashboard";
 import Experience from "./screens/Experience";
 import DetailsForm from "./screens/ResumeDetailsForm";
-import ResumePreview from "./screens/ResumePreview";
+import ResumePreview from "./screens/ResumePreview/ResumePreview";
 import SplitViewManager from "./screens/SplitViewManager";
 
 function App() {

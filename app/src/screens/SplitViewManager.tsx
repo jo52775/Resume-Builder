@@ -1,6 +1,11 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ResumePreview from "./ResumePreview";
+import ResumeName from "./ResumePreview/ResumeName";
+import ResumeSummary from "./ResumePreview/ResumeSummary";
+import ResumeExperience from "./ResumePreview/ResumeExperience";
+import ResumeEducation from "./ResumePreview/ResumeEducation";
+import ResumeProjects from "./ResumePreview/ResumeProjects";
+import ResumeSkills from "./ResumePreview/ResumeSkills";
 import Summary from "./ResumeSections/Summary";
 import Education from "./ResumeSections/Education";
 import Experience from "./ResumeSections/Experience";
@@ -34,7 +39,14 @@ const SplitViewManager: FC = () => {
       </div>
 
       <div className="right-side">
-        <ResumePreview />
+        <div className="resume-preview-container">
+          <ResumeName />
+          <ResumeSummary />
+          <ResumeExperience />
+          <ResumeEducation />
+          <ResumeProjects />
+          <ResumeSkills />
+        </div> 
       </div>
     </div>
   );
