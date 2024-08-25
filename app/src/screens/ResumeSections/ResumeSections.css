@@ -5,6 +5,110 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+/***** CONTACT INFORMATION SECTION *****/
+.contact-info-form-container {
+  width: 90%;
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  border-top: 5px solid #1abc9c;
+}
+
+.contact-info-form-heading {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #1abc9c;
+}
+
+.contact-info-form-group {
+  margin-bottom: 15px;
+}
+
+.contact-info-form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.contact-info-form-control {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #b9b8b7;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info-form-control:focus {
+  border-color: #1abc9c;
+  box-shadow: 0 0 8px rgba(26, 188, 156, 0.2);
+  outline: none;
+}
+
+.contact-info-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.contact-info-btn:hover {
+  transform: translateY(-2px);
+}
+
+.contact-info-btn:active {
+  transform: translateY(0);
+}
+
+.contact-info-submit-btn {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+.contact-info-submit-btn:hover {
+  background-color: #16a085;
+}
+
+.contact-info-submit-btn:active {
+  background-color: #148f77;
+}
+
+.contact-info-next-btn {
+  background-color: #ffffff;
+  color: #1abc9c;
+  border: 2px solid #1abc9c;
+}
+
+.contact-info-next-btn:hover {
+  background-color: #f2f2f2;
+}
+
+.contact-info-next-btn:active {
+  background-color: #e0e0e0;
+}
+
+.contact-info-form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.contact-info-form-control::placeholder {
+  color: #bbb;
+}
+
 /***** EDUCATION SECTION *****/
 .education-form-container {
   width: 90%;
