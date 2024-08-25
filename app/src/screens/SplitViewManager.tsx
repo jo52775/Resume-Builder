@@ -6,6 +6,7 @@ import ResumeExperience from "./ResumePreview/ResumeExperience";
 import ResumeEducation from "./ResumePreview/ResumeEducation";
 import ResumeProjects from "./ResumePreview/ResumeProjects";
 import ResumeSkills from "./ResumePreview/ResumeSkills";
+import Contact from "./ResumeSections/Contact";
 import Summary from "./ResumeSections/Summary";
 import Education from "./ResumeSections/Education";
 import Experience from "./ResumeSections/Experience";
@@ -26,14 +27,17 @@ const SplitViewManager: FC = () => {
   return (
     <div className="split-screen-container">
       <div className="left-side">
-        {currentView === 0 && <Summary nextView={goToNextView} />}{" "}
+        {currentView === 0 && <Contact nextView={goToNextView} />}{" "}
         {currentView === 1 && (
-          <Education nextView={goToNextView} prevView={goToPrevView} />
+          <Summary nextView={goToNextView} prevView={goToPrevView} />
         )}
         {currentView === 2 && (
-          <Experience nextView={goToNextView} prevView={goToPrevView} />
+          <Education nextView={goToNextView} prevView={goToPrevView} />
         )}
         {currentView === 3 && (
+          <Experience nextView={goToNextView} prevView={goToPrevView} />
+        )}
+        {currentView === 4 && (
           <Projects nextView={goToNextView} prevView={goToPrevView} />
         )}
       </div>
@@ -46,7 +50,7 @@ const SplitViewManager: FC = () => {
           <ResumeEducation />
           <ResumeProjects />
           <ResumeSkills />
-        </div> 
+        </div>
       </div>
     </div>
   );

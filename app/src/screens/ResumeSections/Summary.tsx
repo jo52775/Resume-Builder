@@ -3,9 +3,10 @@ import "./ResumeSections.css";
 
 interface SummaryProps {
   nextView: () => void;
+  prevView: () => void;
 }
 
-const Summary: FC<SummaryProps> = ({ nextView }) => {
+const Summary: FC<SummaryProps> = ({ nextView, prevView }) => {
   const [summary, setSummary] = useState("");
 
   return (
@@ -29,7 +30,14 @@ const Summary: FC<SummaryProps> = ({ nextView }) => {
         <button type="submit" className="education-btn education-submit-btn">
           Submit
         </button>
-        <div className="summary-form-buttons">
+        <div className="experience-form-buttons">
+          <button
+            type="button"
+            onClick={prevView}
+            className="summary-btn summary-back-btn"
+          >
+            Back
+          </button>
           <button
             type="button"
             onClick={nextView}
