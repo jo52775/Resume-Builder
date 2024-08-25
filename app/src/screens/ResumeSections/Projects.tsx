@@ -17,7 +17,7 @@ const Projects: FC<ProjectsProps> = ({ nextView, prevView }) => {
   return (
     <div className="projects-form-container">
       <h2 className="projects-form-heading">Projects</h2>
-      <button type="button" className="summary-btn summary-generate-ai-btn">
+      <button type="button" className="btn btn-ai">
         Generate from AI
       </button>
 
@@ -88,26 +88,18 @@ const Projects: FC<ProjectsProps> = ({ nextView, prevView }) => {
           />
         </div>
 
-        <div className="projects-form-buttons">
-          <button type="submit" className="projects-btn projects-submit-btn">
+        <div className="form-buttons">
+          <button type="submit" className="btn btn-submit">
             Submit
           </button>
         </div>
       </form>
 
-      <div className="projects-form-buttons">
-        <button
-          type="button"
-          onClick={prevView}
-          className="projects-btn projects-back-btn"
-        >
+      <div className="form-buttons">
+        <button type="button" onClick={prevView} className="btn btn-back">
           Back
         </button>
-        <button
-          type="button"
-          onClick={nextView}
-          className="projects-btn projects-next-btn"
-        >
+        <button type="button" onClick={nextView} className="btn btn-next">
           Next
         </button>
       </div>

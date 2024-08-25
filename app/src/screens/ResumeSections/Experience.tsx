@@ -52,10 +52,11 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
   return (
     <div className="experience-form-container">
       <h2 className="experience-form-heading">Experience</h2>
+
       <button
         type="button"
         onClick={handleGenerateAI}
-        className="summary-btn summary-generate-ai-btn"
+        className="btn btn-ai"
         disabled={loading}
       >
         {loading ? "Generating..." : "Generate from AI"}
@@ -132,22 +133,14 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
             required
           />
         </div>
-        <button type="submit" className="education-btn education-submit-btn">
+        <button type="submit" className="btn btn-submit">
           Submit
         </button>
-        <div className="experience-form-buttons">
-          <button
-            type="button"
-            onClick={prevView}
-            className="summary-btn summary-back-btn"
-          >
+        <div className="form-buttons">
+          <button type="button" onClick={prevView} className="btn btn-back">
             Back
           </button>
-          <button
-            type="button"
-            onClick={nextView}
-            className="summary-btn summary-next-btn"
-          >
+          <button type="button" onClick={nextView} className="btn btn-next">
             Next
           </button>
         </div>

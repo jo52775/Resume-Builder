@@ -104,18 +104,13 @@ const ContactInformation: FC<ContactInformationProps> = ({ nextView }) => {
           />
         </div>
 
-        <button
-          type="submit"
-          className="contact-info-btn contact-info-submit-btn"
-        >
-          Submit
-        </button>
-        <div className="contact-info-form-buttons">
-          <button
-            type="button"
-            onClick={nextView}
-            className="contact-info-btn contact-info-next-btn"
-          >
+        <div className="form-buttons">
+          <button type="submit" className="btn btn-submit">
+            Submit
+          </button>
+        </div>
+        <div className="form-buttons">
+          <button type="button" onClick={nextView} className="btn btn-next">
             Next
           </button>
         </div>

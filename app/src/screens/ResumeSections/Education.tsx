@@ -56,26 +56,18 @@ const Education: FC<EducationProps> = ({ nextView, prevView }) => {
             className="education-form-control"
           />
         </div>
-        <div className="education-form-buttons">
-          <button type="submit" className="education-btn education-submit-btn">
+        <div className="form-buttons">
+          <button type="submit" className="btn btn-submit">
             Submit
           </button>
         </div>
       </form>
 
-      <div className="education-form-buttons">
-        <button
-          type="button"
-          onClick={prevView}
-          className="education-btn education-back-btn"
-        >
+      <div className="form-buttons">
+        <button type="button" onClick={prevView} className="btn btn-back">
           Back
         </button>
-        <button
-          type="button"
-          onClick={nextView}
-          className="education-btn education-next-btn"
-        >
+        <button type="button" onClick={nextView} className="btn btn-next">
           Next
         </button>
       </div>
