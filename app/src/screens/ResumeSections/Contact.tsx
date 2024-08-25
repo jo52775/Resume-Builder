@@ -108,8 +108,6 @@ const ContactInformation: FC<ContactInformationProps> = ({ nextView }) => {
           <button type="submit" className="btn btn-submit">
             Submit
           </button>
-        </div>
-        <div className="form-buttons">
           <button type="button" onClick={nextView} className="btn btn-next">
             Next
           </button>
