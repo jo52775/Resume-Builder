@@ -5,6 +5,76 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+/***** BUTTON STYLES *****/
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-back,
+.btn-next {
+  background-color: #ffffff;
+  color: #1abc9c;
+  border: 2px solid #1abc9c;
+}
+
+.btn-back:hover,
+.btn-next:hover {
+  background-color: #f2f2f2;
+}
+
+.btn-back:active,
+.btn-next:active {
+  background-color: #e0e0e0;
+}
+
+.btn-submit {
+  background-color: #1abc9c;
+  color: #fff;
+}
+
+.btn-submit:hover {
+  background-color: #16a085;
+}
+
+.btn-submit:active {
+  background-color: #148f77;
+}
+
+.btn-ai {
+  background-color: #1abc9c;
+  color: white;
+}
+
+.btn-ai:hover {
+  background-color: #16a085;
+}
+
+.btn-ai:active {
+  background-color: #148f77;
+}
+
 /***** CONTACT INFORMATION SECTION *****/
 .contact-info-form-container {
   width: 90%;
@@ -155,61 +225,6 @@ body {
   padding: 10px;
 }
 
-.education-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  display: inline-block;
-  text-align: center;
-}
-
-.education-btn:hover {
-  transform: translateY(-2px);
-}
-
-.education-btn:active {
-  transform: translateY(0);
-}
-
-.education-back-btn,
-.education-next-btn {
-  background-color: #ffffff;
-  color: #1abc9c;
-  border: 2px solid #1abc9c;
-}
-
-.education-back-btn:hover,
-.education-next-btn:hover {
-  background-color: #f2f2f2;
-}
-
-.education-back-btn:active,
-.education-next-btn:active {
-  background-color: #e0e0e0;
-}
-
-.education-submit-btn {
-  background-color: #1abc9c;
-  color: #fff;
-}
-
-.education-submit-btn:hover {
-  background-color: #16a085;
-}
-
-.education-submit-btn:active {
-  background-color: #148f77;
-}
-
-.education-form-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
 .education-form-control::placeholder {
   color: #bbb;
 }
@@ -262,46 +277,6 @@ body {
   outline: none;
 }
 
-.summary-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  display: inline-block;
-  text-align: center;
-}
-
-.summary-back-btn,
-.summary-next-btn {
-  background-color: #ffffff;
-  color: #1abc9c;
-  border: 2px solid #1abc9c;
-}
-
-.summary-generate-ai-btn {
-  background-color: #1abc9c;
-  color: white;
-  border: 2px solid transparent;
-  margin-bottom: 20px;
-  font-weight: 600;
-}
-
-.summary-generate-ai-btn:hover {
-  background-color: #16a085;
-}
-
-.summary-generate-ai-btn:active {
-  background-color: #148f77;
-}
-
-.summary-form-buttons {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 15px;
-}
-
 /***** EXPERIENCE SECTION *****/
 .experience-form-container {
   width: 90%;
@@ -350,12 +325,6 @@ body {
   outline: none;
 }
 
-.experience-form-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
 /***** PROJECTS SECTION *****/
 .projects-form-container {
   width: 90%;
@@ -402,59 +371,4 @@ body {
   border-color: #1abc9c;
   box-shadow: 0 0 8px rgba(26, 188, 156, 0.2);
   outline: none;
-}
-
-.projects-form-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-.projects-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  display: inline-block;
-  text-align: center;
-}
-
-.projects-btn:hover {
-  transform: translateY(-2px);
-}
-
-.projects-btn:active {
-  transform: translateY(0);
-}
-
-.projects-back-btn,
-.projects-next-btn {
-  background-color: #ffffff;
-  color: #1abc9c;
-  border: 2px solid #1abc9c;
-}
-
-.projects-back-btn:hover,
-.projects-next-btn:hover {
-  background-color: #f2f2f2;
-}
-
-.projects-back-btn:active,
-.projects-next-btn:active {
-  background-color: #e0e0e0;
-}
-
-.projects-submit-btn {
-  background-color: #1abc9c;
-  color: #fff;
-}
-
-.projects-submit-btn:hover {
-  background-color: #16a085;
-}
-
-.projects-submit-btn:active {
-  background-color: #148f77;
 }
