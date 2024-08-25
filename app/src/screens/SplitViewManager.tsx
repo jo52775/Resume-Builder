@@ -11,6 +11,7 @@ import Summary from "./ResumeSections/Summary";
 import Education from "./ResumeSections/Education";
 import Experience from "./ResumeSections/Experience";
 import Projects from "./ResumeSections/Projects";
+import Skills from "./ResumeSections/Skills";
 import "./SplitViewManager.css";
 
 const SplitViewManager: FC = () => {
@@ -40,6 +41,7 @@ const SplitViewManager: FC = () => {
         {currentView === 4 && (
           <Projects nextView={goToNextView} prevView={goToPrevView} />
         )}
+        {currentView === 5 && <Skills prevView={goToPrevView} />}
       </div>
 
       <div className="right-side">
