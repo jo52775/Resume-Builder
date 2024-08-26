@@ -57,7 +57,7 @@ const SplitViewManager: FC = () => {
           <ResumeName />
           <ResumeSummary />
           <ResumeExperience />
-          <ResumeEducation />
+          <ResumeEducation formData={educationFormData}/>
           <ResumeProjects />
           <ResumeSkills />
         </div>
