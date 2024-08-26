@@ -25,6 +25,14 @@ const SplitViewManager: FC = () => {
     setCurrentView((currentView) => currentView - 1);
   };
 
+  const [educationFormData, setEducationFormData] = useState({
+    institutionName: "",
+    major:"",
+    degreeLevel:"",
+    startDate:"",
+    endDate:""
+  })
+
   return (
     <div className="split-screen-container">
       <div className="left-side">
@@ -33,7 +41,7 @@ const SplitViewManager: FC = () => {
           <Summary nextView={goToNextView} prevView={goToPrevView} />
         )}
         {currentView === 2 && (
-          <Education nextView={goToNextView} prevView={goToPrevView} />
+          <Education nextView={goToNextView} prevView={goToPrevView} formData={educationFormData} setFormData={setEducationFormData}/>
         )}
         {currentView === 3 && (
           <Experience nextView={goToNextView} prevView={goToPrevView} />
