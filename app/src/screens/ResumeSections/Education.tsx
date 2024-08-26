@@ -1,16 +1,23 @@
-import React, { FC, useState } from "react";
+import React, { FC, SetStateAction, useState, useEffect } from "react";
 import "./ResumeSections.css";
+
+type EducationFormType = {
+  institutionName: string,
+  major:string,
+  degreeLevel:string,
+  startDate:string,
+  endDate:string
+}
 
 interface EducationProps {
   nextView: () => void;
   prevView: () => void;
+  formData: EducationFormType;
+  setFormData: React.Dispatch<SetStateAction<EducationFormType>>
 }
 
-const Education: FC<EducationProps> = ({ nextView, prevView }) => {
-  const [degreeLevel, setDegreeLevel] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-
+const Education: FC<EducationProps> = ({ nextView, prevView, formData, setFormData}) => {
+    
   return (
     <div className="education-form-container">
       <h2 className="education-form-heading">Education</h2>
@@ -18,17 +25,32 @@ const Education: FC<EducationProps> = ({ nextView, prevView }) => {
       <form>
         <div className="education-form-group">
           <label className="education-form-label">Institution Name</label>
-          <input type="text" required className="education-form-control" />
+          <input 
+            type="text"
+            value={formData.institutionName} 
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, institutionName: e.target.value
+              }))} 
+            required 
+            className="education-form-control" />
         </div>
         <div className="education-form-group">
           <label className="education-form-label">Major</label>
-          <input type="text" className="education-form-control" />
+          <input 
+          type="text" 
+          value={formData.major} 
+          onChange={(e) => setFormData((prev) => ({
+            ...prev, major: e.target.value
+            }))}
+          className="education-form-control" />
         </div>
         <div className="education-form-group">
           <label className="education-form-label">Degree Level</label>
           <select
-            value={degreeLevel}
-            onChange={(e) => setDegreeLevel(e.target.value)}
+            value={formData.degreeLevel}
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, degreeLevel: e.target.value
+              }))}
             className="education-form-control"
           >
             <option value="">Select an option</option>
@@ -42,8 +64,10 @@ const Education: FC<EducationProps> = ({ nextView, prevView }) => {
           <label className="education-form-label">Start Date</label>
           <input
             type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            value={formData.startDate}
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, startDate: e.target.value
+              }))}
             className="education-form-control"
           />
         </div>
@@ -51,8 +75,10 @@ const Education: FC<EducationProps> = ({ nextView, prevView }) => {
           <label className="education-form-label">End Date</label>
           <input
             type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
+            value={formData.endDate}
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, endDate: e.target.value
+              }))}
             className="education-form-control"
           />
         </div>
