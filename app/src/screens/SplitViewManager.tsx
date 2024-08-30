@@ -42,6 +42,8 @@ const SplitViewManager: FC = () => {
   }
 )
 
+  const[skillsFormData, setSkillsFormData] = useState<string[]>([]) 
+
   return (
     <div className="split-screen-container">
       <div className="left-side">
@@ -58,7 +60,7 @@ const SplitViewManager: FC = () => {
         {currentView === 4 && (
           <Projects nextView={goToNextView} prevView={goToPrevView} formData={projectsFormData} setFormData={setProjectsFormData}/>
         )}
-        {currentView === 5 && <Skills prevView={goToPrevView} />}
+        {currentView === 5 && <Skills prevView={goToPrevView} formData={skillsFormData} setFormData={setSkillsFormData}/>}
       </div>
 
       <div className="right-side">
@@ -68,7 +70,7 @@ const SplitViewManager: FC = () => {
           <ResumeExperience />
           <ResumeEducation formData={educationFormData}/>
           <ResumeProjects formData = {projectsFormData}/>
-          <ResumeSkills />
+          <ResumeSkills formData={skillsFormData}/>
         </div>
       </div>
     </div>
