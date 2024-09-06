@@ -25,6 +25,8 @@ const SplitViewManager: FC = () => {
     setCurrentView((currentView) => currentView - 1);
   };
 
+  const [summaryFormData, setSummaryFormData] = useState("")
+
   const [educationFormData, setEducationFormData] = useState({
     institutionName: "",
     major:"",
@@ -58,7 +60,7 @@ const SplitViewManager: FC = () => {
       <div className="left-side">
         {currentView === 0 && <Contact nextView={goToNextView} />}{" "}
         {currentView === 1 && (
-          <Summary nextView={goToNextView} prevView={goToPrevView} />
+          <Summary nextView={goToNextView} prevView={goToPrevView} formData={summaryFormData} setFormData={setSummaryFormData}/>
         )}
         {currentView === 2 && (
           <Education nextView={goToNextView} prevView={goToPrevView} formData={educationFormData} setFormData={setEducationFormData}/>
@@ -75,7 +77,7 @@ const SplitViewManager: FC = () => {
       <div className="right-side">
         <div className="resume-preview-container">
           <ResumeName />
-          <ResumeSummary />
+          <ResumeSummary formData={summaryFormData}/>
           <ResumeExperience formData={experienceFormData}/>
           <ResumeEducation formData={educationFormData}/>
           <ResumeProjects formData = {projectsFormData}/>
