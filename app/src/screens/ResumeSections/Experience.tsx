@@ -1,18 +1,23 @@
-import React, { FC, useState } from "react";
+import React, { FC, SetStateAction, useState } from "react";
 import "./ResumeSections.css";
+
+type ExperienceFormType = {
+  companyName: string,
+  positionTitle:string,
+  keyResponsibilities:string,
+  startDate:string,
+  endDate:string,
+  city:string
+}
 
 interface ExperienceProps {
   nextView: () => void;
   prevView: () => void;
+  formData: ExperienceFormType;
+  setFormData: React.Dispatch<SetStateAction<ExperienceFormType>>
 }
 
-const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
-  const [companyName, setCompanyName] = useState("");
-  const [positionTitle, setPositionTitle] = useState("");
-  const [keyResponsibilities, setKeyResponsibilities] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [city, setCity] = useState("");
+const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setFormData }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -28,12 +33,12 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            companyName,
-            positionTitle,
-            keyResponsibilities,
-            startDate,
-            endDate,
-            city,
+            companyName: formData.companyName,
+            positionTitle: formData.positionTitle,
+            keyResponsibilities: formData.keyResponsibilities,
+            startDate: formData.startDate,
+            endDate: formData.endDate,
+            city: formData.city,
           }),
         }
       );
@@ -41,7 +46,11 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
       if (!response.ok) throw new Error("Failed to generate content");
 
       const data = await response.json();
-      setGeneratedContent(data.content);
+      setFormData((prev) => ({
+        ...prev, keyResponsibilities: data.content
+      }))
+
+      {/*setGeneratedContent(data.content);*/}
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -72,8 +81,10 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
           <label className="experience-form-label">Company Name</label>
           <input
             type="text"
-            value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
+            value={formData.companyName}
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, companyName: e.target.value
+            }))}
             className="experience-form-control"
             required
           />
@@ -83,8 +94,10 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
           <label className="experience-form-label">Position Title</label>
           <input
             type="text"
-            value={positionTitle}
-            onChange={(e) => setPositionTitle(e.target.value)}
+            value={formData.positionTitle}
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, positionTitle: e.target.value
+            }))}
             className="experience-form-control"
             required
           />
@@ -93,8 +106,10 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
         <div className="experience-form-group">
           <label className="experience-form-label">Key Responsibilities</label>
           <textarea
-            value={keyResponsibilities}
-            onChange={(e) => setKeyResponsibilities(e.target.value)}
+            value={formData.keyResponsibilities}
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, keyResponsibilities: e.target.value
+            }))}
             className="experience-form-control"
             rows={6}
             required
@@ -105,8 +120,10 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
           <label className="experience-form-label">Start Date</label>
           <input
             type="date"
-            value={startDate}
-            onChange={(e) => setStartDate(e.target.value)}
+            value={formData.startDate}
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, startDate: e.target.value
+            }))}
             className="experience-form-control"
             required
           />
@@ -116,8 +133,10 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
           <label className="experience-form-label">End Date</label>
           <input
             type="date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
+            value={formData.endDate}
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, endDate: e.target.value
+            }))}
             className="experience-form-control"
             required
           />
@@ -127,8 +146,10 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView }) => {
           <label className="experience-form-label">City</label>
           <input
             type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
+            value={formData.city}
+            onChange={(e) => setFormData((prev) => ({
+              ...prev, city: e.target.value
+            }))}
             className="experience-form-control"
             required
           />
