@@ -70,6 +70,18 @@ app.post("/login", async (req, res) => {
   }
 });
 
+app.post("/generate-summary", async(req,res) => {
+  const summary = req.body.summary;
+  const prompt = `Based on this resume summary provided: ${summary}, re-create it into a 3-4 sentence version that concisely summarizes the user's key points while providing justification as to why the user is suitable for the role.`;
+  try {
+    const text = await generateContent(prompt);
+    res.json({ content: text });
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 app.post("/generate-experience", async (req, res) => {
   const { companyName, positionTitle, keyResponsibilities, startDate, endDate, city } = req.body;
   const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. These bullet points should be formatted in HTML list items (<li>) and should highlight a mix of typical responsibilities, achievements, and skills relevant to the position, and some points should focus on the provided key responsibilities, which are described as follows: ${keyResponsibilities}. Do not add any html tags and instead ONLY use newline breaks (\n) to seperate/denote a bullet point, provide the response in a format that can be directly put into the resume.`;
