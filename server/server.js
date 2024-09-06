@@ -72,7 +72,7 @@ app.post("/login", async (req, res) => {
 
 app.post("/generate-experience", async (req, res) => {
   const { companyName, positionTitle, keyResponsibilities, startDate, endDate, city } = req.body;
-  const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. These bullet points should be formatted in HTML list items (<li>) and should highlight a mix of typical responsibilities, achievements, and skills relevant to the position, and some points should focus on the provided key responsibilities, which are described as follows: ${keyResponsibilities}.`;
+  const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. These bullet points should be formatted in HTML list items (<li>) and should highlight a mix of typical responsibilities, achievements, and skills relevant to the position, and some points should focus on the provided key responsibilities, which are described as follows: ${keyResponsibilities}. Do not add any html tags and instead ONLY use newline breaks (\n) to seperate/denote a bullet point, provide the response in a format that can be directly put into the resume.`;
   try {
     const text = await generateContent(prompt);
     res.json({ content: text });

@@ -33,6 +33,15 @@ const SplitViewManager: FC = () => {
     endDate:""
   });
 
+  const [experienceFormData, setExperienceFormData] = useState({
+    companyName: "",
+    positionTitle:"",
+    keyResponsibilities:"",
+    startDate:"",
+    endDate:"",
+    city:""
+  });
+
   const [projectsFormData, setProjectsFormData] = useState({
     projectType: "",
     name:"",
@@ -55,7 +64,7 @@ const SplitViewManager: FC = () => {
           <Education nextView={goToNextView} prevView={goToPrevView} formData={educationFormData} setFormData={setEducationFormData}/>
         )}
         {currentView === 3 && (
-          <Experience nextView={goToNextView} prevView={goToPrevView} />
+          <Experience nextView={goToNextView} prevView={goToPrevView} formData={experienceFormData} setFormData={setExperienceFormData}/>
         )}
         {currentView === 4 && (
           <Projects nextView={goToNextView} prevView={goToPrevView} formData={projectsFormData} setFormData={setProjectsFormData}/>
@@ -67,7 +76,7 @@ const SplitViewManager: FC = () => {
         <div className="resume-preview-container">
           <ResumeName />
           <ResumeSummary />
-          <ResumeExperience />
+          <ResumeExperience formData={experienceFormData}/>
           <ResumeEducation formData={educationFormData}/>
           <ResumeProjects formData = {projectsFormData}/>
           <ResumeSkills formData={skillsFormData}/>
