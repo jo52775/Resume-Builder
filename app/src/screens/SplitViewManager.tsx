@@ -1,5 +1,6 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ResumeContact from "./ResumePreview/ResumeContact";
 import ResumeName from "./ResumePreview/ResumeName";
 import ResumeSummary from "./ResumePreview/ResumeSummary";
 import ResumeExperience from "./ResumePreview/ResumeExperience";
@@ -25,63 +26,104 @@ const SplitViewManager: FC = () => {
     setCurrentView((currentView) => currentView - 1);
   };
 
-  const [summaryFormData, setSummaryFormData] = useState("")
+  const [contactFormData, setContactFormData] = useState({
+    // firstName: "",
+    // lastName: "",
+    city: "",
+    phoneNumber: "",
+    email: "",
+    link: "",
+  });
+
+  const [summaryFormData, setSummaryFormData] = useState("");
 
   const [educationFormData, setEducationFormData] = useState({
     institutionName: "",
-    major:"",
-    degreeLevel:"",
-    startDate:"",
-    endDate:""
+    major: "",
+    degreeLevel: "",
+    startDate: "",
+    endDate: "",
   });
 
   const [experienceFormData, setExperienceFormData] = useState({
     companyName: "",
-    positionTitle:"",
-    keyResponsibilities:"",
-    startDate:"",
-    endDate:"",
-    city:""
+    positionTitle: "",
+    keyResponsibilities: "",
+    startDate: "",
+    endDate: "",
+    city: "",
   });
 
   const [projectsFormData, setProjectsFormData] = useState({
     projectType: "",
-    name:"",
-    description:"",
-    startDate:"",
-    endDate:"",
-  }
-)
+    name: "",
+    description: "",
+    startDate: "",
+    endDate: "",
+  });
 
-  const[skillsFormData, setSkillsFormData] = useState<string[]>([]) 
+  const [skillsFormData, setSkillsFormData] = useState<string[]>([]);
 
   return (
     <div className="split-screen-container">
       <div className="left-side">
-        {currentView === 0 && <Contact nextView={goToNextView} />}{" "}
+        {currentView === 0 && (
+          <Contact
+            nextView={goToNextView}
+            formData={contactFormData}
+            setFormData={setContactFormData}
+          />
+        )}
         {currentView === 1 && (
-          <Summary nextView={goToNextView} prevView={goToPrevView} formData={summaryFormData} setFormData={setSummaryFormData}/>
+          <Summary
+            nextView={goToNextView}
+            prevView={goToPrevView}
+            formData={summaryFormData}
+            setFormData={setSummaryFormData}
+          />
         )}
         {currentView === 2 && (
-          <Education nextView={goToNextView} prevView={goToPrevView} formData={educationFormData} setFormData={setEducationFormData}/>
+          <Education
+            nextView={goToNextView}
+            prevView={goToPrevView}
+            formData={educationFormData}
+            setFormData={setEducationFormData}
+          />
         )}
         {currentView === 3 && (
-          <Experience nextView={goToNextView} prevView={goToPrevView} formData={experienceFormData} setFormData={setExperienceFormData}/>
+          <Experience
+            nextView={goToNextView}
+            prevView={goToPrevView}
+            formData={experienceFormData}
+            setFormData={setExperienceFormData}
+          />
         )}
         {currentView === 4 && (
-          <Projects nextView={goToNextView} prevView={goToPrevView} formData={projectsFormData} setFormData={setProjectsFormData}/>
+          <Projects
+            nextView={goToNextView}
+            prevView={goToPrevView}
+            formData={projectsFormData}
+            setFormData={setProjectsFormData}
+          />
         )}
-        {currentView === 5 && <Skills prevView={goToPrevView} formData={skillsFormData} setFormData={setSkillsFormData}/>}
+        {currentView === 5 && (
+          <Skills
+            prevView={goToPrevView}
+            formData={skillsFormData}
+            setFormData={setSkillsFormData}
+          />
+        )}
       </div>
 
       <div className="right-side">
         <div className="resume-preview-container">
           <ResumeName />
-          <ResumeSummary formData={summaryFormData}/>
-          <ResumeExperience formData={experienceFormData}/>
-          <ResumeEducation formData={educationFormData}/>
-          <ResumeProjects formData = {projectsFormData}/>
-          <ResumeSkills formData={skillsFormData}/>
+          <ResumeContact formData={contactFormData} />
+          <ResumeSummary formData={summaryFormData} />
+          <ResumeExperience formData={experienceFormData} />
+          <ResumeEducation formData={educationFormData} />
+          <ResumeProjects formData={projectsFormData} />
+          <ResumeSkills formData={skillsFormData} />
         </div>
       </div>
     </div>
