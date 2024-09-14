@@ -7,6 +7,19 @@ const ResumePreview: FC = () => {
     <div className="resume-preview-container">
       <h2 className="resume-holder-name"> JOHN SMITH </h2>
 
+      <div className="resume-section contact-info">
+        <p className="section-content">
+          City: New York, NY | Email: john.smith@example.com | Phone: (123)
+          456-7890 | Website:{" "}
+          <a
+            href="https://johnsmith.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            johnsmith.com
+          </a>
+        </p>
+      </div>
       <div className="resume-section">
         <h3 className="section-heading"> SUMMARY </h3>
         <p className="section-content"> This is my summary </p>

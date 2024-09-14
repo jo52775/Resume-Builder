@@ -1,64 +1,36 @@
-import React, { FC, useState } from "react";
+import React, { FC, SetStateAction, useState } from "react";
 import "./ResumeSections.css";
 
-interface ContactInformationProps {
+type ContactFormType = {
+  city: string;
+  phoneNumber: string;
+  email: string;
+  link: string;
+};
+
+interface ContactProps {
   nextView: () => void;
+  formData: ContactFormType;
+  setFormData: React.Dispatch<SetStateAction<ContactFormType>>;
 }
 
-const ContactInformation: FC<ContactInformationProps> = ({ nextView }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [city, setCity] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [github, setGithub] = useState("");
-  const [personalWebsite, setPersonalWebsite] = useState("");
-
+const Contact: FC<ContactProps> = ({ nextView, formData, setFormData }) => {
   return (
     <div className="contact-info-form-container">
       <h2 className="contact-info-form-heading">Contact Information</h2>
 
       <form>
         <div className="contact-info-form-group">
-          <label className="contact-info-form-label">First Name</label>
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            className="contact-info-form-control"
-            required
-          />
-        </div>
-
-        <div className="contact-info-form-group">
-          <label className="contact-info-form-label">Last Name</label>
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            className="contact-info-form-control"
-            required
-          />
-        </div>
-
-        <div className="contact-info-form-group">
           <label className="contact-info-form-label">City</label>
           <input
             type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className="contact-info-form-control"
-            required
-          />
-        </div>
-
-        <div className="contact-info-form-group">
-          <label className="contact-info-form-label">Email</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.city}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                city: e.target.value,
+              }))
+            }
             className="contact-info-form-control"
             required
           />
@@ -68,46 +40,49 @@ const ContactInformation: FC<ContactInformationProps> = ({ nextView }) => {
           <label className="contact-info-form-label">Phone Number</label>
           <input
             type="tel"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            value={formData.phoneNumber}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                phoneNumber: e.target.value,
+              }))
+            }
             className="contact-info-form-control"
           />
         </div>
 
         <div className="contact-info-form-group">
-          <label className="contact-info-form-label">LinkedIn</label>
+          <label className="contact-info-form-label">Email</label>
           <input
-            type="url"
-            value={linkedin}
-            onChange={(e) => setLinkedin(e.target.value)}
+            type="email"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                email: e.target.value,
+              }))
+            }
             className="contact-info-form-control"
+            required
           />
         </div>
 
         <div className="contact-info-form-group">
-          <label className="contact-info-form-label">GitHub</label>
+          <label className="contact-info-form-label">Link</label>
           <input
             type="url"
-            value={github}
-            onChange={(e) => setGithub(e.target.value)}
-            className="contact-info-form-control"
-          />
-        </div>
-
-        <div className="contact-info-form-group">
-          <label className="contact-info-form-label">Personal Website</label>
-          <input
-            type="url"
-            value={personalWebsite}
-            onChange={(e) => setPersonalWebsite(e.target.value)}
+            value={formData.link}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                link: e.target.value,
+              }))
+            }
             className="contact-info-form-control"
           />
         </div>
 
         <div className="form-buttons">
-          <button type="submit" className="btn btn-submit">
-            Submit
-          </button>
           <button type="button" onClick={nextView} className="btn btn-next">
             Next
           </button>
@@ -117,4 +92,4 @@ const ContactInformation: FC<ContactInformationProps> = ({ nextView }) => {
   );
 };
 
-export default ContactInformation;
+export default Contact;
