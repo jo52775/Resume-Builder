@@ -104,15 +104,13 @@ app.post("/generate-experience", async (req, res) => {
 
 // Save resume
 app.post("/save-resume", async (req, res) => {
-  try {
     const resumeData = req.body;
+
+    // Saving to DB logic goes here
+
+
     console.log("Received resume data:", resumeData);
-    await saveResumeToDatabase(resumeData);
     res.send({ message: "Resume saved successfully" });
-  } catch (error) {
-    console.error("Error saving resume data:", error);
-    res.status(500).send("Failed to save resume data");
-  }
 });
 
 app.listen(5000, () => {
