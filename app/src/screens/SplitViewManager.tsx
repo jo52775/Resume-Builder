@@ -13,6 +13,7 @@ import Education from "./ResumeSections/Education";
 import Experience from "./ResumeSections/Experience";
 import Projects from "./ResumeSections/Projects";
 import Skills from "./ResumeSections/Skills";
+import SaveResume from "./saveResume";
 import "./SplitViewManager.css";
 
 const SplitViewManager: FC = () => {
@@ -113,6 +114,14 @@ const SplitViewManager: FC = () => {
             setFormData={setSkillsFormData}
           />
         )}
+        <SaveResume
+          contactFormData={contactFormData}
+          summaryFormData={summaryFormData}
+          educationFormData={educationFormData}
+          experienceFormData={experienceFormData}
+          projectsFormData={projectsFormData}
+          skillsFormData={skillsFormData}
+        />
       </div>
 
       <div className="right-side">
