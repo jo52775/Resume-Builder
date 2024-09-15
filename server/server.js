@@ -4,8 +4,10 @@ const { generateContent } = require("./gemini");
 
 const mongoose = require("mongoose");
 const User = require("./models/user");
+const Resume = require("./models/resume");
 
 const cors = require("cors");
+const resume = require("./models/resume");
 const app = express();
 
 app.use(cors());
@@ -104,15 +106,40 @@ app.post("/generate-experience", async (req, res) => {
 
 // Save resume
 app.post("/save-resume", async (req, res) => {
-  try {
     const resumeData = req.body;
+
+    // NOTE: I am using a default user value here (email: "data.guy@data.com")
+    const temp_user = await User.findOne({ email: "data.guy@data.com"});
+
+    console.log("Temp user: ", temp_user)
     console.log("Received resume data:", resumeData);
-    await saveResumeToDatabase(resumeData);
-    res.send({ message: "Resume saved successfully" });
-  } catch (error) {
-    console.error("Error saving resume data:", error);
-    res.status(500).send("Failed to save resume data");
-  }
+
+    const resume = new Resume({
+      
+      contactFormData: resumeData.contactFormData,
+
+      summaryFormData: resumeData.summaryFormData,
+
+      educationFormData: resumeData.educationFormData,
+
+      experienceFormData: resumeData.experienceFormData,
+
+      projectsFormData: resumeData.projectsFormData,
+
+      skillsFormData: resumeData.skillsFormData,
+
+      user: temp_user
+
+    })
+    
+    try {
+      const saved_resume = await resume.save();
+      temp_user.resumes.push(saved_resume._id);
+      await temp_user.save()
+      res.send({ message: "Resume created" });
+    } catch (error) {
+      res.send({ message: "Error creating resume" });
+    }
 });
 
 app.listen(5000, () => {
