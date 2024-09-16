@@ -36,13 +36,13 @@ app.post("/register", async (req, res) => {
   const confirmPassword = req.body.confirmPassword;
 
   // Query for checking if provided email already exists
-  const emailExists = await User.find({ email: email });
+  const emailExists = await User.findOne({ email: email });
 
   if(password != confirmPassword){
     res.send({ message: "password does not match" });
   }
 
-  else if (emailExists.length > 0){
+  else if (emailExists){
     res.send({ message: "email already exists" });
   }
 
@@ -71,15 +71,29 @@ app.post("/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  // Query for checking if a user exists with provided email and password
-  const result = await User.find({ email: username, password: password });
+  try {
+    // Query for checking if a user exists with provided email
+    const emailExists = await User.findOne({ email: username});
 
-  if (result.length > 0) {
-    res.send({ message: "login successful" });
-  } else {
+    if(!emailExists){
+      return res.send({ message: "login failed" });
+    }
+
+    const passwordCompare = await bcrypt.compare(password, emailExists.password)
+
+    if(passwordCompare){
+      res.send({message: "login successful"});
+    }
+
+    else{
+      res.send({message: "login failed"});
+    }
+ 
+  } catch (error) {
     res.send({ message: "login failed" });
   }
 });
+
 
 // AI Generation
 app.post("/generate-summary", async (req, res) => {
