@@ -3,6 +3,7 @@ require("dotenv").config();
 const { generateContent } = require("./gemini");
 
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const User = require("./models/user");
 const Resume = require("./models/resume");
 
@@ -35,22 +36,30 @@ app.post("/register", async (req, res) => {
   const confirmPassword = req.body.confirmPassword;
 
   // Query for checking if provided email already exists
-  const result = await User.find({ email: email });
+  const emailExists = await User.find({ email: email });
 
-  if (password != confirmPassword) {
+  if(password != confirmPassword){
     res.send({ message: "password does not match" });
-  } else if (result.length > 0) {
-    res.send({ message: "email already exists" });
-  } else {
-    const user = new User({
-      email: email,
-      password: password,
-      full_name: fullName,
-    });
+  }
 
+  else if (emailExists.length > 0){
+    res.send({ message: "email already exists" });
+  }
+
+  else {
     try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const user = new User({
+        email: email,
+        password: hashedPassword,
+        full_name: fullName,
+      });
+
       await user.save();
       res.send({ message: "User created" });
+
+
     } catch (error) {
       res.send({ message: "Error creating user" });
     }
