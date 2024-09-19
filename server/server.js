@@ -77,21 +77,22 @@ app.post("/login", async (req, res) => {
     const emailExists = await User.findOne({ email: username});
 
     if(!emailExists){
-      return res.send({ message: "login failed" });
+      return res.send({ message: "login failed: email already exists." });
     }
 
     const passwordCompare = await bcrypt.compare(password, emailExists.password)
 
     if(passwordCompare){
-      res.send({message: "login successful"});
+      const token = jwt.sign({id: emailExists._id}, process.env.JWT_SECRET_KEY);
+      res.json({token: token, message: "login successful"});
     }
 
     else{
-      res.send({message: "login failed"});
+      res.send({message: "login failed: password does not match."});
     }
  
   } catch (error) {
-    res.send({ message: "login failed" });
+    res.send({ message: "login failed"});
   }
 });
 
