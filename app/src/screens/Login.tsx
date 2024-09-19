@@ -23,7 +23,6 @@ const Login: FC = () => {
     fetch("http://localhost:5000/login", options)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
 
         if (data.message === "login successful") {
           navigate("/dashboard");
