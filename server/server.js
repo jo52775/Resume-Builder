@@ -4,6 +4,7 @@ const { generateContent } = require("./gemini");
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("./models/user");
 const Resume = require("./models/resume");
 
