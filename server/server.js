@@ -5,6 +5,7 @@ const { generateContent } = require("./gemini");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const verifyToken = require("./authentication/auth-middleware")
 const User = require("./models/user");
 const Resume = require("./models/resume");
 
@@ -130,13 +131,15 @@ app.post("/generate-experience", async (req, res) => {
 });
 
 // Save resume
-app.post("/save-resume", async (req, res) => {
+app.post("/save-resume", verifyToken, async (req, res) => {
     const resumeData = req.body;
+    
+    // User ID from middleware
+    const user_id = req.user_id;
 
-    // NOTE: I am using a default user value here (email: "data.guy@data.com")
-    const temp_user = await User.findOne({ email: "data.guy@data.com"});
+    const user = await User.findOne({ _id: user_id});
 
-    console.log("Temp user: ", temp_user)
+    console.log("User: ", user)
     console.log("Received resume data:", resumeData);
 
     const resume = new Resume({
@@ -153,14 +156,14 @@ app.post("/save-resume", async (req, res) => {
 
       skillsFormData: resumeData.skillsFormData,
 
-      user: temp_user
+      user: user
 
-    })
+    });
     
     try {
       const saved_resume = await resume.save();
-      temp_user.resumes.push(saved_resume._id);
-      await temp_user.save()
+      user.resumes.push(saved_resume._id);
+      await user.save()
       res.send({ message: "Resume created" });
     } catch (error) {
       res.send({ message: "Error creating resume" });
