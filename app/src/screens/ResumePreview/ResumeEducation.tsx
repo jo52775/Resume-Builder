@@ -20,8 +20,8 @@ const ResumeEducation: FC<EducationDisplayProps> = ({ formData }) => {
     <div className="resume-section">
       <h3 className="section-heading"> EDUCATION </h3>
       <div className="education-header">
-        <span className="institution-name">{formData.institutionName}</span>{" "}
-        {/* add the location at the end of the row */}
+        <span className="institution-name">{formData.institutionName}</span>
+        {/* Add location here */}
       </div>
       <div className="education-details">
         <span className="degree-major">{formData.major}</span>

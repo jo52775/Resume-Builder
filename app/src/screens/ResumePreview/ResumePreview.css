@@ -76,7 +76,6 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 14px;
 }
 
 .degree-major {
@@ -85,7 +84,9 @@ p {
 
 /*Experience Section*/
 .company-row,
-.position-row {
+.position-row,
+.education-header,
+.education-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
