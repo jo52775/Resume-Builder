@@ -1,41 +1,93 @@
-.resume-preview-container {
+/* .resume-preview-container {
   background-color: white;
   border: 1px solid black;
+  border-top: 10px solid rgb(148, 50, 168);
   border-radius: 1px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
-  max-width: 800px;
+  width: 8.5in;
+  min-height: 11in;
   margin: 0 auto;
-  height: 100%;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  padding: 20px;
+} */
+
+.resume-preview-container {
+  width: 100%;
+  max-width: 8.5in;
+  min-height: 100vh;
+  max-height: 11in;
+  box-sizing: border-box;
+  border: 1px solid black;
+  font-family: "Garamond", sans-serif;
+  min-height: auto;
+  padding: 15px;
 }
 
 .resume-holder-name {
-  margin-bottom: 10px;
+  font-family: "Garamond", sans-serif;
   text-align: center;
-  font-size: 2em;
-  color: black;
+  font-size: 2.5em;
+  color: #000000;
   font-weight: bold;
+  margin-bottom: 0px;
 }
 
 .resume-section {
-  margin-bottom: 32px;
+  font-size: 16px;
   display: flex;
   flex-direction: column;
 }
 
 .section-heading {
   font-size: 1.1em;
+  border-bottom: 1px solid black;
+  padding-bottom: 1px;
   margin-bottom: 5px;
-  border-bottom: 2px solid black;
-  padding-bottom: 5px;
 }
 
 .section-content {
-  font-size: 1em;
   white-space: normal;
   word-wrap: break-word;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+/*Contact Section*/
+.contact-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.contact-info a {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*Education Section*/
+.education-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.degree-major {
+  font-weight: bold;
+}
+
+/*Experience Section*/
+.company-row,
+.position-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
 }
