@@ -3,23 +3,31 @@ import { Link, useNavigate } from "react-router-dom";
 import "./ResumePreview.css";
 
 type EducationFormType = {
-  institutionName: string,
-  major:string,
-  degreeLevel:string,
-  startDate:string,
-  endDate:string
-}
+  institutionName: string;
+  major: string;
+  degreeLevel: string;
+  startDate: string;
+  endDate: string;
+};
 
 interface EducationDisplayProps {
   formData: EducationFormType;
 }
 
-const ResumeEducation: FC<EducationDisplayProps> = ({formData}) => {
+const ResumeEducation: FC<EducationDisplayProps> = ({ formData }) => {
   return (
     <div className="resume-section">
       <h3 className="section-heading"> EDUCATION </h3>
-      <p className="section-content"> {formData.major} {formData.degreeLevel}</p>
-      <p className="section-content"> {formData.institutionName} {formData.startDate} {formData.endDate}</p>
+      <div className="education-header">
+        <span className="institution-name">{formData.institutionName}</span>{" "}
+        {/* add the location at the end of the row */}
+      </div>
+      <div className="education-details">
+        <span className="degree-major">{formData.major}</span>
+        <span className="graduation-date">
+          {formData.startDate} - {formData.endDate}
+        </span>
+      </div>
     </div>
   );
 };
