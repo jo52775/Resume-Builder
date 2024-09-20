@@ -15,6 +15,14 @@ interface EducationDisplayProps {
 }
 
 const ResumeEducation: FC<EducationDisplayProps> = ({ formData }) => {
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "short",
+    };
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", options);
+  };
   return (
     <div className="resume-section">
       <h3 className="section-heading"> EDUCATION </h3>
@@ -25,7 +33,7 @@ const ResumeEducation: FC<EducationDisplayProps> = ({ formData }) => {
       <div className="education-details">
         <span className="degree-major">{formData.major}</span>
         <span className="graduation-date">
-          {formData.startDate} - {formData.endDate}
+          {formatDate(formData.startDate)} - {formatDate(formData.endDate)}
         </span>
       </div>
     </div>
