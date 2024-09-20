@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./ResumePreview.css";
+import { formatDate } from "../../components/dateFormatter";
 
 type EducationFormType = {
   institutionName: string;
@@ -15,14 +16,6 @@ interface EducationDisplayProps {
 }
 
 const ResumeEducation: FC<EducationDisplayProps> = ({ formData }) => {
-  const formatDate = (dateString: string) => {
-    const options: Intl.DateTimeFormatOptions = {
-      year: "numeric",
-      month: "short",
-    };
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", options);
-  };
   return (
     <div className="resume-section">
       <h3 className="section-heading"> EDUCATION </h3>
