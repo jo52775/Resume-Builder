@@ -1,12 +1,12 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 function verifyToken(req,res,next){
-    const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1]; // accounting for Bearer 
+    const token = req.cookies.tokenCookie;
 
     if(!token){
-        return res.json({message: "Error: Token is absent"})
+        return res.json({message: "Error: Token is absent"});
     }
 
     try {
@@ -15,7 +15,9 @@ function verifyToken(req,res,next){
         next();
 
     } catch (err) {
-        res.json({message: "Error: Invalid Token"})
+        res.clearCookie("tokenCookie");
+        res.json({message: "Error: Invalid Token"});
+        // redirect to login or show login modal
     }
 }
 
