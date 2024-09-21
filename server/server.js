@@ -4,6 +4,8 @@ const { generateContent } = require("./gemini");
 
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const verifyToken = require("./authentication/auth-middleware")
 const User = require("./models/user");
 const Resume = require("./models/resume");
 
@@ -69,22 +71,22 @@ app.post("/login", async (req, res) => {
     // Query for checking if a user exists with provided email
     const emailExists = await User.findOne({ email: username });
 
-    if (!emailExists) {
-      return res.send({ message: "login failed" });
+    if(!emailExists){
+      return res.send({ message: "login failed: email already exists." });
     }
 
-    const passwordCompare = await bcrypt.compare(
-      password,
-      emailExists.password
-    );
+    const passwordCompare = await bcrypt.compare(password, emailExists.password)
 
-    if (passwordCompare) {
-      res.send({ message: "login successful" });
-    } else {
-      res.send({ message: "login failed" });
+    if(passwordCompare){
+      const token = jwt.sign({id: emailExists._id}, process.env.JWT_SECRET_KEY);
+      res.json({token: token, message: "login successful"});
+    }
+
+    else{
+      res.send({message: "login failed: password does not match."});
     }
   } catch (error) {
-    res.send({ message: "login failed" });
+    res.send({ message: "login failed"});
   }
 });
 
@@ -121,14 +123,16 @@ app.post("/generate-experience", async (req, res) => {
 });
 
 // Save resume
-app.post("/save-resume", async (req, res) => {
-  const resumeData = req.body;
+app.post("/save-resume", verifyToken, async (req, res) => {
+    const resumeData = req.body;
+    
+    // User ID from middleware
+    const user_id = req.user_id;
 
-  // NOTE: I am using a default user value here (email: "data.guy@data.com")
-  const temp_user = await User.findOne({ email: "data.guy@data.com" });
+    const user = await User.findOne({ _id: user_id});
 
-  console.log("Temp user: ", temp_user);
-  console.log("Received resume data:", resumeData);
+    console.log("User: ", user)
+    console.log("Received resume data:", resumeData);
 
   const resume = new Resume({
     contactFormData: resumeData.contactFormData,
@@ -143,17 +147,18 @@ app.post("/save-resume", async (req, res) => {
 
     skillsFormData: resumeData.skillsFormData,
 
-    user: temp_user,
-  });
+    user: user
 
-  try {
-    const saved_resume = await resume.save();
-    temp_user.resumes.push(saved_resume._id);
-    await temp_user.save();
-    res.send({ message: "Resume created" });
-  } catch (error) {
-    res.send({ message: "Error creating resume" });
-  }
+    });
+    
+    try {
+      const saved_resume = await resume.save();
+      user.resumes.push(saved_resume._id);
+      await user.save()
+      res.send({ message: "Resume created" });
+    } catch (error) {
+      res.send({ message: "Error creating resume" });
+    }
 });
 
 app.listen(5000, () => {
