@@ -99,6 +99,12 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// User logout
+app.post("/logout", async (req,res) => {
+  res.clearCookie("tokenCookie");
+  res.send({message: "logout successful"});
+});
+
 // AI Generation
 app.post("/generate-summary", async (req, res) => {
   const summary = req.body.summary;
