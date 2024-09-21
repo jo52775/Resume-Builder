@@ -81,7 +81,11 @@ app.post("/login", async (req, res) => {
 
     if(passwordCompare){
       const token = jwt.sign({id: emailExists._id}, process.env.JWT_SECRET_KEY, {expiresIn: "1h"});
-      res.json({token: token, message: "login successful"});
+      
+      res.cookie("tokenCookie", token, {
+        httpOnly: true
+      });
+      res.json({message: "login successful"});
     }
 
     else{
