@@ -12,8 +12,9 @@ const Login: FC = () => {
 
     const loginCredentials = { username, password };
 
-    const options = {
+    const options: RequestInit = {
       method: "POST",
+      credentials:"include",
       headers: {
         "Content-Type": "application/json",
       },
