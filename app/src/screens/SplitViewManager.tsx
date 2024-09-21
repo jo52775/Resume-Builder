@@ -42,7 +42,6 @@ const SplitViewManager: FC = () => {
   const [educationFormData, setEducationFormData] = useState({
     institutionName: "",
     major: "",
-    degreeLevel: "",
     startDate: "",
     endDate: "",
   });

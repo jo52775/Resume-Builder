@@ -11,7 +11,6 @@ export interface SaveResumeProps {
   educationFormData: {
     institutionName: string;
     major: string;
-    degreeLevel: string;
     startDate: string;
     endDate: string;
   };

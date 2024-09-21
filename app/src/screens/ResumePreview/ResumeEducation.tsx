@@ -6,7 +6,6 @@ import { formatDate } from "../../components/dateFormatter";
 type EducationFormType = {
   institutionName: string;
   major: string;
-  degreeLevel: string;
   startDate: string;
   endDate: string;
 };
