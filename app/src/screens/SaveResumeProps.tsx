@@ -1,5 +1,7 @@
 export interface SaveResumeProps {
   contactFormData: {
+    firstName: string;
+    lastName: string;
     city: string;
     phoneNumber: string;
     email: string;

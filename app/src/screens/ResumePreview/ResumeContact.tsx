@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 
 type ContactFormType = {
+  firstName: string;
+  lastName: string;
   city: string;
   phoneNumber: string;
   email: string;
@@ -14,15 +16,29 @@ interface ResumeContactProps {
 const ResumeContact: FC<ResumeContactProps> = ({ formData }) => {
   return (
     <div className="resume-section contact-info">
-      <p className="section-content">
-        {formData.city} | {formData.phoneNumber} | {formData.email} |
-        {formData.link && (
-          <a href={formData.link} target="_blank" className="contact-link">
-            {" "}
-            {formData.link}
-          </a>
-        )}
-      </p>
+      <div className="contact-name-row">
+        <h2 className="contact-name">
+          {formData.firstName} {formData.lastName}
+        </h2>
+      </div>
+      <div className="contact-details-row">
+        <p className="section-content">
+          {formData.city} | {formData.phoneNumber} | {formData.email}
+          {formData.link && (
+            <>
+              {" | "}
+              <a
+                href={formData.link}
+                target="_blank"
+                className="contact-link"
+                rel="noopener noreferrer"
+              >
+                {formData.link}
+              </a>
+            </>
+          )}
+        </p>
+      </div>
     </div>
   );
 };

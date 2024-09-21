@@ -2,6 +2,8 @@ import React, { FC, SetStateAction, useState } from "react";
 import "./ResumeSections.css";
 
 type ContactFormType = {
+  firstName: string;
+  lastName: string;
   city: string;
   phoneNumber: string;
   email: string;
@@ -20,6 +22,38 @@ const Contact: FC<ContactProps> = ({ nextView, formData, setFormData }) => {
       <h2 className="contact-info-form-heading">Contact Information</h2>
 
       <form>
+        <div className="contact-info-form-group">
+          <label className="contact-info-form-label">First Name</label>
+          <input
+            type="text"
+            value={formData.firstName}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                firstName: e.target.value,
+              }))
+            }
+            className="contact-info-form-control"
+            required
+          />
+        </div>
+
+        <div className="contact-info-form-group">
+          <label className="contact-info-form-label">Last Name</label>
+          <input
+            type="text"
+            value={formData.lastName}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                lastName: e.target.value,
+              }))
+            }
+            className="contact-info-form-control"
+            required
+          />
+        </div>
+
         <div className="contact-info-form-group">
           <label className="contact-info-form-label">City</label>
           <input
