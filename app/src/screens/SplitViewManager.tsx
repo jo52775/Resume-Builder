@@ -1,5 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import ResumeContact from "./ResumePreview/ResumeContact";
 import ResumeName from "./ResumePreview/ResumeName";
 import ResumeSummary from "./ResumePreview/ResumeSummary";
@@ -15,6 +16,7 @@ import Projects from "./ResumeSections/Projects";
 import Skills from "./ResumeSections/Skills";
 import SaveResume from "./saveResume";
 import "./SplitViewManager.css";
+import html2pdf from "html2pdf.js";
 
 const SplitViewManager: FC = () => {
   const [currentView, setCurrentView] = useState(0);
@@ -65,6 +67,37 @@ const SplitViewManager: FC = () => {
 
   const [skillsFormData, setSkillsFormData] = useState<string[]>([]);
 
+  // download PDF
+  const handleDownload = () => {
+    const resumeContainer = document.querySelector(
+      ".resume-preview-container"
+    ) as HTMLElement;
+
+    if (!resumeContainer) {
+      console.error("Resume container not found.");
+      return;
+    }
+
+    resumeContainer.style.border = "none";
+
+    const options = {
+      filename: "resume.pdf",
+      margin: [0.1, 0.1, 0, 0.1],
+      image: { type: "jpeg", quality: 1 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+    };
+
+    html2pdf()
+      .set(options)
+      .from(resumeContainer)
+      .save()
+      .catch(() => console.error("Error generating PDF."))
+      .finally(() => {
+        resumeContainer.style.border = "1px solid black";
+      });
+  };
+
   return (
     <div className="split-screen-container">
       <div className="left-side">
@@ -114,6 +147,9 @@ const SplitViewManager: FC = () => {
             setFormData={setSkillsFormData}
           />
         )}
+      </div>
+
+      <div className="right-side">
         <SaveResume
           contactFormData={contactFormData}
           summaryFormData={summaryFormData}
@@ -122,17 +158,19 @@ const SplitViewManager: FC = () => {
           projectsFormData={projectsFormData}
           skillsFormData={skillsFormData}
         />
-      </div>
-
-      <div className="right-side">
+        <button className="download-resume-button" onClick={handleDownload}>
+          Download Resume
+        </button>
         <div className="resume-preview-container">
-          <ResumeName />
-          <ResumeContact formData={contactFormData} />
-          <ResumeSummary formData={summaryFormData} />
-          <ResumeExperience formData={experienceFormData} />
-          <ResumeEducation formData={educationFormData} />
-          <ResumeProjects formData={projectsFormData} />
-          <ResumeSkills formData={skillsFormData} />
+          <div className="right-side-scroll">
+            <ResumeName />
+            <ResumeContact formData={contactFormData} />
+            <ResumeSummary formData={summaryFormData} />
+            <ResumeExperience formData={experienceFormData} />
+            <ResumeEducation formData={educationFormData} />
+            <ResumeProjects formData={projectsFormData} />
+            <ResumeSkills formData={skillsFormData} />
+          </div>
         </div>
       </div>
     </div>
