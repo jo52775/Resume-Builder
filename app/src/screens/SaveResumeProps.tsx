@@ -13,6 +13,8 @@ export interface SaveResumeProps {
     major: string;
     startDate: string;
     endDate: string;
+    location: string;
+    description: string;
   };
   experienceFormData: {
     companyName: string;

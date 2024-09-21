@@ -44,6 +44,8 @@ const SplitViewManager: FC = () => {
     major: "",
     startDate: "",
     endDate: "",
+    location: "",
+    description: "",
   });
 
   const [experienceFormData, setExperienceFormData] = useState({

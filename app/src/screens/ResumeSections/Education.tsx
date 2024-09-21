@@ -1,4 +1,4 @@
-import React, { FC, SetStateAction, useState, useEffect } from "react";
+import React, { FC, SetStateAction } from "react";
 import "./ResumeSections.css";
 
 type EducationFormType = {
@@ -6,6 +6,8 @@ type EducationFormType = {
   major: string;
   startDate: string;
   endDate: string;
+  location: string;
+  description: string;
 };
 
 interface EducationProps {
@@ -41,6 +43,7 @@ const Education: FC<EducationProps> = ({
             className="education-form-control"
           />
         </div>
+
         <div className="education-form-group">
           <label className="education-form-label">Degree, Major</label>
           <input
@@ -55,6 +58,22 @@ const Education: FC<EducationProps> = ({
             className="education-form-control"
           />
         </div>
+
+        <div className="education-form-group">
+          <label className="education-form-label">Location</label>
+          <input
+            type="text"
+            value={formData.location}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                location: e.target.value,
+              }))
+            }
+            className="education-form-control"
+          />
+        </div>
+
         <div className="education-form-group">
           <label className="education-form-label">Start Date</label>
           <input
@@ -69,6 +88,7 @@ const Education: FC<EducationProps> = ({
             className="education-form-control"
           />
         </div>
+
         <div className="education-form-group">
           <label className="education-form-label">End Date</label>
           <input
@@ -83,6 +103,24 @@ const Education: FC<EducationProps> = ({
             className="education-form-control"
           />
         </div>
+
+        <div className="education-form-group">
+          <label className="education-form-label">
+            Description (e.g., Coursework, Awards, Activities)
+          </label>
+          <textarea
+            value={formData.description}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                description: e.target.value,
+              }))
+            }
+            className="education-form-control description-input"
+            placeholder="Add relevant coursework, awards, or activities here"
+          />
+        </div>
+
         <div className="form-buttons">
           <button type="submit" className="btn btn-submit">
             Submit
