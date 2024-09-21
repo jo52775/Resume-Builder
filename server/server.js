@@ -5,7 +5,8 @@ const { generateContent } = require("./gemini");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const verifyToken = require("./authentication/auth-middleware")
+const cookieParser = require("cookie-parser");
+const verifyToken = require("./authentication/auth-middleware");
 const User = require("./models/user");
 const Resume = require("./models/resume");
 
@@ -15,6 +16,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser())
 
 // Connect to database when running the server
 const uri = process.env.DATABASE_URI;
