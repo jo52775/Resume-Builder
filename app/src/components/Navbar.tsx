@@ -1,21 +1,19 @@
-import React, { FC, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { FC } from "react";
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar: FC = () => {
   return (
     <nav className="navbar">
       <ul className="navbar-items">
         <li className="navbar-item">
-          {" "}
-          <Link to="/"> About Us </Link>
+          <Link to="/about">About Us</Link>
         </li>
         <li className="navbar-item">
-          {" "}
-          <Link to="/"> My Profile </Link>
+          <Link to="/profile">My Profile</Link>
         </li>
         <li className="navbar-item">
-          {" "}
-          <Link to="/"> Logout </Link>
+          <Link to="/logout">Logout</Link>
         </li>
       </ul>
     </nav>

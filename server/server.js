@@ -40,15 +40,11 @@ app.post("/register", async (req, res) => {
   // Query for checking if provided email already exists
   const emailExists = await User.findOne({ email: email });
 
-  if(password != confirmPassword){
+  if (password != confirmPassword) {
     res.send({ message: "password does not match" });
-  }
-
-  else if (emailExists){
+  } else if (emailExists) {
     res.send({ message: "email already exists" });
-  }
-
-  else {
+  } else {
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -60,8 +56,6 @@ app.post("/register", async (req, res) => {
 
       await user.save();
       res.send({ message: "User created" });
-
-
     } catch (error) {
       res.send({ message: "Error creating user" });
     }
@@ -75,7 +69,7 @@ app.post("/login", async (req, res) => {
 
   try {
     // Query for checking if a user exists with provided email
-    const emailExists = await User.findOne({ email: username});
+    const emailExists = await User.findOne({ email: username });
 
     if(!emailExists){
       return res.send({ message: "login failed: email already exists." });
@@ -91,12 +85,10 @@ app.post("/login", async (req, res) => {
     else{
       res.send({message: "login failed: password does not match."});
     }
- 
   } catch (error) {
     res.send({ message: "login failed"});
   }
 });
-
 
 // AI Generation
 app.post("/generate-summary", async (req, res) => {
@@ -120,7 +112,7 @@ app.post("/generate-experience", async (req, res) => {
     endDate,
     city,
   } = req.body;
-  const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. These bullet points should be formatted in HTML list items (<li>) and should highlight a mix of typical responsibilities, achievements, and skills relevant to the position, and some points should focus on the provided key responsibilities, which are described as follows: ${keyResponsibilities}. Do not add any html tags and instead ONLY use newline breaks (\n) to seperate/denote a bullet point, provide the response in a format that can be directly put into the resume.`;
+  const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. These bullet points should be written in plain text, separated by newline breaks (\n), with no bullet symbols, no parentheses, and no punctuation at the end of the points. Focus on typical responsibilities, achievements, and skills relevant to the position, and include some key responsibilities as described here: ${keyResponsibilities}. Provide the response in a format that can be directly put into the resume.`;
   try {
     const text = await generateContent(prompt);
     res.json({ content: text });
@@ -142,21 +134,20 @@ app.post("/save-resume", verifyToken, async (req, res) => {
     console.log("User: ", user)
     console.log("Received resume data:", resumeData);
 
-    const resume = new Resume({
-      
-      contactFormData: resumeData.contactFormData,
+  const resume = new Resume({
+    contactFormData: resumeData.contactFormData,
 
-      summaryFormData: resumeData.summaryFormData,
+    summaryFormData: resumeData.summaryFormData,
 
-      educationFormData: resumeData.educationFormData,
+    educationFormData: resumeData.educationFormData,
 
-      experienceFormData: resumeData.experienceFormData,
+    experienceFormData: resumeData.experienceFormData,
 
-      projectsFormData: resumeData.projectsFormData,
+    projectsFormData: resumeData.projectsFormData,
 
-      skillsFormData: resumeData.skillsFormData,
+    skillsFormData: resumeData.skillsFormData,
 
-      user: user
+    user: user
 
     });
     
