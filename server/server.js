@@ -60,6 +60,13 @@ app.post("/register", async (req, res) => {
       });
 
       await user.save();
+
+      const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY, {expiresIn: "1h"});
+      
+      res.cookie("tokenCookie", token, {
+        httpOnly: true
+      });
+
       res.send({ message: "User created" });
     } catch (error) {
       res.send({ message: "Error creating user" });
