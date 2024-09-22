@@ -61,7 +61,7 @@ h2 {
   border: none;
   padding: 5px 15px;
   border-radius: 5px;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -75,7 +75,7 @@ h2 {
   background-color: #148f77;
 }
 
-/***** CONTACT INFORMATION SECTION *****/
+/*******Contact Form*******/
 .contact-info-form-container {
   position: relative;
   width: 90%;
@@ -101,13 +101,13 @@ h2 {
 }
 
 .contact-info-form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .contact-info-form-label {
   display: block;
-  font-weight: 600;
-  color: #333;
+  font-weight: 700;
+  color: #5a5a5a;
   font-size: 15px;
 }
 
@@ -183,8 +183,9 @@ h2 {
   color: #bbb;
 }
 
-/***** EDUCATION SECTION *****/
+/*******Education Form*******/
 .education-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -193,7 +194,18 @@ h2 {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
+}
+
+.education-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .education-form-group {
@@ -202,10 +214,9 @@ h2 {
 
 .education-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .education-form-control {
@@ -216,18 +227,24 @@ h2 {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
 }
 
 .education-form-control[type="date"] {
   padding: 10px;
 }
 
-.education-form-control::placeholder {
-  color: #bbb;
+.education-form-control::placeholder,
+.description-input::placeholder {
+  font-family: "Open Sans";
+  font-size: 14px;
+  color: #959595;
+  opacity: 1;
 }
 
-/***** SUMMARY SECTION *****/
+/*******Summary Form*******/
 .summary-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -236,19 +253,25 @@ h2 {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
 }
 
-.summary-form-group {
-  margin-bottom: 15px;
+.summary-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .summary-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .summary-form-control {
@@ -259,6 +282,7 @@ h2 {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
 }
 
 .summary-form-control:focus {
@@ -267,8 +291,9 @@ h2 {
   outline: none;
 }
 
-/***** EXPERIENCE SECTION *****/
+/*******Experience Form*******/
 .experience-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -277,7 +302,18 @@ h2 {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
+}
+
+.experience-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .experience-form-group {
@@ -286,10 +322,9 @@ h2 {
 
 .experience-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .experience-form-control {
@@ -300,6 +335,7 @@ h2 {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
 }
 
 .experience-form-control:focus {
@@ -308,8 +344,9 @@ h2 {
   outline: none;
 }
 
-/***** PROJECTS SECTION *****/
+/*******Projects Form*******/
 .projects-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -318,7 +355,18 @@ h2 {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
+}
+
+.projects-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .projects-form-heading {
@@ -334,10 +382,9 @@ h2 {
 
 .projects-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .projects-form-control {
@@ -348,6 +395,7 @@ h2 {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
 }
 
 .projects-form-control:focus {
@@ -356,8 +404,9 @@ h2 {
   outline: none;
 }
 
-/***** SKILLS SECTION *****/
+/*******Skills Form*******/
 .skills-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -366,7 +415,18 @@ h2 {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
+}
+
+.skills-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .skills-form-group {
@@ -375,10 +435,9 @@ h2 {
 
 .skills-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .skills-form-control {
@@ -389,10 +448,33 @@ h2 {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
 }
 
 .skills-form-control:focus {
   border-color: #1abc9c;
   box-shadow: 0 0 8px rgba(26, 188, 156, 0.2);
   outline: none;
+}
+
+.btn-submit {
+  border: 2px solid #1abc9c;
+  border-radius: 100px;
+  background-color: #1abc9c;
+  color: white;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #148f77;
+}
+
+.btn-submit:active {
+  background-color: #148f77;
 }

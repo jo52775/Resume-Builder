@@ -1,6 +1,5 @@
-import React, { FC, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import React, { FC, useState } from "react";
+import Navbar from "../components/Navbar"; // Assuming the Navbar is located in components folder
 import ResumeContact from "./ResumePreview/ResumeContact";
 import ResumeSummary from "./ResumePreview/ResumeSummary";
 import ResumeExperience from "./ResumePreview/ResumeExperience";
@@ -58,7 +57,7 @@ const SplitViewManager: FC = () => {
   });
 
   const [projectsFormData, setProjectsFormData] = useState({
-    projectType: "",
+    projectType: "PROJECTS",
     name: "",
     description: "",
     startDate: "",
@@ -99,76 +98,79 @@ const SplitViewManager: FC = () => {
   };
 
   return (
-    <div className="split-screen-container">
-      <div className="left-side">
-        {currentView === 0 && (
-          <Contact
-            nextView={goToNextView}
-            formData={contactFormData}
-            setFormData={setContactFormData}
-          />
-        )}
-        {currentView === 1 && (
-          <Summary
-            nextView={goToNextView}
-            prevView={goToPrevView}
-            formData={summaryFormData}
-            setFormData={setSummaryFormData}
-          />
-        )}
-        {currentView === 2 && (
-          <Education
-            nextView={goToNextView}
-            prevView={goToPrevView}
-            formData={educationFormData}
-            setFormData={setEducationFormData}
-          />
-        )}
-        {currentView === 3 && (
-          <Experience
-            nextView={goToNextView}
-            prevView={goToPrevView}
-            formData={experienceFormData}
-            setFormData={setExperienceFormData}
-          />
-        )}
-        {currentView === 4 && (
-          <Projects
-            nextView={goToNextView}
-            prevView={goToPrevView}
-            formData={projectsFormData}
-            setFormData={setProjectsFormData}
-          />
-        )}
-        {currentView === 5 && (
-          <Skills
-            prevView={goToPrevView}
-            formData={skillsFormData}
-            setFormData={setSkillsFormData}
-          />
-        )}
-      </div>
+    <div>
+      <Navbar />
+      <div className="split-screen-container">
+        <div className="left-side">
+          {currentView === 0 && (
+            <Contact
+              nextView={goToNextView}
+              formData={contactFormData}
+              setFormData={setContactFormData}
+            />
+          )}
+          {currentView === 1 && (
+            <Summary
+              nextView={goToNextView}
+              prevView={goToPrevView}
+              formData={summaryFormData}
+              setFormData={setSummaryFormData}
+            />
+          )}
+          {currentView === 2 && (
+            <Education
+              nextView={goToNextView}
+              prevView={goToPrevView}
+              formData={educationFormData}
+              setFormData={setEducationFormData}
+            />
+          )}
+          {currentView === 3 && (
+            <Experience
+              nextView={goToNextView}
+              prevView={goToPrevView}
+              formData={experienceFormData}
+              setFormData={setExperienceFormData}
+            />
+          )}
+          {currentView === 4 && (
+            <Projects
+              nextView={goToNextView}
+              prevView={goToPrevView}
+              formData={projectsFormData}
+              setFormData={setProjectsFormData}
+            />
+          )}
+          {currentView === 5 && (
+            <Skills
+              prevView={goToPrevView}
+              formData={skillsFormData}
+              setFormData={setSkillsFormData}
+            />
+          )}
+        </div>
 
-      <div className="right-side">
-        <SaveResume
-          contactFormData={contactFormData}
-          summaryFormData={summaryFormData}
-          educationFormData={educationFormData}
-          experienceFormData={experienceFormData}
-          projectsFormData={projectsFormData}
-          skillsFormData={skillsFormData}
-        />
-        <button className="download-resume-button" onClick={handleDownload}>
-          Download Resume
-        </button>
-        <div className="resume-preview-container">
-          <div className="right-side-scroll">
-            <ResumeContact formData={contactFormData} />
-            <ResumeSummary formData={summaryFormData} />
-            <ResumeExperience formData={experienceFormData} />
-            <ResumeEducation formData={educationFormData} />
-            <ResumeProjects formData={projectsFormData} />
-            <ResumeSkills formData={skillsFormData} />
+        <div className="right-side">
+          <SaveResume
+            contactFormData={contactFormData}
+            summaryFormData={summaryFormData}
+            educationFormData={educationFormData}
+            experienceFormData={experienceFormData}
+            projectsFormData={projectsFormData}
+            skillsFormData={skillsFormData}
+          />
+          <button className="download-resume-button" onClick={handleDownload}>
+            Download Resume
+          </button>
+          <div className="resume-preview-container">
+            <div className="right-side-scroll">
+              <ResumeContact formData={contactFormData} />
+              <ResumeSummary formData={summaryFormData} />
+              <ResumeExperience formData={experienceFormData} />
+              <ResumeEducation formData={educationFormData} />
+              <ResumeProjects formData={projectsFormData} />
+              <ResumeSkills formData={skillsFormData} />
+            </div>
           </div>
         </div>
       </div>

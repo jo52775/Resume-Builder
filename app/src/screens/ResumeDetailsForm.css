@@ -12,7 +12,6 @@ h2 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
-  color: #ffa500;
 }
 
 .form-group {
@@ -33,9 +32,4 @@ input[type="text"] {
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 16px;
-}
-
-input[type="text"]:focus {
-  border-color: #ffa500;
-  outline: none;
 }

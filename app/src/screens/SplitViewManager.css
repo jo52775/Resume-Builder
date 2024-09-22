@@ -1,12 +1,24 @@
+body {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
 .split-screen-container {
   display: flex;
   height: 100vh;
+  overflow: hidden;
 }
 
 .left-side,
 .right-side {
   flex: 1;
-  padding: 20px;
+  /* padding: 15px; */
+  overflow-y: auto;
+}
+
+.right-side {
+  flex: 1;
+  padding: 15px;
   overflow-y: auto;
 }
 

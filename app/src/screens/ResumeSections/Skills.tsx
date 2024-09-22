@@ -46,7 +46,7 @@ const Skills: FC<SkillsProps> = ({ prevView, formData, setFormData }) => {
             onClick={addSkillToArray}
           >
             {" "}
-            Add skill{" "}
+            + Add skill{" "}
           </button>
         </div>
       </form>
@@ -63,7 +63,7 @@ const Skills: FC<SkillsProps> = ({ prevView, formData, setFormData }) => {
                 onClick={() => removeSkillFromArray(item)}
               >
                 {" "}
-                Remove skill{" "}
+                – Remove skill{" "}
               </button>{" "}
             </li>
           ))}
