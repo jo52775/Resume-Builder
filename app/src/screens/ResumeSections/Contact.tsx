@@ -23,6 +23,10 @@ const Contact: FC<ContactProps> = ({ nextView, formData, setFormData }) => {
 
       <form>
         <div className="contact-info-form-group">
+          <p className="form-descriptions">
+            Adding your contact details ensures employers can easily reach out
+            to you.
+          </p>
           <label className="contact-info-form-label">First Name</label>
           <input
             type="text"

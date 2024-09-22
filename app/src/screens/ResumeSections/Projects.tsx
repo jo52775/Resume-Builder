@@ -71,17 +71,21 @@ const Projects: FC<ProjectsProps> = ({
           <option value="">Select a Header</option>
           <option value="PROJECTS">Projects</option>
           <option value="VOLUNTEERING">Volunteering</option>
-          <option value="WORK">Work</option>
-          <option value="CLUBS">Clubs</option>
+          <option value="CLUBS">Extracurriculars</option>
         </select>
       </h2>
+      <p className="form-descriptions">
+        Highlight your projects, volunteering, or extracurriculars to showcase
+        your skills and interests. Describe your roles and contributions to
+        demonstrate your qualifications and commitment.
+      </p>
       <button
         type="button"
         onClick={handleGenerateAI}
         className="btn btn-ai"
         disabled={loading}
       >
-        {loading ? "Generating..." : "Generate from AI"}
+        {loading ? "Generating..." : "⟡ Write with AI"}
       </button>
 
       <form>
@@ -147,12 +151,6 @@ const Projects: FC<ProjectsProps> = ({
             className="projects-form-control"
             required
           />
-        </div>
-
-        <div className="form-buttons">
-          <button type="submit" className="btn btn-submit">
-            Submit
-          </button>
         </div>
       </form>
 

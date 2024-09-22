@@ -8,26 +8,29 @@ interface SkillsProps {
 }
 
 const Skills: FC<SkillsProps> = ({ prevView, formData, setFormData }) => {
-
-  const [skill, setSkill] = useState("")
+  const [skill, setSkill] = useState("");
 
   const addSkillToArray = () => {
-    setFormData((prev) => ([...prev, skill]
-    ))
-    setSkill("")
-  }
+    setFormData((prev) => [...prev, skill]);
+    setSkill("");
+  };
 
   const removeSkillFromArray = (skillToRemove: string) => {
-    setFormData((prev) => (prev.filter(listItem => listItem !== skillToRemove)))
-  }
+    setFormData((prev) =>
+      prev.filter((listItem) => listItem !== skillToRemove)
+    );
+  };
 
-  const handleFormSubmit = (e:any) => {
-    e.preventDefault()
-  }
+  const handleFormSubmit = (e: any) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="skills-form-container">
       <h2 className="skills-form-heading">Skills</h2>
+      <p className="form-descriptions">
+        Share your key professional skills that are most relevant to the job.
+      </p>
       <form onSubmit={handleFormSubmit}>
         <div className="skills-form-group">
           <label className="skills-form-label">Skill</label>
@@ -37,14 +40,33 @@ const Skills: FC<SkillsProps> = ({ prevView, formData, setFormData }) => {
             className="skills-form-control"
             required
           />
-          <button type="submit" className="btn btn-submit" onClick={addSkillToArray}> Add skill </button>
+          <button
+            type="submit"
+            className="btn btn-submit"
+            onClick={addSkillToArray}
+          >
+            {" "}
+            Add skill{" "}
+          </button>
         </div>
       </form>
 
       <div className="interactive-skills-list">
         <h3> Skills List </h3>
         <ul>
-          {formData.map((item) => (<li> {item} <button className="btn btn-submit" onClick={() => removeSkillFromArray(item)}> Remove skill </button> </li>))}
+          {formData.map((item) => (
+            <li>
+              {" "}
+              {item}{" "}
+              <button
+                className="btn btn-submit"
+                onClick={() => removeSkillFromArray(item)}
+              >
+                {" "}
+                Remove skill{" "}
+              </button>{" "}
+            </li>
+          ))}
         </ul>
       </div>
 

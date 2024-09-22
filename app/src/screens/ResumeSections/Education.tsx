@@ -26,7 +26,11 @@ const Education: FC<EducationProps> = ({
   return (
     <div className="education-form-container">
       <h2 className="education-form-heading">Education</h2>
-
+      <p className="form-descriptions">
+        Summarize your education, including your school name, location, degree,
+        major, and any relevant coursework or activities that showcase your
+        skills.
+      </p>
       <form>
         <div className="education-form-group">
           <label className="education-form-label">Institution Name</label>
@@ -119,12 +123,6 @@ const Education: FC<EducationProps> = ({
             className="education-form-control description-input"
             placeholder="Add relevant coursework, awards, or activities here"
           />
-        </div>
-
-        <div className="form-buttons">
-          <button type="submit" className="btn btn-submit">
-            Submit
-          </button>
         </div>
       </form>
 
