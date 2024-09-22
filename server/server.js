@@ -186,6 +186,30 @@ app.post("/save-resume", verifyToken, async (req, res) => {
   }
 });
 
+// Get resumes
+app.get("/get-resumes", verifyToken, async (req,res) => {
+  const user_id = req.user_id;
+  try {
+    // Acquiring resume IDs from user
+    const user = await User.findOne({_id: user_id});
+    const user_resume_IDs = user.resumes;
+    
+    // Storing each user resume's data into an array
+    let i = 0;
+    const user_resumes = [];
+    while(i < user_resume_IDs.length){
+      const resume_item = await Resume.findOne({_id: user_resume_IDs[i]});
+      user_resumes.push(resume_item);
+      i++;
+    }
+
+    res.json({message: user_resumes});
+  } catch (error) {
+    console.log(error);
+    res.send({message: "Could not retrieve resume data"});
+  }
+});
+
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });
