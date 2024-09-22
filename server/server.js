@@ -5,6 +5,7 @@ const { generateContent } = require("./gemini");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const verifyToken = require("./authentication/auth-middleware");
 const User = require("./models/user");
 const Resume = require("./models/resume");
@@ -13,8 +14,12 @@ const cors = require("cors");
 const resume = require("./models/resume");
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials:true,
+}));
 app.use(express.json());
+app.use(cookieParser())
 
 // Connect to database when running the server
 const uri = process.env.DATABASE_URI;
@@ -74,24 +79,29 @@ app.post("/login", async (req, res) => {
     if (!emailExists) {
       return res.send({ message: "login failed: email already exists." });
     }
+    const passwordCompare = await bcrypt.compare(password, emailExists.password)
 
-    const passwordCompare = await bcrypt.compare(
-      password,
-      emailExists.password
-    );
+    if(passwordCompare){
+      const token = jwt.sign({id: emailExists._id}, process.env.JWT_SECRET_KEY, {expiresIn: "1h"});
+      
+      res.cookie("tokenCookie", token, {
+        httpOnly: true
+      });
+      res.json({message: "login successful"});
+    }
 
-    if (passwordCompare) {
-      const token = jwt.sign(
-        { id: emailExists._id },
-        process.env.JWT_SECRET_KEY
-      );
-      res.json({ token: token, message: "login successful" });
-    } else {
-      res.send({ message: "login failed: password does not match." });
+    else{
+      res.send({message: "login failed: password does not match."});
     }
   } catch (error) {
     res.send({ message: "login failed" });
   }
+});
+
+// User logout
+app.post("/logout", async (req,res) => {
+  res.clearCookie("tokenCookie");
+  res.send({message: "logout successful"});
 });
 
 // AI Generation
