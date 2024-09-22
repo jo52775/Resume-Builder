@@ -24,8 +24,9 @@ const Register: FC = () => {
       confirmPassword,
     };
 
-    const options = {
+    const options: RequestInit = {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
