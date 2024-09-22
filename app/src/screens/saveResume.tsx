@@ -13,6 +13,7 @@ const SaveResume: FC<SaveResumeProps> = ({
     try {
       const response = await fetch("http://localhost:5000/save-resume", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },

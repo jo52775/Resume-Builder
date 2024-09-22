@@ -77,7 +77,7 @@ app.post("/login", async (req, res) => {
     const emailExists = await User.findOne({ email: username });
 
     if (!emailExists) {
-      return res.send({ message: "login failed: email already exists." });
+      return res.send({ message: "login failed: email does not exist." });
     }
     const passwordCompare = await bcrypt.compare(password, emailExists.password)
 
