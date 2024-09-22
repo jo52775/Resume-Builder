@@ -57,7 +57,7 @@ const SplitViewManager: FC = () => {
   });
 
   const [projectsFormData, setProjectsFormData] = useState({
-    projectType: "PROJECTS",
+    projectType: "Projects",
     name: "",
     description: "",
     startDate: "",
