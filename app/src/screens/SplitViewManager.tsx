@@ -2,7 +2,6 @@ import React, { FC, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import ResumeContact from "./ResumePreview/ResumeContact";
-import ResumeName from "./ResumePreview/ResumeName";
 import ResumeSummary from "./ResumePreview/ResumeSummary";
 import ResumeExperience from "./ResumePreview/ResumeExperience";
 import ResumeEducation from "./ResumePreview/ResumeEducation";
@@ -30,8 +29,8 @@ const SplitViewManager: FC = () => {
   };
 
   const [contactFormData, setContactFormData] = useState({
-    // firstName: "",
-    // lastName: "",
+    firstName: "",
+    lastName: "",
     city: "",
     phoneNumber: "",
     email: "",
@@ -43,9 +42,10 @@ const SplitViewManager: FC = () => {
   const [educationFormData, setEducationFormData] = useState({
     institutionName: "",
     major: "",
-    degreeLevel: "",
     startDate: "",
     endDate: "",
+    location: "",
+    description: "",
   });
 
   const [experienceFormData, setExperienceFormData] = useState({
@@ -163,7 +163,6 @@ const SplitViewManager: FC = () => {
         </button>
         <div className="resume-preview-container">
           <div className="right-side-scroll">
-            <ResumeName />
             <ResumeContact formData={contactFormData} />
             <ResumeSummary formData={summaryFormData} />
             <ResumeExperience formData={experienceFormData} />

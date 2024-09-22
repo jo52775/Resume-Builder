@@ -6,9 +6,10 @@ import { formatDate } from "../../components/dateFormatter";
 type EducationFormType = {
   institutionName: string;
   major: string;
-  degreeLevel: string;
   startDate: string;
   endDate: string;
+  location: string;
+  description: string;
 };
 
 interface EducationDisplayProps {
@@ -21,13 +22,16 @@ const ResumeEducation: FC<EducationDisplayProps> = ({ formData }) => {
       <h3 className="section-heading"> EDUCATION </h3>
       <div className="education-header">
         <span className="institution-name">{formData.institutionName}</span>
-        {/* Add location here */}
+        <span className="institution-location">{formData.location}</span>
       </div>
       <div className="education-details">
         <span className="degree-major">{formData.major}</span>
         <span className="graduation-date">
           {formatDate(formData.startDate)} - {formatDate(formData.endDate)}
         </span>
+      </div>
+      <div className="education-description">
+        <span className="education-description">{formData.description}</span>
       </div>
     </div>
   );

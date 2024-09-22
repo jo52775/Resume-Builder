@@ -1,5 +1,7 @@
 export interface SaveResumeProps {
   contactFormData: {
+    firstName: string;
+    lastName: string;
     city: string;
     phoneNumber: string;
     email: string;
@@ -9,9 +11,10 @@ export interface SaveResumeProps {
   educationFormData: {
     institutionName: string;
     major: string;
-    degreeLevel: string;
     startDate: string;
     endDate: string;
+    location: string;
+    description: string;
   };
   experienceFormData: {
     companyName: string;
