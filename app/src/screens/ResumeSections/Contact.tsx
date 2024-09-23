@@ -11,12 +11,13 @@ type ContactFormType = {
 };
 
 interface ContactProps {
+  prevView: () => void;
   nextView: () => void;
   formData: ContactFormType;
   setFormData: React.Dispatch<SetStateAction<ContactFormType>>;
 }
 
-const Contact: FC<ContactProps> = ({ nextView, formData, setFormData }) => {
+const Contact: FC<ContactProps> = ({ prevView, nextView, formData, setFormData }) => {
   return (
     <div className="contact-info-form-container">
       <h2 className="contact-info-form-heading">Contact</h2>
@@ -121,6 +122,9 @@ const Contact: FC<ContactProps> = ({ nextView, formData, setFormData }) => {
         </div>
 
         <div className="form-buttons">
+          <button type="button" onClick={prevView} className="btn btn-back">
+            Back
+          </button>
           <button type="button" onClick={nextView} className="btn btn-next">
             Next
           </button>

@@ -115,6 +115,7 @@ const SplitViewManager: FC = () => {
           {currentView === 1 && (
             <Contact
               nextView={goToNextView}
+              prevView={goToPrevView}
               formData={contactFormData}
               setFormData={setContactFormData}
             />
