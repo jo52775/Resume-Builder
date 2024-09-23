@@ -2,23 +2,27 @@ import React, { FC, SetStateAction, useState } from "react";
 import "./ResumeSections.css";
 
 type ExperienceFormType = {
-  companyName: string,
-  positionTitle:string,
-  keyResponsibilities:string,
-  startDate:string,
-  endDate:string,
-  city:string
-}
+  companyName: string;
+  positionTitle: string;
+  keyResponsibilities: string;
+  startDate: string;
+  endDate: string;
+  city: string;
+};
 
 interface ExperienceProps {
   nextView: () => void;
   prevView: () => void;
   formData: ExperienceFormType;
-  setFormData: React.Dispatch<SetStateAction<ExperienceFormType>>
+  setFormData: React.Dispatch<SetStateAction<ExperienceFormType>>;
 }
 
-const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setFormData }) => {
-
+const Experience: FC<ExperienceProps> = ({
+  nextView,
+  prevView,
+  formData,
+  setFormData,
+}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [generatedContent, setGeneratedContent] = useState<string>("");
@@ -47,10 +51,13 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setForm
 
       const data = await response.json();
       setFormData((prev) => ({
-        ...prev, keyResponsibilities: data.content
-      }))
+        ...prev,
+        keyResponsibilities: data.content,
+      }));
 
-      {/*setGeneratedContent(data.content);*/}
+      {
+        /*setGeneratedContent(data.content);*/
+      }
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -61,14 +68,17 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setForm
   return (
     <div className="experience-form-container">
       <h2 className="experience-form-heading">Experience</h2>
-
+      <p className="form-descriptions">
+        Share your past work and achievements to impress employers. Use clear
+        examples and strong action verbs to show what you bring to the table.
+      </p>
       <button
         type="button"
         onClick={handleGenerateAI}
         className="btn btn-ai"
         disabled={loading}
       >
-        {loading ? "Generating..." : "Generate from AI"}
+        {loading ? "Generating..." : "⟡ Write with AI"}
       </button>
 
       {error && <div className="error-message">{error}</div>}
@@ -82,9 +92,12 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setForm
           <input
             type="text"
             value={formData.companyName}
-            onChange={(e) => setFormData((prev) => ({
-              ...prev, companyName: e.target.value
-            }))}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                companyName: e.target.value,
+              }))
+            }
             className="experience-form-control"
             required
           />
@@ -95,9 +108,12 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setForm
           <input
             type="text"
             value={formData.positionTitle}
-            onChange={(e) => setFormData((prev) => ({
-              ...prev, positionTitle: e.target.value
-            }))}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                positionTitle: e.target.value,
+              }))
+            }
             className="experience-form-control"
             required
           />
@@ -107,9 +123,12 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setForm
           <label className="experience-form-label">Key Responsibilities</label>
           <textarea
             value={formData.keyResponsibilities}
-            onChange={(e) => setFormData((prev) => ({
-              ...prev, keyResponsibilities: e.target.value
-            }))}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                keyResponsibilities: e.target.value,
+              }))
+            }
             className="experience-form-control"
             rows={6}
             required
@@ -121,9 +140,12 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setForm
           <input
             type="date"
             value={formData.startDate}
-            onChange={(e) => setFormData((prev) => ({
-              ...prev, startDate: e.target.value
-            }))}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                startDate: e.target.value,
+              }))
+            }
             className="experience-form-control"
             required
           />
@@ -134,9 +156,12 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setForm
           <input
             type="date"
             value={formData.endDate}
-            onChange={(e) => setFormData((prev) => ({
-              ...prev, endDate: e.target.value
-            }))}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                endDate: e.target.value,
+              }))
+            }
             className="experience-form-control"
             required
           />
@@ -147,16 +172,16 @@ const Experience: FC<ExperienceProps> = ({ nextView, prevView, formData, setForm
           <input
             type="text"
             value={formData.city}
-            onChange={(e) => setFormData((prev) => ({
-              ...prev, city: e.target.value
-            }))}
+            onChange={(e) =>
+              setFormData((prev) => ({
+                ...prev,
+                city: e.target.value,
+              }))
+            }
             className="experience-form-control"
             required
           />
         </div>
-        <button type="submit" className="btn btn-submit">
-          Submit
-        </button>
         <div className="form-buttons">
           <button type="button" onClick={prevView} className="btn btn-back">
             Back

@@ -5,35 +5,35 @@ interface SummaryProps {
   nextView: () => void;
   prevView: () => void;
   formData: string;
-  setFormData: React.Dispatch<SetStateAction<string>>
+  setFormData: React.Dispatch<SetStateAction<string>>;
 }
 
-const Summary: FC<SummaryProps> = ({ nextView, prevView, formData, setFormData }) => {
-  
+const Summary: FC<SummaryProps> = ({
+  nextView,
+  prevView,
+  formData,
+  setFormData,
+}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  
-  const handleGenerateSummary = async() => {
-    setLoading(true)
-    setError(null)
-    
+
+  const handleGenerateSummary = async () => {
+    setLoading(true);
+    setError(null);
+
     try {
-      const response = await fetch(
-        "http://localhost:5000/generate-summary",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            summary: formData
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:5000/generate-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          summary: formData,
+        }),
+      });
 
       if (!response.ok) throw new Error("Failed to generate content");
 
       const data = await response.json();
-      setFormData(data.content)
-
+      setFormData(data.content);
     } catch (err) {
       setError((err as Error).message);
     } finally {
@@ -44,12 +44,17 @@ const Summary: FC<SummaryProps> = ({ nextView, prevView, formData, setFormData }
   return (
     <div className="summary-form-container">
       <h2 className="summary-form-heading">Summary</h2>
-      <button type="button"
-              className="btn btn-ai"
-              disabled={loading}
-              onClick={handleGenerateSummary}>
-        
-        {loading ? "Generating..." : "Generate from AI"}
+      <p className="form-descriptions">
+        Give a brief overview of your career and skills to grab employers'
+        attention. Focus on what makes you a great candidate.
+      </p>
+      <button
+        type="button"
+        className="btn btn-ai"
+        disabled={loading}
+        onClick={handleGenerateSummary}
+      >
+        {loading ? "Generating..." : "⟡ Write with AI"}
       </button>
 
       {error && <div className="error-message">{error}</div>}

@@ -57,31 +57,35 @@ const Projects: FC<ProjectsProps> = ({
 
   return (
     <div className="projects-form-container">
-      <h2 className="projects-form-heading">
-        <select
-          value={formData.projectType}
-          onChange={(e) =>
-            setFormData((prev) => ({
-              ...prev,
-              projectType: e.target.value,
-            }))
-          }
-          className="projects-form-control"
-        >
-          <option value="">Select a Header</option>
-          <option value="PROJECTS">Projects</option>
-          <option value="VOLUNTEERING">Volunteering</option>
-          <option value="WORK">Work</option>
-          <option value="CLUBS">Clubs</option>
-        </select>
-      </h2>
+      <h2 className="projects-form-heading">{formData.projectType}</h2>
+      <p className="form-descriptions">
+        Highlight your projects, volunteering, or extracurriculars to showcase
+        your skills and interests. Describe your roles and contributions to
+        demonstrate your qualifications and commitment.
+      </p>
+      <select
+        value={formData.projectType}
+        onChange={(e) =>
+          setFormData((prev) => ({
+            ...prev,
+            projectType: e.target.value,
+          }))
+        }
+        className="projects-form-control"
+      >
+        <option value="">Select a Header</option>
+        <option value="Projects">Projects</option>
+        <option value="Volunteering">Volunteering</option>
+        <option value="Extracurriculars">Extracurriculars</option>
+      </select>
+
       <button
         type="button"
         onClick={handleGenerateAI}
         className="btn btn-ai"
         disabled={loading}
       >
-        {loading ? "Generating..." : "Generate from AI"}
+        {loading ? "Generating..." : "⟡ Write with AI"}
       </button>
 
       <form>
@@ -147,12 +151,6 @@ const Projects: FC<ProjectsProps> = ({
             className="projects-form-control"
             required
           />
-        </div>
-
-        <div className="form-buttons">
-          <button type="submit" className="btn btn-submit">
-            Submit
-          </button>
         </div>
       </form>
 

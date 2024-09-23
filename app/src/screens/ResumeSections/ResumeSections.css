@@ -5,7 +5,22 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
-/***** BUTTON STYLES *****/
+h2 {
+  color: #1c1c1f;
+  text-align: left;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  font-size: 28px;
+}
+
+.form-descriptions {
+  padding-top: 5px;
+  padding-bottom: 15px;
+  font-size: 16px;
+  color: var(--grey-text);
+}
+
+/*******Button styles*******/
 .form-buttons {
   display: flex;
   justify-content: space-between;
@@ -14,22 +29,16 @@ body {
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 8px 20px;
   border: none;
-  border-radius: 25px;
-  font-size: 14px;
+  border-radius: 40px;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
   display: inline-block;
   text-align: center;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn:active {
-  transform: translateY(0);
 }
 
 .btn-back,
@@ -41,30 +50,21 @@ body {
 
 .btn-back:hover,
 .btn-next:hover {
-  background-color: #f2f2f2;
-}
-
-.btn-back:active,
-.btn-next:active {
-  background-color: #e0e0e0;
-}
-
-.btn-submit {
   background-color: #1abc9c;
-  color: #fff;
-}
-
-.btn-submit:hover {
-  background-color: #16a085;
-}
-
-.btn-submit:active {
-  background-color: #148f77;
+  color: white;
 }
 
 .btn-ai {
+  margin-bottom: 10px;
   background-color: #1abc9c;
   color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .btn-ai:hover {
@@ -75,8 +75,9 @@ body {
   background-color: #148f77;
 }
 
-/***** CONTACT INFORMATION SECTION *****/
+/*******Contact Form*******/
 .contact-info-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -85,26 +86,29 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
 }
 
-.contact-info-form-heading {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #1abc9c;
+.contact-info-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .contact-info-form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .contact-info-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .contact-info-form-control {
@@ -179,8 +183,9 @@ body {
   color: #bbb;
 }
 
-/***** EDUCATION SECTION *****/
+/*******Education Form*******/
 .education-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -189,14 +194,18 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
 }
 
-.education-form-heading {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #1abc9c;
+.education-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .education-form-group {
@@ -205,10 +214,9 @@ body {
 
 .education-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .education-form-control {
@@ -219,18 +227,24 @@ body {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
 }
 
 .education-form-control[type="date"] {
   padding: 10px;
 }
 
-.education-form-control::placeholder {
-  color: #bbb;
+.education-form-control::placeholder,
+.description-input::placeholder {
+  font-family: "Open Sans";
+  font-size: 14px;
+  color: #959595;
+  opacity: 1;
 }
 
-/***** SUMMARY SECTION *****/
+/*******Summary Form*******/
 .summary-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -239,26 +253,25 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
 }
 
-.summary-form-heading {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #1abc9c;
-}
-
-.summary-form-group {
-  margin-bottom: 15px;
+.summary-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .summary-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .summary-form-control {
@@ -269,6 +282,7 @@ body {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
 }
 
 .summary-form-control:focus {
@@ -277,8 +291,9 @@ body {
   outline: none;
 }
 
-/***** EXPERIENCE SECTION *****/
+/*******Experience Form*******/
 .experience-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -287,14 +302,18 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
 }
 
-.experience-form-heading {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #1abc9c;
+.experience-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .experience-form-group {
@@ -303,10 +322,9 @@ body {
 
 .experience-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .experience-form-control {
@@ -317,6 +335,7 @@ body {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
 }
 
 .experience-form-control:focus {
@@ -325,8 +344,9 @@ body {
   outline: none;
 }
 
-/***** PROJECTS SECTION *****/
+/*******Projects Form*******/
 .projects-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -335,14 +355,18 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
 }
 
-.projects-form-heading {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #1abc9c;
+.projects-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .projects-form-group {
@@ -351,10 +375,9 @@ body {
 
 .projects-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .projects-form-control {
@@ -365,6 +388,7 @@ body {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 15px;
 }
 
 .projects-form-control:focus {
@@ -373,8 +397,9 @@ body {
   outline: none;
 }
 
-/***** SKILLS SECTION *****/
+/*******Skills Form*******/
 .skills-form-container {
+  position: relative;
   width: 90%;
   max-width: 600px;
   margin: 80px auto;
@@ -383,14 +408,18 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  border-top: 5px solid #1abc9c;
 }
 
-.skills-form-heading {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #1abc9c;
+.skills-form-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: #1abc9c;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .skills-form-group {
@@ -399,10 +428,9 @@ body {
 
 .skills-form-label {
   display: block;
-  margin-bottom: 6px;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
+  font-weight: 700;
+  color: #5a5a5a;
+  font-size: 15px;
 }
 
 .skills-form-control {
@@ -413,10 +441,58 @@ body {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: vertical;
 }
 
 .skills-form-control:focus {
   border-color: #1abc9c;
   box-shadow: 0 0 8px rgba(26, 188, 156, 0.2);
   outline: none;
+}
+
+.btn-submit {
+  border: 2px solid #1abc9c;
+  border-radius: 100px;
+  background-color: #1abc9c;
+  color: white;
+  font-size: 14px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #148f77;
+}
+
+.btn-submit:active {
+  background-color: #148f77;
+}
+
+.resume-actions {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.btn-save,
+.download-resume-button {
+  background-color: #ff006a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border-radius: 40px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+
+.btn-save:hover,
+download-resume-button {
+  background-color: #c50254;
 }
