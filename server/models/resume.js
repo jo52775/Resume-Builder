@@ -37,6 +37,8 @@ const resumeSchema = new mongoose.Schema({
 
       skillsFormData: [String],
 
+      documentTitle: String,
+
       user: {type: mongoose.Schema.Types.ObjectId, ref: "User"}
 })
 

@@ -32,4 +32,5 @@ export interface SaveResumeProps {
     endDate: string;
   };
   skillsFormData: string[];
+  documentTitle:string;
 }
