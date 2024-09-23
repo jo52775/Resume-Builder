@@ -3,11 +3,14 @@
   height: 100vh;
   max-height: 11.69in;
   box-sizing: border-box;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   font-family: "Garamond", sans-serif;
   min-height: auto;
   padding: 15px;
   position: relative;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .resume-holder-name {
