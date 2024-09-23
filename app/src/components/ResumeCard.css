@@ -1,0 +1,12 @@
+.resume-card-container{
+    border: 2px solid black;
+    height:200px;
+    background-color: whitesmoke;
+    padding: 8px;
+    margin: 10px;
+
+  }
+
+.resume-card-label{
+    font-weight: bold;
+}

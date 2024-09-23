@@ -20,3 +20,21 @@
   width: 100%;
   font-family: "Poppins", sans-serif;
 }
+
+.saved-resume-container{
+  width: 100%;
+  display: flex;
+  margin-left: 10px;
+  margin-top: 30px;
+}
+
+.saved-resumes-heading{
+  position: absolute;
+  margin-top: -30px;
+  left: 10px;
+}
+
+.resume-cards-container{
+  display: flex;
+  padding: 10px;
+}
