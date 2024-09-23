@@ -151,17 +151,23 @@ const SplitViewManager: FC = () => {
         </div>
 
         <div className="right-side">
-          <SaveResume
-            contactFormData={contactFormData}
-            summaryFormData={summaryFormData}
-            educationFormData={educationFormData}
-            experienceFormData={experienceFormData}
-            projectsFormData={projectsFormData}
-            skillsFormData={skillsFormData}
-          />
-          <button className="download-resume-button" onClick={handleDownload}>
-            Download Resume
-          </button>
+          <div className="resume-actions">
+            <SaveResume
+              contactFormData={contactFormData}
+              summaryFormData={summaryFormData}
+              educationFormData={educationFormData}
+              experienceFormData={experienceFormData}
+              projectsFormData={projectsFormData}
+              skillsFormData={skillsFormData}
+            />
+            <button
+              className="btn-save download-resume-button"
+              onClick={handleDownload}
+            >
+              <i className="fas fa-download" style={{ marginRight: "8px" }}></i>
+              Download
+            </button>
+          </div>
           <div className="resume-preview-container">
             <div className="right-side-scroll">
               <ResumeContact formData={contactFormData} />
