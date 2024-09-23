@@ -91,3 +91,11 @@ p {
   align-items: center;
   margin-bottom: 2px;
 }
+
+.projects-section-heading {
+  text-transform: uppercase;
+  font-size: 1.1em;
+  border-bottom: 1px solid black;
+  padding-bottom: 1px;
+  margin-bottom: 5px;
+}

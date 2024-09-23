@@ -18,7 +18,7 @@ interface ProjectsDisplayProps {
 const ResumeProjects: FC<ProjectsDisplayProps> = ({ formData }) => {
   return (
     <div className="resume-section">
-      <h3 className="section-heading"> {formData.projectType} </h3>
+      <h3 className="projects-section-heading"> {formData.projectType} </h3>
       <div className="project-name-row">
         <span className="project-name">{formData.name}</span>
         <span className="project-dates">
