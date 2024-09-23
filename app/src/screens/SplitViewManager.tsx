@@ -169,6 +169,7 @@ const SplitViewManager: FC = () => {
               experienceFormData={experienceFormData}
               projectsFormData={projectsFormData}
               skillsFormData={skillsFormData}
+              documentTitle={documentTitle}
             />
             <button
               className="btn-save download-resume-button"

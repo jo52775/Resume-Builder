@@ -9,6 +9,7 @@ const SaveResume: FC<SaveResumeProps> = ({
   experienceFormData,
   projectsFormData,
   skillsFormData,
+  documentTitle,
 }) => {
   const handleSave = async () => {
     try {
@@ -25,6 +26,7 @@ const SaveResume: FC<SaveResumeProps> = ({
           experienceFormData,
           projectsFormData,
           skillsFormData,
+          documentTitle
         }),
       });
 

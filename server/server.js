@@ -180,6 +180,8 @@ app.post("/save-resume", verifyToken, async (req, res) => {
 
     skillsFormData: resumeData.skillsFormData,
 
+    documentTitle: resumeData.documentTitle,
+
     user: user,
   });
 
