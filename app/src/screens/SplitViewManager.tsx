@@ -12,6 +12,7 @@ import Education from "./ResumeSections/Education";
 import Experience from "./ResumeSections/Experience";
 import Projects from "./ResumeSections/Projects";
 import Skills from "./ResumeSections/Skills";
+import DocumentTitle from "./ResumeSections/DocumentTitle";
 import SaveResume from "./saveResume";
 import "./SplitViewManager.css";
 import html2pdf from "html2pdf.js";
@@ -26,6 +27,8 @@ const SplitViewManager: FC = () => {
   const goToPrevView = () => {
     setCurrentView((currentView) => currentView - 1);
   };
+
+  const [documentTitle, setDocumentTitle] = useState("");
 
   const [contactFormData, setContactFormData] = useState({
     firstName: "",
@@ -102,14 +105,21 @@ const SplitViewManager: FC = () => {
       <Navbar />
       <div className="split-screen-container">
         <div className="left-side">
-          {currentView === 0 && (
+        {currentView === 0 && (
+            <DocumentTitle
+              nextView={goToNextView}
+              documentTitle={documentTitle}
+              setDocumentTitle={setDocumentTitle}
+            />
+          )}
+          {currentView === 1 && (
             <Contact
               nextView={goToNextView}
               formData={contactFormData}
               setFormData={setContactFormData}
             />
           )}
-          {currentView === 1 && (
+          {currentView === 2 && (
             <Summary
               nextView={goToNextView}
               prevView={goToPrevView}
@@ -117,7 +127,7 @@ const SplitViewManager: FC = () => {
               setFormData={setSummaryFormData}
             />
           )}
-          {currentView === 2 && (
+          {currentView === 3 && (
             <Education
               nextView={goToNextView}
               prevView={goToPrevView}
@@ -125,7 +135,7 @@ const SplitViewManager: FC = () => {
               setFormData={setEducationFormData}
             />
           )}
-          {currentView === 3 && (
+          {currentView === 4 && (
             <Experience
               nextView={goToNextView}
               prevView={goToPrevView}
@@ -133,7 +143,7 @@ const SplitViewManager: FC = () => {
               setFormData={setExperienceFormData}
             />
           )}
-          {currentView === 4 && (
+          {currentView === 5 && (
             <Projects
               nextView={goToNextView}
               prevView={goToPrevView}
@@ -141,7 +151,7 @@ const SplitViewManager: FC = () => {
               setFormData={setProjectsFormData}
             />
           )}
-          {currentView === 5 && (
+          {currentView === 6 && (
             <Skills
               prevView={goToPrevView}
               formData={skillsFormData}
