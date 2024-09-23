@@ -1,11 +1,21 @@
 .navbar {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
+  margin-left: 10px;
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.navbar-logo {
+  font-family: "Poppins", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  text-decoration: none;
+  color: black;
 }
 
 .navbar-items {
@@ -17,7 +27,7 @@
 
 .navbar-item {
   margin: 0 15px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 16px;
 }
 
@@ -27,7 +37,25 @@
 }
 
 .navbar a:hover {
-  color: #007bff;
+  color: #1abc9c;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+#logout {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+#logout:hover {
+  background-color: #148f77;
 }
 
 @media (max-width: 768px) {
