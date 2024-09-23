@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { SaveResumeProps } from "./SaveResumeProps.js";
+import "./SplitViewManager.css";
 
 const SaveResume: FC<SaveResumeProps> = ({
   contactFormData,
@@ -40,7 +41,9 @@ const SaveResume: FC<SaveResumeProps> = ({
 
   return (
     <div>
-      <button onClick={handleSave}>Save Resume</button>
+      <button className="btn-save" onClick={handleSave}>
+        <i className="fas fa-save" style={{ marginRight: "8px" }}></i> Save
+      </button>
     </div>
   );
 };

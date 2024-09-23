@@ -19,7 +19,7 @@ interface ContactProps {
 const Contact: FC<ContactProps> = ({ nextView, formData, setFormData }) => {
   return (
     <div className="contact-info-form-container">
-      <h2 className="contact-info-form-heading">Contact Information</h2>
+      <h2 className="contact-info-form-heading">Contact</h2>
 
       <form>
         <div className="contact-info-form-group">
