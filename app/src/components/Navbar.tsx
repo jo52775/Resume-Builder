@@ -6,7 +6,6 @@ import "./Navbar.css";
 const Navbar: FC = () => {
   const navigate = useNavigate();
 
-
   const handleLogout = (e: any) => {
     e.preventDefault();
 
@@ -43,8 +42,7 @@ const Navbar: FC = () => {
           <div className="modal-content">
             <a href="#!" className="close">&times;</a>
             <h2>Profile Information</h2>
-            <p>First Name: John</p>
-            <p>Last Name: Doe</p>
+            <p>Full Name: John Doe</p>
             <p>Email: john.doe@example.com</p>
             <a href="#passwordpopup" className="popup-button">Change Password</a>
             <div id="passwordpopup" className="modal">
