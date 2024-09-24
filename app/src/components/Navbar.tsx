@@ -1,9 +1,11 @@
 import React, { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import "./Navbar.css";
 
 const Navbar: FC = () => {
   const navigate = useNavigate();
+
 
   const handleLogout = (e: any) => {
     e.preventDefault();
@@ -36,9 +38,25 @@ const Navbar: FC = () => {
         </Link>
       </div>
       <div className="navbar-right">
-        <Link to="/profile" className="navbar-item">
-          Profile
-        </Link>
+        <a href="#popup" className="popup-button">Profile</a>
+        <div id="popup" className="modal">
+          <div className="modal-content">
+            <a href="#!" className="close">&times;</a>
+            <h2>Profile Information</h2>
+            <p>First Name: John</p>
+            <p>Last Name: Doe</p>
+            <p>Email: john.doe@example.com</p>
+            <a href="#passwordpopup" className="popup-button">Change Password</a>
+            <div id="passwordpopup" className="modal">
+              <div className="modal-content">
+                <a href="#!" className="close">&times;</a>
+                <h2>Reset Password</h2>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
         <button id="logout" onClick={handleLogout} className="navbar-item">
           Logout
         </button>
@@ -46,4 +64,7 @@ const Navbar: FC = () => {
     </nav>
   );
 };
+
+
+
 export default Navbar;
