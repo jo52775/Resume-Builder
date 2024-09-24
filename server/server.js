@@ -219,6 +219,19 @@ app.get("/get-resumes", verifyToken, async (req,res) => {
   }
 });
 
+// Get user profile
+app.get("/user-profile", verifyToken, async(req,res) => {
+  const user_id = req.user_id;
+  try {
+    const user = await User.findOne({_id: user_id});
+    res.json({message: "success", email: user.email, fullName: user.full_name});
+    
+  } catch (error) {
+    console.log(error);
+    res.send({message: "Failed to retrieve user data."});
+  }
+})
+
 // Protected route for verifying user token
 app.get("/verify", verifyToken, async (req,res) => {
   res.status(200).send({message: "access granted"});

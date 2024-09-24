@@ -44,8 +44,15 @@ interface ResumeCardProps {
 }
 
 const ResumeCard:FC<ResumeCardProps> = ({resumeData}) => {
+
+    const [showResume, setShowResume] = useState(false);
+
+    const handleCardClick = () => {
+      setShowResume(true);
+    }
+
     return(
-        <div className="resume-card-container">
+        <div className="resume-card-container" onClick={handleCardClick}>
             <label className="card-title-label"> Resume Title: </label>
             <p className="card-title">{resumeData.documentTitle}</p>
         </div>
