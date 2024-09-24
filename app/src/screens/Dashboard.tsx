@@ -7,6 +7,8 @@ import ResumeCard from "../components/ResumeCard";
 const Dashboard: FC = () => {
   const [resumes, setResumes] = useState([]);
 
+  const navigate = useNavigate();
+
   const fetchSavedResumes = async() => {
     try {
       const response = await fetch("http://localhost:5000/get-resumes", {
@@ -14,7 +16,9 @@ const Dashboard: FC = () => {
       });
 
       if(!response.ok){
-        console.log("Failed to fetch resume data.")
+        console.log("Failed to fetch resume data.");
+        navigate("/login");
+        return;
       }
 
       const data = await response.json();
@@ -29,8 +33,6 @@ const Dashboard: FC = () => {
     fetchSavedResumes();
   }, []);
     
-  const navigate = useNavigate();
-
   const createResume = async (e: any) => {
     e.preventDefault();
     navigate("/resume-split-screen");

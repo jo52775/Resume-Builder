@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { SaveResumeProps } from "./SaveResumeProps.js";
 import "./SplitViewManager.css";
+import {useNavigate} from "react-router-dom";
 
 const SaveResume: FC<SaveResumeProps> = ({
   contactFormData,
@@ -11,6 +12,9 @@ const SaveResume: FC<SaveResumeProps> = ({
   skillsFormData,
   documentTitle,
 }) => {
+  
+  const navigate = useNavigate();
+
   const handleSave = async () => {
     try {
       const response = await fetch("http://localhost:5000/save-resume", {
@@ -31,11 +35,14 @@ const SaveResume: FC<SaveResumeProps> = ({
       });
 
       if (!response.ok) {
-        throw new Error("Failed to save resume");
+        console.log("Failed to save resume.");
+        navigate("/login");
+        return;
       }
 
       const data = await response.json();
       alert(data.message || "Resume saved successfully");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to save resume data.");

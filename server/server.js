@@ -219,6 +219,11 @@ app.get("/get-resumes", verifyToken, async (req,res) => {
   }
 });
 
+// Protected route for verifying user token
+app.get("/verify", verifyToken, async (req,res) => {
+  res.status(200).send({message: "access granted"});
+});
+
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });
