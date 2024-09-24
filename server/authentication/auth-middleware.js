@@ -6,7 +6,8 @@ function verifyToken(req,res,next){
     const token = req.cookies.tokenCookie;
 
     if(!token){
-        return res.json({message: "Error: Token is absent"});
+        return res.status(401).json({message: "Error: Token is absent"});
+        // redirect to login or show login modal
     }
 
     try {
@@ -16,7 +17,7 @@ function verifyToken(req,res,next){
 
     } catch (err) {
         res.clearCookie("tokenCookie");
-        res.json({message: "Error: Invalid Token"});
+        res.status(401).json({message: "Error: Invalid Token"});
         // redirect to login or show login modal
     }
 }

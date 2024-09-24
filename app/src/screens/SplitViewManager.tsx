@@ -1,4 +1,5 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 import Navbar from "../components/Navbar"; // Assuming the Navbar is located in components folder
 import ResumeContact from "./ResumePreview/ResumeContact";
 import ResumeSummary from "./ResumePreview/ResumeSummary";
@@ -19,7 +20,32 @@ import html2pdf from "html2pdf.js";
 
 const SplitViewManager: FC = () => {
   const [currentView, setCurrentView] = useState(0);
+  const navigate = useNavigate();
 
+  // Authentication
+  const verifyAuthToken = async() => {
+    try {
+      const response = await fetch("http://localhost:5000/verify", {
+        credentials:"include"
+      });
+
+      if(!response.ok){
+        navigate("/login");
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data.message);
+
+    } catch (error) {
+      console.log("Error in request for verifying auth.")
+    }
+  }
+
+  useEffect(() => {
+    verifyAuthToken();
+  }, [])
+  
   const goToNextView = () => {
     setCurrentView((currentView) => currentView + 1);
   };
