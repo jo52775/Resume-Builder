@@ -214,9 +214,9 @@ const SplitViewManager: FC = () => {
               skillsFormData={skillsFormData}
               documentTitle={documentTitle}
             />
-            <DownloadHelper containerClass="resume-preview-container" />
+            <DownloadHelper containerID="resume-preview-id" />
           </div>
-          <div className="resume-preview-container">
+          <div id="resume-preview-id" className="resume-preview-container">
             <div className="right-side-scroll">
               <ResumeContact formData={contactFormData} />
               <ResumeSummary formData={summaryFormData} />

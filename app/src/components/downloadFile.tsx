@@ -2,17 +2,17 @@ import React from "react";
 import html2pdf from "html2pdf.js";
 
 interface DownloadHelperProps {
-  containerClass: string;
+  containerID: string;
   fileName?: string;
 }
 
 const DownloadHelper: React.FC<DownloadHelperProps> = ({
-  containerClass,
+  containerID,
   fileName = "resume.pdf",
 }) => {
   const handleDownload = () => {
     const resumeContainer = document.querySelector(
-      `.${containerClass}`
+      `#${containerID}`
     ) as HTMLElement;
 
     if (!resumeContainer) {
