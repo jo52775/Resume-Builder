@@ -65,7 +65,7 @@ const ResumeCard:FC<ResumeCardProps> = ({resumeData}) => {
         </div>
 
 
-        <div id="resume-dashboard-id" className="resume-preview-container">
+        <div id={resume_id} className="resume-preview-container">
         <div className="right-side-scroll">
           <ResumeContact formData={resumeData.contactFormData} />
           <ResumeSummary formData={resumeData.summaryFormData} />
