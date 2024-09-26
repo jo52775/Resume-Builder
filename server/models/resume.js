@@ -15,9 +15,10 @@ const resumeSchema = new mongoose.Schema({
     educationFormData: {
         institutionName: String,
         major: String,
-        degreeLevel: String,
         startDate: String,
-        endDate: String
+        endDate: String,
+        location: String, 
+        description: String
       },
 
       experienceFormData: {
