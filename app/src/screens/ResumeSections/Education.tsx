@@ -1,5 +1,6 @@
 import React, { FC, SetStateAction } from "react";
 import "./ResumeSections.css";
+import TextEditor from "../../components/TextEditor";
 
 type EducationFormType = {
   institutionName: string;
@@ -112,16 +113,14 @@ const Education: FC<EducationProps> = ({
           <label className="education-form-label">
             Description (e.g., Coursework, Awards, Activities)
           </label>
-          <textarea
-            value={formData.description}
-            onChange={(e) =>
+          <TextEditor
+            content={formData.description}
+            setContent={(value) =>
               setFormData((prev) => ({
                 ...prev,
-                description: e.target.value,
+                description: value,
               }))
             }
-            className="education-form-control description-input"
-            placeholder="Add relevant coursework, awards, or activities here"
           />
         </div>
       </form>
