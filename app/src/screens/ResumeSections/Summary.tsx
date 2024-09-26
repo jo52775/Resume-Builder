@@ -1,5 +1,6 @@
 import React, { FC, SetStateAction, useState } from "react";
 import "./ResumeSections.css";
+import TextEditor from "../../components/TextEditor";
 
 interface SummaryProps {
   nextView: () => void;
@@ -62,13 +63,7 @@ const Summary: FC<SummaryProps> = ({
       <form>
         <div className="summary-form-group">
           <label className="summary-form-label">Summary</label>
-          <textarea
-            value={formData}
-            onChange={(e) => setFormData(e.target.value)}
-            className="summary-form-control"
-            rows={6}
-            required
-          />
+          <TextEditor content={formData} setContent={setFormData} />
         </div>
         <div className="form-buttons">
           <button type="button" onClick={prevView} className="btn btn-back">

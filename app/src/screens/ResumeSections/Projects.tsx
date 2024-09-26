@@ -1,5 +1,6 @@
 import React, { FC, SetStateAction, useState } from "react";
 import "./ResumeSections.css";
+import TextEditor from "../../components/TextEditor";
 
 type ProjectsFormType = {
   projectType: string;
@@ -107,17 +108,14 @@ const Projects: FC<ProjectsProps> = ({
 
         <div className="projects-form-group">
           <label className="projects-form-label">Description</label>
-          <textarea
-            value={formData.description}
-            onChange={(e) =>
+          <TextEditor
+            content={formData.description}
+            setContent={(value) =>
               setFormData((prev) => ({
                 ...prev,
-                description: e.target.value,
+                description: value,
               }))
             }
-            className="projects-form-control"
-            rows={4}
-            required
           />
         </div>
 
