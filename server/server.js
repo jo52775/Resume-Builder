@@ -266,6 +266,29 @@ app.get("/verify", verifyToken, async (req, res) => {
   res.status(200).send({ message: "access granted" });
 });
 
+// Delete a resume
+app.delete("/delete-resume", verifyToken, async(req,res) => {
+  const user_id = req.user_id;
+  const resume_id = req.body.delete_id;
+  try {
+    const user = await User.findOne({_id: user_id});
+    await Resume.findOne({_id: resume_id});
+    
+    // Deleting resume from database
+    await Resume.deleteOne({_id: resume_id});
+
+    // Removing user reference to deleted resume
+    user.resumes.pull(resume_id);
+    await user.save();
+
+    res.status(200).send({message: "Resume has been deleted."});
+
+  } catch (error) {
+    console.log(error);
+    res.send({message: "Failed to delete the resume."});
+  }
+});
+
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });

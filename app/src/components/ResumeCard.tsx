@@ -53,15 +53,53 @@ interface ResumeCardProps {
 }
 
 const ResumeCard:FC<ResumeCardProps> = ({resumeData}) => {
-    const resume_id = `resume-dashboard-id-${resumeData._id}`;
+    const resume_id = `resume-dashboard-id-${resumeData._id}`; // Resume ID for downloading from dashboard
+    const delete_id = resumeData._id; // Resume ID for deleting
+    const [deleted, setDeleted] = useState(false);
+    const navigate = useNavigate();
+
+    const deleteResume = async() => {
+      try {
+        const response = await fetch("http://localhost:5000/delete-resume", {
+          method: "DELETE",
+          credentials:"include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            delete_id
+          }),
+        });
+
+        if(!response.ok){
+          console.log("Failed to delete resume.")
+          navigate("/login");
+          return;
+        }
+
+        const data = await response.json();
+        
+        if(data.message == "Resume has been deleted."){
+          setDeleted(true);
+          alert("Resume has been deleted.");
+        }
+
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
+
     return(
       <>
+        {!deleted &&
+        <>
         <div className="resume-card-container">
             <label className="card-title-label"> Resume Title: </label>
             <p className="card-title">{resumeData.documentTitle}</p>
 
             <DownloadHelper containerID={resume_id}/>
-            <button className="delete-resume-button"> Delete Resume </button>
+            <button className="delete-resume-button" onClick={deleteResume}> Delete Resume </button>
         </div>
 
 
@@ -75,6 +113,8 @@ const ResumeCard:FC<ResumeCardProps> = ({resumeData}) => {
           <ResumeSkills formData={resumeData.skillsFormData} />
         </div>
         </div>
+        </>
+      }
       </>
     )
 }
