@@ -11,7 +11,7 @@ const ResumeSummary: FC<SummaryDisplayProps> = ({ formData }) => {
   return (
     <div className="resume-section">
       <h3 className="section-heading"> SUMMARY </h3>
-      <div className="section-content">{parse(formData)}</div>
+      <div className="section-content">{parse(formData || "")}</div>
     </div>
   );
 };

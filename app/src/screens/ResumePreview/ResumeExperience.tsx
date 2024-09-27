@@ -37,7 +37,7 @@ const ResumeExperience: FC<ExperienceDisplayProps> = ({ formData }) => {
       </div>
       <ul className="section-content">
         {responsibilities.map((responsibility, index) => (
-          <li key={index}>{parse(responsibility.trim())}</li>
+          <li key={index}>{parse(responsibility.trim() || "")}</li>
         ))}
       </ul>
     </div>
