@@ -55,6 +55,7 @@ interface ResumeCardProps {
 const ResumeCard:FC<ResumeCardProps> = ({resumeData}) => {
     const resume_id = `resume-dashboard-id-${resumeData._id}`; // Resume ID for downloading from dashboard
     const delete_id = resumeData._id; // Resume ID for deleting
+    const [deleted, setDeleted] = useState(false);
     const navigate = useNavigate();
 
     const deleteResume = async() => {
@@ -79,7 +80,8 @@ const ResumeCard:FC<ResumeCardProps> = ({resumeData}) => {
         const data = await response.json();
         
         if(data.message == "Resume has been deleted."){
-          alert("Resume has been deleted. Refresh to confirm.");
+          setDeleted(true);
+          alert("Resume has been deleted.");
         }
 
       } catch (error) {
@@ -88,10 +90,10 @@ const ResumeCard:FC<ResumeCardProps> = ({resumeData}) => {
 
     }
 
-
-
     return(
       <>
+        {!deleted &&
+        <>
         <div className="resume-card-container">
             <label className="card-title-label"> Resume Title: </label>
             <p className="card-title">{resumeData.documentTitle}</p>
@@ -111,6 +113,8 @@ const ResumeCard:FC<ResumeCardProps> = ({resumeData}) => {
           <ResumeSkills formData={resumeData.skillsFormData} />
         </div>
         </div>
+        </>
+      }
       </>
     )
 }
