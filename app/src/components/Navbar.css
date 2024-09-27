@@ -109,11 +109,3 @@
   text-decoration: none;
   cursor: pointer;
 }
-
-#popup:target {
-  display: block;
-}
-
-#passwordpopup:target {
-  display: block;
-}
