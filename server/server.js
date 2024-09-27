@@ -269,7 +269,7 @@ app.get("/verify", verifyToken, async (req, res) => {
 // Delete a resume
 app.delete("/delete-resume", verifyToken, async(req,res) => {
   const user_id = req.user_id;
-  const resume_id = req.body._id;
+  const resume_id = req.body.delete_id;
   try {
     const user = await User.findOne({_id: user_id});
     await Resume.findOne({_id: resume_id});
