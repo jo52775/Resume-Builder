@@ -43,7 +43,7 @@ const TextEditor: React.FC<TextEditorProps> = ({ content, setContent }) => {
           "indent",
           "link",
         ]}
-        placeholder="My summary..."
+        placeholder=""
         modules={modules}
       />
     </div>
