@@ -10,7 +10,7 @@ type EducationFormType = {
   startDate: string;
   endDate: string;
   location: string;
-  description: string;
+  description: string | undefined;
 };
 
 interface EducationDisplayProps {
@@ -33,7 +33,9 @@ const ResumeEducation: FC<EducationDisplayProps> = ({ formData }) => {
       </div>
       <div className="education-description">
         <span className="education-description">
-          {parse(formData.description)}
+          <span className="education-description">
+            {parse(formData.description || "")}
+          </span>
         </span>
       </div>
     </div>
