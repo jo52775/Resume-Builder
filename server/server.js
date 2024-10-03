@@ -289,6 +289,42 @@ app.delete("/delete-resume", verifyToken, async(req,res) => {
   }
 });
 
+// Change Password
+app.put("/change-password", verifyToken, async(req,res) => {
+  const user_id = req.user_id;
+  const old_password = req.body.oldPassword;
+  const new_password = req.body.newPassword;
+  const confirm_password = req.body.confirmPassword;
+  try{
+
+    // Verifying old/existing password
+    const user = await User.findOne({_id: user_id});
+    const DB_password = user.password;
+    const passwordCompare = await bcrypt.compare(
+      old_password,
+      DB_password
+    );
+
+    if(passwordCompare){
+      if(new_password != confirm_password){
+        return res.send({message: "Passwords do not match."});
+      }
+
+      // Encrypting new password, and updating password in the DB
+      const hashedPassword = await bcrypt.hash(new_password, 10);
+      await user.updateOne({password: hashedPassword});
+      res.send({message: "Password updated."});
+    }
+    else{
+      res.send({message: "Old password is incorrect. Please try again"});
+    }
+  }
+  catch(error){
+    console.log(error);
+    res.send({message: "Error changing new password."});
+  }
+});
+
 app.listen(5000, () => {
   console.log("Server started on port 5000");
 });
