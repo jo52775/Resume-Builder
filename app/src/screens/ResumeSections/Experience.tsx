@@ -1,5 +1,6 @@
 import React, { FC, SetStateAction, useState } from "react";
 import "./ResumeSections.css";
+import TextEditor from "../../components/TextEditor";
 
 type ExperienceFormType = {
   companyName: string;
@@ -121,17 +122,14 @@ const Experience: FC<ExperienceProps> = ({
 
         <div className="experience-form-group">
           <label className="experience-form-label">Key Responsibilities</label>
-          <textarea
-            value={formData.keyResponsibilities}
-            onChange={(e) =>
+          <TextEditor
+            content={formData.keyResponsibilities}
+            setContent={(value) =>
               setFormData((prev) => ({
                 ...prev,
-                keyResponsibilities: e.target.value,
+                keyResponsibilities: value,
               }))
             }
-            className="experience-form-control"
-            rows={6}
-            required
           />
         </div>
 

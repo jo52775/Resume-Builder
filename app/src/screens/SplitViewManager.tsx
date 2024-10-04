@@ -1,24 +1,51 @@
-import React, { FC, useState } from "react";
-import Navbar from "../components/Navbar"; // Assuming the Navbar is located in components folder
+import React, { FC, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import ResumeContact from "./ResumePreview/ResumeContact";
 import ResumeSummary from "./ResumePreview/ResumeSummary";
 import ResumeExperience from "./ResumePreview/ResumeExperience";
 import ResumeEducation from "./ResumePreview/ResumeEducation";
 import ResumeProjects from "./ResumePreview/ResumeProjects";
 import ResumeSkills from "./ResumePreview/ResumeSkills";
+import DocumentTitle from "./ResumeSections/DocumentTitle";
+import JobDescription from "./ResumeSections/JobDescription";
 import Contact from "./ResumeSections/Contact";
 import Summary from "./ResumeSections/Summary";
 import Education from "./ResumeSections/Education";
 import Experience from "./ResumeSections/Experience";
 import Projects from "./ResumeSections/Projects";
 import Skills from "./ResumeSections/Skills";
-import DocumentTitle from "./ResumeSections/DocumentTitle";
 import SaveResume from "./saveResume";
 import "./SplitViewManager.css";
 import html2pdf from "html2pdf.js";
+import DownloadHelper from "../components/downloadFile";
 
 const SplitViewManager: FC = () => {
   const [currentView, setCurrentView] = useState(0);
+  const navigate = useNavigate();
+
+  // Authentication
+  const verifyAuthToken = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/verify", {
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        navigate("/login");
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data.message);
+    } catch (error) {
+      console.log("Error in request for verifying auth.");
+    }
+  };
+
+  useEffect(() => {
+    verifyAuthToken();
+  }, []);
 
   const goToNextView = () => {
     setCurrentView((currentView) => currentView + 1);
@@ -29,6 +56,11 @@ const SplitViewManager: FC = () => {
   };
 
   const [documentTitle, setDocumentTitle] = useState("");
+
+  const [jobDescriptionData, setJobDescriptionData] = useState({
+    jobTitle: "",
+    jobDescription: "",
+  });
 
   const [contactFormData, setContactFormData] = useState({
     firstName: "",
@@ -70,42 +102,42 @@ const SplitViewManager: FC = () => {
   const [skillsFormData, setSkillsFormData] = useState<string[]>([]);
 
   // download PDF
-  const handleDownload = () => {
-    const resumeContainer = document.querySelector(
-      ".resume-preview-container"
-    ) as HTMLElement;
+  // const handleDownload = () => {
+  //   const resumeContainer = document.querySelector(
+  //     ".resume-preview-container"
+  //   ) as HTMLElement;
 
-    if (!resumeContainer) {
-      console.error("Resume container not found.");
-      return;
-    }
+  //   if (!resumeContainer) {
+  //     console.error("Resume container not found.");
+  //     return;
+  //   }
 
-    resumeContainer.style.border = "none";
+  //   resumeContainer.style.border = "none";
 
-    const options = {
-      filename: "resume.pdf",
-      margin: [0.1, 0.1, 0, 0.1],
-      image: { type: "jpeg", quality: 1 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-    };
+  //   const options = {
+  //     filename: "resume.pdf",
+  //     margin: [0.1, 0.1, 0, 0.1],
+  //     image: { type: "jpeg", quality: 1 },
+  //     html2canvas: { scale: 2, useCORS: true },
+  //     jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+  //   };
 
-    html2pdf()
-      .set(options)
-      .from(resumeContainer)
-      .save()
-      .catch(() => console.error("Error generating PDF."))
-      .finally(() => {
-        resumeContainer.style.border = "1px solid black";
-      });
-  };
+  //   html2pdf()
+  //     .set(options)
+  //     .from(resumeContainer)
+  //     .save()
+  //     .catch(() => console.error("Error generating PDF."))
+  //     .finally(() => {
+  //       resumeContainer.style.border = "1px solid black";
+  //     });
+  // };
 
   return (
     <div>
       <Navbar />
       <div className="split-screen-container">
         <div className="left-side">
-        {currentView === 0 && (
+          {currentView === 0 && (
             <DocumentTitle
               nextView={goToNextView}
               documentTitle={documentTitle}
@@ -113,6 +145,14 @@ const SplitViewManager: FC = () => {
             />
           )}
           {currentView === 1 && (
+            <JobDescription
+              nextView={goToNextView}
+              prevView={goToPrevView}
+              formData={jobDescriptionData}
+              setFormData={setJobDescriptionData}
+            />
+          )}
+          {currentView === 2 && (
             <Contact
               nextView={goToNextView}
               prevView={goToPrevView}
@@ -120,7 +160,7 @@ const SplitViewManager: FC = () => {
               setFormData={setContactFormData}
             />
           )}
-          {currentView === 2 && (
+          {currentView === 3 && (
             <Summary
               nextView={goToNextView}
               prevView={goToPrevView}
@@ -128,7 +168,7 @@ const SplitViewManager: FC = () => {
               setFormData={setSummaryFormData}
             />
           )}
-          {currentView === 3 && (
+          {currentView === 4 && (
             <Education
               nextView={goToNextView}
               prevView={goToPrevView}
@@ -136,7 +176,7 @@ const SplitViewManager: FC = () => {
               setFormData={setEducationFormData}
             />
           )}
-          {currentView === 4 && (
+          {currentView === 5 && (
             <Experience
               nextView={goToNextView}
               prevView={goToPrevView}
@@ -144,7 +184,7 @@ const SplitViewManager: FC = () => {
               setFormData={setExperienceFormData}
             />
           )}
-          {currentView === 5 && (
+          {currentView === 6 && (
             <Projects
               nextView={goToNextView}
               prevView={goToPrevView}
@@ -152,11 +192,13 @@ const SplitViewManager: FC = () => {
               setFormData={setProjectsFormData}
             />
           )}
-          {currentView === 6 && (
+          {currentView === 7 && (
             <Skills
               prevView={goToPrevView}
               formData={skillsFormData}
               setFormData={setSkillsFormData}
+              jobTitle={jobDescriptionData.jobTitle}
+              jobDescription={jobDescriptionData.jobDescription}
             />
           )}
         </div>
@@ -172,15 +214,9 @@ const SplitViewManager: FC = () => {
               skillsFormData={skillsFormData}
               documentTitle={documentTitle}
             />
-            <button
-              className="btn-save download-resume-button"
-              onClick={handleDownload}
-            >
-              <i className="fas fa-download" style={{ marginRight: "8px" }}></i>
-              Download
-            </button>
+            <DownloadHelper containerID="resume-preview-id" />
           </div>
-          <div className="resume-preview-container">
+          <div id="resume-preview-id" className="resume-preview-container">
             <div className="right-side-scroll">
               <ResumeContact formData={contactFormData} />
               <ResumeSummary formData={summaryFormData} />

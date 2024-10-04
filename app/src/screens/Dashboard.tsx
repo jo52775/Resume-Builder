@@ -2,9 +2,12 @@ import React, { FC, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import Navbar from "../components/Navbar";
+import ResumeCard from "../components/ResumeCard";
 
 const Dashboard: FC = () => {
   const [resumes, setResumes] = useState([]);
+
+  const navigate = useNavigate();
 
   const fetchSavedResumes = async() => {
     try {
@@ -13,11 +16,13 @@ const Dashboard: FC = () => {
       });
 
       if(!response.ok){
-        console.log("Failed to fetch resume data.")
+        console.log("Failed to fetch resume data.");
+        navigate("/login");
+        return;
       }
 
       const data = await response.json();
-      setResumes(data.message);
+      setResumes(data.message || []);
 
     } catch (error) {
       console.log(error);
@@ -26,10 +31,8 @@ const Dashboard: FC = () => {
 
   useEffect(() => {
     fetchSavedResumes();
-  }, [])
+  }, []);
     
-  const navigate = useNavigate();
-
   const createResume = async (e: any) => {
     e.preventDefault();
     navigate("/resume-split-screen");
@@ -47,8 +50,14 @@ const Dashboard: FC = () => {
       </div>
 
       <div className="saved-resume-container">
-        <h2>Saved Resumes</h2>
-
+          <h2 className="saved-resumes-heading">Saved Resumes</h2> 
+          {resumes.length > 0 ?
+            <div className="resume-cards-container"> {resumes.map((resume, index) => (
+              <ResumeCard key={index} resumeData={resume}/>
+            ))}</div> 
+            :
+            <h2> Save a resume to view it on the dashboard </h2>
+          }
       </div>
     </div>
   );

@@ -3,11 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar: FC = () => {
+
+  const [profileEmail, setProfileEmail] = useState("");
+  const [profileFullName, setProfileFullName] = useState("");
   const navigate = useNavigate();
-
-
-  const profilePopupRef = useRef<HTMLDivElement>(null);
-  const changePasswordPopupRef = useRef<HTMLDivElement>(null);
 
 
   const handleLogout = (e: any) => {
@@ -33,6 +32,27 @@ const Navbar: FC = () => {
       .catch((error) => console.error(error));
   };
 
+  const displayProfile = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/user-profile", {
+        credentials: "include"
+      });
+
+      if (!response.ok) {
+        console.log("Failed to display profile.");
+        navigate("/login");
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data.message);
+      setProfileFullName(data.fullName);
+      setProfileEmail(data.email);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   const toggleProfilePopup = () => {
     if (profilePopupRef.current) {
@@ -57,20 +77,16 @@ const Navbar: FC = () => {
         </Link>
       </div>
       <div className="navbar-right">
-        <button className="popup-button" onClick={toggleProfilePopup}>Profile</button>
-
-        {/* Profile Popup */}
-        <div ref={profilePopupRef} className="modal" style={{ display: "none" }}>
+        <a href="#popup" className="popup-button">Profile</a>
+        <div id="popup" className="modal">
           <div className="modal-content">
             <span className="close" onClick={toggleProfilePopup}>&times;</span>
             <h2>Profile Information</h2>
             <p>First Name: John</p>
             <p>Last Name: Doe</p>
             <p>Email: john.doe@example.com</p>
-            <button className="popup-button" onClick={toggleChangePasswordPopup}>Change Password</button>
-
-            {/* Change Password Popup */}
-            <div ref={changePasswordPopupRef} className="modal" style={{ display: "none" }}>
+            <a href="#passwordpopup" className="popup-button">Change Password</a>
+            <div id="passwordpopup" className="modal">
               <div className="modal-content">
                 <span className="close" onClick={toggleChangePasswordPopup}>&times;</span>
                 <h2>Reset Password</h2>

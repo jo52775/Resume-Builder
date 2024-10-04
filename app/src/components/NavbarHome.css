@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: transparent;
+}
+
+.navbar-home-logo {
+  font-family: "Yeseva One", serif;
+  font-size: 26px;
+  font-weight: 700;
+  text-decoration: none;
+  color: black;
+}
+
+.navbar-home-readme {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-home-readme-link {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-home-readme-icon {
+  font-family: "Open Sans", sans-serif;
+  margin-right: 5px;
+  font-size: 20px;
+  color: black;
+}

@@ -2,6 +2,8 @@ const mongoose = require("mongoose")
 
 const resumeSchema = new mongoose.Schema({
     contactFormData: {
+        firstName: String,
+        lastName: String,
         city: String,
         phoneNumber: String,
         email: String,
@@ -13,9 +15,10 @@ const resumeSchema = new mongoose.Schema({
     educationFormData: {
         institutionName: String,
         major: String,
-        degreeLevel: String,
         startDate: String,
-        endDate: String
+        endDate: String,
+        location: String, 
+        description: String
       },
 
       experienceFormData: {

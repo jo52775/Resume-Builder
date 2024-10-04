@@ -14,12 +14,14 @@ const cors = require("cors");
 const resume = require("./models/resume");
 const app = express();
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  credentials:true,
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 // Connect to database when running the server
 const uri = process.env.DATABASE_URI;
@@ -61,10 +63,12 @@ app.post("/register", async (req, res) => {
 
       await user.save();
 
-      const token = jwt.sign({id: user._id}, process.env.JWT_SECRET_KEY, {expiresIn: "1h"});
-      
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
+        expiresIn: "1h",
+      });
+
       res.cookie("tokenCookie", token, {
-        httpOnly: true
+        httpOnly: true,
       });
 
       res.send({ message: "User created" });
@@ -86,19 +90,24 @@ app.post("/login", async (req, res) => {
     if (!emailExists) {
       return res.send({ message: "login failed: email does not exist." });
     }
-    const passwordCompare = await bcrypt.compare(password, emailExists.password)
+    const passwordCompare = await bcrypt.compare(
+      password,
+      emailExists.password
+    );
 
-    if(passwordCompare){
-      const token = jwt.sign({id: emailExists._id}, process.env.JWT_SECRET_KEY, {expiresIn: "1h"});
-      
+    if (passwordCompare) {
+      const token = jwt.sign(
+        { id: emailExists._id },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "1h" }
+      );
+
       res.cookie("tokenCookie", token, {
-        httpOnly: true
+        httpOnly: true,
       });
-      res.json({message: "login successful"});
-    }
-
-    else{
-      res.send({message: "login failed: password does not match."});
+      res.json({ message: "login successful" });
+    } else {
+      res.send({ message: "login failed: password does not match." });
     }
   } catch (error) {
     res.send({ message: "login failed" });
@@ -106,9 +115,9 @@ app.post("/login", async (req, res) => {
 });
 
 // User logout
-app.post("/logout", async (req,res) => {
+app.post("/logout", async (req, res) => {
   res.clearCookie("tokenCookie");
-  res.send({message: "logout successful"});
+  res.send({ message: "logout successful" });
 });
 
 // AI Generation
@@ -149,6 +158,23 @@ app.post("/generate-project", async (req, res) => {
   try {
     const text = await generateContent(prompt);
     res.json({ content: text });
+  } catch (err) {
+    console.error("Error:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
+app.post("/generate-skills", async (req, res) => {
+  const { jobTitle, jobDescription } = req.body;
+  const skillsPrompt = `Based on the job title "${jobTitle}" and job description "${jobDescription}", generate exactly 5 to 10 critical skills for success in this role. Provide the response in plain text, with each skill on a new line, separated by newline breaks (\n). Do not include any bullet symbols, parentheses, punctuation, or special characters at the end of the skills. Ensure the response includes no more than 10 skills.`;
+
+  try {
+    const skillsText = await generateContent(skillsPrompt);
+    const skillsArray = skillsText
+      .split("\n")
+      .map((skill) => skill.trim())
+      .filter((skill) => skill);
+    res.json({ skills: skillsArray });
   } catch (err) {
     console.error("Error:", err);
     res.status(500).json({ message: "Internal Server Error" });
@@ -196,26 +222,106 @@ app.post("/save-resume", verifyToken, async (req, res) => {
 });
 
 // Get resumes
-app.get("/get-resumes", verifyToken, async (req,res) => {
+app.get("/get-resumes", verifyToken, async (req, res) => {
   const user_id = req.user_id;
   try {
     // Acquiring resume IDs from user
-    const user = await User.findOne({_id: user_id});
+    const user = await User.findOne({ _id: user_id });
     const user_resume_IDs = user.resumes;
-    
+
     // Storing each user resume's data into an array
     let i = 0;
     const user_resumes = [];
-    while(i < user_resume_IDs.length){
-      const resume_item = await Resume.findOne({_id: user_resume_IDs[i]});
+    while (i < user_resume_IDs.length) {
+      const resume_item = await Resume.findOne({ _id: user_resume_IDs[i] });
       user_resumes.push(resume_item);
       i++;
     }
 
-    res.json({message: user_resumes});
+    res.json({ message: user_resumes });
   } catch (error) {
     console.log(error);
-    res.send({message: "Could not retrieve resume data"});
+    res.send({ message: "Could not retrieve resume data" });
+  }
+});
+
+// Get user profile
+app.get("/user-profile", verifyToken, async (req, res) => {
+  const user_id = req.user_id;
+  try {
+    const user = await User.findOne({ _id: user_id });
+    res.json({
+      message: "success",
+      email: user.email,
+      fullName: user.full_name,
+    });
+  } catch (error) {
+    console.log(error);
+    res.send({ message: "Failed to retrieve user data." });
+  }
+});
+
+// Protected route for verifying user token
+app.get("/verify", verifyToken, async (req, res) => {
+  res.status(200).send({ message: "access granted" });
+});
+
+// Delete a resume
+app.delete("/delete-resume", verifyToken, async(req,res) => {
+  const user_id = req.user_id;
+  const resume_id = req.body.delete_id;
+  try {
+    const user = await User.findOne({_id: user_id});
+    await Resume.findOne({_id: resume_id});
+    
+    // Deleting resume from database
+    await Resume.deleteOne({_id: resume_id});
+
+    // Removing user reference to deleted resume
+    user.resumes.pull(resume_id);
+    await user.save();
+
+    res.status(200).send({message: "Resume has been deleted."});
+
+  } catch (error) {
+    console.log(error);
+    res.send({message: "Failed to delete the resume."});
+  }
+});
+
+// Change Password
+app.put("/change-password", verifyToken, async(req,res) => {
+  const user_id = req.user_id;
+  const old_password = req.body.oldPassword;
+  const new_password = req.body.newPassword;
+  const confirm_password = req.body.confirmPassword;
+  try{
+
+    // Verifying old/existing password
+    const user = await User.findOne({_id: user_id});
+    const DB_password = user.password;
+    const passwordCompare = await bcrypt.compare(
+      old_password,
+      DB_password
+    );
+
+    if(passwordCompare){
+      if(new_password != confirm_password){
+        return res.send({message: "Passwords do not match."});
+      }
+
+      // Encrypting new password, and updating password in the DB
+      const hashedPassword = await bcrypt.hash(new_password, 10);
+      await user.updateOne({password: hashedPassword});
+      res.send({message: "Password updated."});
+    }
+    else{
+      res.send({message: "Old password is incorrect. Please try again"});
+    }
+  }
+  catch(error){
+    console.log(error);
+    res.send({message: "Error changing new password."});
   }
 });
 

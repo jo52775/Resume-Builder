@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./ResumePreview.css";
+import parse from "html-react-parser";
 import { formatDate } from "../../components/dateFormatter";
 
 type EducationFormType = {
@@ -9,7 +10,7 @@ type EducationFormType = {
   startDate: string;
   endDate: string;
   location: string;
-  description: string;
+  description: string | undefined;
 };
 
 interface EducationDisplayProps {
@@ -31,7 +32,11 @@ const ResumeEducation: FC<EducationDisplayProps> = ({ formData }) => {
         </span>
       </div>
       <div className="education-description">
-        <span className="education-description">{formData.description}</span>
+        <span className="education-description">
+          <span className="education-description">
+            {parse(formData.description || "")}
+          </span>
+        </span>
       </div>
     </div>
   );

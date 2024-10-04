@@ -11,7 +11,7 @@
 }
 
 .navbar-logo {
-  font-family: "Poppins", sans-serif;
+  font-family: "Yeseva One", serif;
   font-size: 26px;
   font-weight: 700;
   text-decoration: none;
@@ -29,17 +29,6 @@
   margin: 0 15px;
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
-}
-
-.navbar a {
-  color: black;
-  text-decoration: none;
-}
-
-.navbar a:hover {
-  color: #1abc9c;
-  font-weight: bolder;
-  text-decoration: underline;
 }
 
 #logout {
@@ -83,7 +72,6 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
-
 }
 
 .modal-content {
@@ -108,4 +96,12 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+#popup:target {
+  display: block;
+}
+
+#passwordpopup:target {
+  display: block;
 }

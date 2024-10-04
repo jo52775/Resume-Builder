@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import HomePage from "./screens/HomePage";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
 import Dashboard from "./screens/Dashboard";
@@ -14,6 +15,7 @@ function App() {
     <>
       <Router>
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Login />} />

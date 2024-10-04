@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./ResumePreview.css";
+import parse from "html-react-parser";
 import { formatDate } from "../../components/dateFormatter";
 
 type ExperienceFormType = {
@@ -36,7 +37,7 @@ const ResumeExperience: FC<ExperienceDisplayProps> = ({ formData }) => {
       </div>
       <ul className="section-content">
         {responsibilities.map((responsibility, index) => (
-          <li key={index}>{responsibility.trim()}</li>
+          <li key={index}>{parse(responsibility.trim() || "")}</li>
         ))}
       </ul>
     </div>

@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./ResumePreview.css";
+import parse from "html-react-parser";
 import { formatDate } from "../../components/dateFormatter";
 
 type ProjectsFormType = {
@@ -25,7 +26,7 @@ const ResumeProjects: FC<ProjectsDisplayProps> = ({ formData }) => {
           {formatDate(formData.startDate)} - {formatDate(formData.endDate)}
         </span>
       </div>
-      <p className="project-description">{formData.description}</p>
+      <p className="project-description">{parse(formData.description || "")}</p>
     </div>
   );
 };
