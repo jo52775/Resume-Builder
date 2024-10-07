@@ -1,15 +1,20 @@
-import React, { FC, useRef } from "react";
+import React, { FC, useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar: FC = () => {
+  const [profileEmail, setProfileEmail] = useState("");
+  const [profileFullName, setProfileFullName] = useState("");
   const navigate = useNavigate();
 
 
   const profilePopupRef = useRef<HTMLDivElement>(null);
   const changePasswordPopupRef = useRef<HTMLDivElement>(null);
 
-
+  useEffect(() => {
+    displayProfile();
+  }, [])
+  
   const handleLogout = (e: any) => {
     e.preventDefault();
 
@@ -32,6 +37,27 @@ const Navbar: FC = () => {
       })
       .catch((error) => console.error(error));
   };
+
+  const displayProfile = async() => {
+    try {
+      const response = await fetch("http://localhost:5000/user-profile", {
+        credentials:"include"
+      });
+
+      if(!response.ok){
+        console.log("Failed to display profile.");
+        navigate("/login");
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data.message);
+      setProfileFullName(data.fullName);
+      setProfileEmail(data.email);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
   const toggleProfilePopup = () => {
@@ -64,9 +90,8 @@ const Navbar: FC = () => {
           <div className="modal-content">
             <span className="close" onClick={toggleProfilePopup}>&times;</span>
             <h2>Profile Information</h2>
-            <p>First Name: John</p>
-            <p>Last Name: Doe</p>
-            <p>Email: john.doe@example.com</p>
+            <p>Full Name: {profileFullName}</p>
+            <p>Email: {profileEmail}</p>
             <button className="popup-button" onClick={toggleChangePasswordPopup}>Change Password</button>
 
             {/* Change Password Popup */}
