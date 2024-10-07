@@ -5,6 +5,11 @@ import "./Navbar.css";
 const Navbar: FC = () => {
   const [profileEmail, setProfileEmail] = useState("");
   const [profileFullName, setProfileFullName] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+
   const navigate = useNavigate();
 
 
@@ -15,9 +20,8 @@ const Navbar: FC = () => {
     displayProfile();
   }, [])
   
-  const handleLogout = (e: any) => {
-    e.preventDefault();
-
+  // Logout request
+  const handleLogout = async() => {
     const options: RequestInit = {
       method: "POST",
       credentials: "include",
@@ -38,6 +42,7 @@ const Navbar: FC = () => {
       .catch((error) => console.error(error));
   };
 
+  // Profile information request
   const displayProfile = async() => {
     try {
       const response = await fetch("http://localhost:5000/user-profile", {
@@ -55,6 +60,43 @@ const Navbar: FC = () => {
       setProfileFullName(data.fullName);
       setProfileEmail(data.email);
     } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // Change Password request
+  const handleChangePassword = async(e:any) => {
+    e.preventDefault();
+    const passwordCredentials = {
+      oldPassword,
+      newPassword, 
+      confirmPassword
+    }
+    
+    try{
+      const response = await fetch("http://localhost:5000/change-password", {
+        credentials:"include",
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(passwordCredentials)
+      });
+
+      if(!response.ok){
+        console.log("Failed to send password change request")
+        navigate("/login");
+        return;
+      }
+
+      const data = await response.json();
+      alert(data.message);
+      
+      if(data.message == "Password updated."){
+        handleLogout();
+      }
+    }
+    catch (error) {
       console.log(error);
     }
   }
@@ -101,12 +143,12 @@ const Navbar: FC = () => {
                 <h2>Reset Password</h2>
                 <form>
                   <label htmlFor="currentPassword">Current Password:</label>
-                  <input type="password" id="currentPassword" required /><br /><br />
+                  <input type="password" id="currentPassword" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} required /><br /><br />
                   <label htmlFor="newPassword">New Password:</label>
-                  <input type="password" id="newPassword" required /><br /><br />
+                  <input type="password" id="newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required /><br /><br />
                   <label htmlFor="confirmPassword">Confirm Password:</label>
-                  <input type="password" id="confirmPassword" required /><br /><br />
-                  <button className="popup-buttons" type="submit">Submit</button>
+                  <input type="password" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required /><br /><br />
+                  <button className="popup-buttons" type="submit" onClick={handleChangePassword}>Submit</button>
                 </form>
               </div>
             </div>
