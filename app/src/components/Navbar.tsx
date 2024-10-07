@@ -1,18 +1,27 @@
-import React, { FC, useRef } from "react";
+import React, { FC, useRef, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar: FC = () => {
+  const [profileEmail, setProfileEmail] = useState("");
+  const [profileFullName, setProfileFullName] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+
   const navigate = useNavigate();
 
 
   const profilePopupRef = useRef<HTMLDivElement>(null);
   const changePasswordPopupRef = useRef<HTMLDivElement>(null);
 
-
-  const handleLogout = (e: any) => {
-    e.preventDefault();
-
+  useEffect(() => {
+    displayProfile();
+  }, [])
+  
+  // Logout request
+  const handleLogout = async() => {
     const options: RequestInit = {
       method: "POST",
       credentials: "include",
@@ -32,6 +41,65 @@ const Navbar: FC = () => {
       })
       .catch((error) => console.error(error));
   };
+
+  // Profile information request
+  const displayProfile = async() => {
+    try {
+      const response = await fetch("http://localhost:5000/user-profile", {
+        credentials:"include"
+      });
+
+      if(!response.ok){
+        console.log("Failed to display profile.");
+        navigate("/login");
+        return;
+      }
+
+      const data = await response.json();
+      console.log(data.message);
+      setProfileFullName(data.fullName);
+      setProfileEmail(data.email);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // Change Password request
+  const handleChangePassword = async(e:any) => {
+    e.preventDefault();
+    const passwordCredentials = {
+      oldPassword,
+      newPassword, 
+      confirmPassword
+    }
+    
+    try{
+      const response = await fetch("http://localhost:5000/change-password", {
+        credentials:"include",
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(passwordCredentials)
+      });
+
+      if(!response.ok){
+        console.log("Failed to send password change request")
+        navigate("/login");
+        return;
+      }
+
+      const data = await response.json();
+      alert(data.message);
+      
+      if(data.message == "Password updated."){
+        handleLogout();
+      }
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
 
 
   const toggleProfilePopup = () => {
@@ -64,9 +132,8 @@ const Navbar: FC = () => {
           <div className="modal-content">
             <span className="close" onClick={toggleProfilePopup}>&times;</span>
             <h2>Profile Information</h2>
-            <p>First Name: John</p>
-            <p>Last Name: Doe</p>
-            <p>Email: john.doe@example.com</p>
+            <p>Full Name: {profileFullName}</p>
+            <p>Email: {profileEmail}</p>
             <button className="popup-button" onClick={toggleChangePasswordPopup}>Change Password</button>
 
             {/* Change Password Popup */}
@@ -76,12 +143,12 @@ const Navbar: FC = () => {
                 <h2>Reset Password</h2>
                 <form>
                   <label htmlFor="currentPassword">Current Password:</label>
-                  <input type="password" id="currentPassword" required /><br /><br />
+                  <input type="password" id="currentPassword" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} required /><br /><br />
                   <label htmlFor="newPassword">New Password:</label>
-                  <input type="password" id="newPassword" required /><br /><br />
+                  <input type="password" id="newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} required /><br /><br />
                   <label htmlFor="confirmPassword">Confirm Password:</label>
-                  <input type="password" id="confirmPassword" required /><br /><br />
-                  <button className="popup-buttons" type="submit">Submit</button>
+                  <input type="password" id="confirmPassword" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required /><br /><br />
+                  <button className="popup-buttons" type="submit" onClick={handleChangePassword}>Submit</button>
                 </form>
               </div>
             </div>
