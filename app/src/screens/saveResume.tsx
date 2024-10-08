@@ -42,7 +42,11 @@ const SaveResume: FC<SaveResumeProps> = ({
 
       const data = await response.json();
       alert(data.message || "Resume saved successfully");
-      navigate("/dashboard");
+      
+      if(data.message == "Resume created"){
+        navigate("/dashboard");
+      }
+
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to save resume data.");

@@ -193,6 +193,10 @@ app.post("/save-resume", verifyToken, async (req, res) => {
   console.log("User: ", user);
   console.log("Received resume data:", resumeData);
 
+  if(user.resumes.length == 3){
+    return res.send({message: "You have reached the limit of (3) saved resumes. Please delete a resume to save a new one."});
+  }
+
   const resume = new Resume({
     contactFormData: resumeData.contactFormData,
 
