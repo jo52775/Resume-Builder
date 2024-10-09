@@ -97,7 +97,7 @@ const ResumeCard: FC<ResumeCardProps> = ({ resumeData }) => {
           <div className="button-container">
             <DownloadHelper containerID={resume_id} />
             <button className="delete-resume-button" onClick={deleteResume}>
-              Delete Resume
+              <i className="fas fa-trash"></i> Delete
             </button>
           </div>
 
