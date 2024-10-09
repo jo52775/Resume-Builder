@@ -42,7 +42,7 @@ const Dashboard: FC = () => {
       <Navbar />
       <div className="dashboard-header">
         <button id="resumeCreateButton" onClick={createResume}>
-          Create New Resume
+          <i className="fas fa-plus"></i> Create New Resume
         </button>
       </div>
 
