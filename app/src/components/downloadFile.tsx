@@ -27,7 +27,7 @@ const DownloadHelper: React.FC<DownloadHelperProps> = ({
       margin: [0.1, 0.1, 0, 0.1],
       image: { type: "jpeg", quality: 1 },
       html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
     };
 
     html2pdf()
@@ -35,9 +35,7 @@ const DownloadHelper: React.FC<DownloadHelperProps> = ({
       .from(resumeContainer)
       .save()
       .catch(() => console.error("Error generating PDF."))
-      .finally(() => {
-        resumeContainer.style.border = "1px solid black";
-      });
+      .finally();
   };
 
   return (
