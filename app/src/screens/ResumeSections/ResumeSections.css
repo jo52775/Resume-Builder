@@ -633,7 +633,8 @@ h2 {
 }
 
 .btn-save,
-.download-resume-button {
+.download-resume-button,
+.delete-resume-button {
   background-color: #ff006a;
   color: white;
   border: none;
