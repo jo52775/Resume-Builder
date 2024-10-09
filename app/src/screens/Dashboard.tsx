@@ -47,15 +47,12 @@ const Dashboard: FC = () => {
       </div>
 
       <div className="saved-resume-container">
-        {resumes.length > 0 ? (
+        {resumes.length > 0 && (
           <div className="resume-cards-container">
-            {" "}
             {resumes.map((resume, index) => (
               <ResumeCard key={index} resumeData={resume} />
             ))}
           </div>
-        ) : (
-          <h2> Save a resume to view it on the dashboard </h2>
         )}
       </div>
     </div>
