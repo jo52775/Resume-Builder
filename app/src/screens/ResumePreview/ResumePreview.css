@@ -1,11 +1,9 @@
 .resume-preview-container {
-  width: 100%;
-  height: 100vh;
+  width: 8.27in;
+  height: 11.69in;
   max-height: 11.69in;
   box-sizing: border-box;
-  /* border: 1px solid black; */
   font-family: "Garamond", sans-serif;
-  min-height: auto;
   padding: 15px;
   position: relative;
   background-color: white;
