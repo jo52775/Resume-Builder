@@ -1,12 +1,95 @@
-.resume-card-container{
-    border: 2px solid black;
-    height:200px;
-    background-color: whitesmoke;
-    padding: 8px;
-    margin: 10px;
-    cursor: pointer;
-  }
+.resume-card-container {
+  border: 2px solid #ccc;
+  background-color: #f9f9f9;
+  padding: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+}
 
-.resume-card-label{
-    font-weight: bold;
+.resume-cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  gap: 15px;
+  width: 100%;
+  justify-items: center;
+}
+
+.card-title {
+  color: black;
+  margin: 10px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: x-large;
+}
+
+.resume-content {
+  width: 100%;
+  max-width: 8.27in;
+  height: auto;
+  box-sizing: border-box;
+  font-family: "Garamond", sans-serif;
+  padding: 15px;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.download-resume-button,
+.delete-resume-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 4px;
+  font-weight: 600;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.download-resume-button {
+  background-color: #1abc9c;
+  color: white;
+}
+
+.download-resume-button:hover {
+  background-color: #16a085;
+}
+
+.delete-resume-button {
+  background-color: #ff006a;
+  color: white;
+}
+
+.delete-resume-button:hover {
+  background-color: #e6004d;
+}
+
+@media (max-width: 900px) {
+  .resume-cards-container {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .resume-cards-container {
+    grid-template-columns: 1fr;
+  }
 }

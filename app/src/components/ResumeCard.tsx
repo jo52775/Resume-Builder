@@ -8,115 +8,111 @@ import ResumeEducation from "../screens/ResumePreview/ResumeEducation";
 import ResumeExperience from "../screens/ResumePreview/ResumeExperience";
 import ResumeProjects from "../screens/ResumePreview/ResumeProjects";
 import ResumeSkills from "../screens/ResumePreview/ResumeSkills";
-import "../screens/SplitViewManager.css"
+import "../screens/SplitViewManager.css";
 
 type ResumeCardType = {
-      _id: string;
-      contactFormData: {
-        firstName: string;
-        lastName: string;
-        city: string;
-        phoneNumber: string;
-        email: string;
-        link: string;
-      };
-      summaryFormData: string;
-      educationFormData: {
-        institutionName: string;
-        major: string;
-        startDate: string;
-        endDate: string;
-        location: string;
-        description: string;
-      };
-      experienceFormData: {
-        companyName: string;
-        positionTitle: string;
-        keyResponsibilities: string;
-        startDate: string;
-        endDate: string;
-        city: string;
-      };
-      projectsFormData: {
-        projectType: string;
-        name: string;
-        description: string;
-        startDate: string;
-        endDate: string;
-      };
-      skillsFormData: string[];
-      documentTitle:string;
-}
+  _id: string;
+  contactFormData: {
+    firstName: string;
+    lastName: string;
+    city: string;
+    phoneNumber: string;
+    email: string;
+    link: string;
+  };
+  summaryFormData: string;
+  educationFormData: {
+    institutionName: string;
+    major: string;
+    startDate: string;
+    endDate: string;
+    location: string;
+    description: string;
+  };
+  experienceFormData: {
+    companyName: string;
+    positionTitle: string;
+    keyResponsibilities: string;
+    startDate: string;
+    endDate: string;
+    city: string;
+  };
+  projectsFormData: {
+    projectType: string;
+    name: string;
+    description: string;
+    startDate: string;
+    endDate: string;
+  };
+  skillsFormData: string[];
+  documentTitle: string;
+};
 
 interface ResumeCardProps {
-    resumeData: ResumeCardType;
+  resumeData: ResumeCardType;
 }
 
-const ResumeCard:FC<ResumeCardProps> = ({resumeData}) => {
-    const resume_id = `resume-dashboard-id-${resumeData._id}`; // Resume ID for downloading from dashboard
-    const delete_id = resumeData._id; // Resume ID for deleting
-    const [deleted, setDeleted] = useState(false);
-    const navigate = useNavigate();
+const ResumeCard: FC<ResumeCardProps> = ({ resumeData }) => {
+  const resume_id = `resume-dashboard-id-${resumeData._id}`; // Resume ID for downloading from dashboard
+  const delete_id = resumeData._id; // Resume ID for deleting
+  const [deleted, setDeleted] = useState(false);
+  const navigate = useNavigate();
 
-    const deleteResume = async() => {
-      try {
-        const response = await fetch("http://localhost:5000/delete-resume", {
-          method: "DELETE",
-          credentials:"include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            delete_id
-          }),
-        });
+  const deleteResume = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/delete-resume", {
+        method: "DELETE",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          delete_id,
+        }),
+      });
 
-        if(!response.ok){
-          console.log("Failed to delete resume.")
-          navigate("/login");
-          return;
-        }
-
-        const data = await response.json();
-        
-        if(data.message == "Resume has been deleted."){
-          setDeleted(true);
-          alert("Resume has been deleted.");
-        }
-
-      } catch (error) {
-        console.log(error);
+      if (!response.ok) {
+        console.log("Failed to delete resume.");
+        navigate("/login");
+        return;
       }
 
+      const data = await response.json();
+
+      if (data.message == "Resume has been deleted.") {
+        setDeleted(true);
+        alert("Resume has been deleted.");
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    return(
-      <>
-        {!deleted &&
-        <>
+  return (
+    <>
+      {!deleted && (
         <div className="resume-card-container">
-            <label className="card-title-label"> Resume Title: </label>
-            <p className="card-title">{resumeData.documentTitle}</p>
+          <h2 className="card-title">{resumeData.documentTitle}</h2>
 
-            <DownloadHelper containerID={resume_id}/>
-            <button className="delete-resume-button" onClick={deleteResume}> Delete Resume </button>
-        </div>
+          <div className="button-container">
+            <DownloadHelper containerID={resume_id} />
+            <button className="delete-resume-button" onClick={deleteResume}>
+              Delete Resume
+            </button>
+          </div>
 
-
-        <div id={resume_id} className="resume-preview-container">
-        <div className="right-side-scroll">
-          <ResumeContact formData={resumeData.contactFormData} />
-          <ResumeSummary formData={resumeData.summaryFormData} />
-          <ResumeExperience formData={resumeData.experienceFormData} />
-          <ResumeEducation formData={resumeData.educationFormData} />
-          <ResumeProjects formData={resumeData.projectsFormData} />
-          <ResumeSkills formData={resumeData.skillsFormData} />
+          <div id={resume_id} className="resume-content">
+            <ResumeContact formData={resumeData.contactFormData} />
+            <ResumeSummary formData={resumeData.summaryFormData} />
+            <ResumeExperience formData={resumeData.experienceFormData} />
+            <ResumeEducation formData={resumeData.educationFormData} />
+            <ResumeProjects formData={resumeData.projectsFormData} />
+            <ResumeSkills formData={resumeData.skillsFormData} />
+          </div>
         </div>
-        </div>
-        </>
-      }
-      </>
-    )
-}
+      )}
+    </>
+  );
+};
 
 export default ResumeCard;
