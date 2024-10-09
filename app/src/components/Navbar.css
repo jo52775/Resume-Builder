@@ -11,7 +11,7 @@
 }
 
 .navbar-logo {
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 26px;
   font-weight: 700;
   text-decoration: none;
@@ -35,8 +35,6 @@
 }
 
 .navbar a:hover {
-  color: #1abc9c;
-  font-weight: bolder;
   text-decoration: underline;
 }
 
@@ -48,8 +46,8 @@
   padding: 4px 12px;
   border-radius: 20px;
   cursor: pointer;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  font-weight: 00;
   transition: background-color 0.3s ease;
   display: inline-block;
   font-size: 16px;

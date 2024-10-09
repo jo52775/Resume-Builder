@@ -118,7 +118,7 @@ const Navbar: FC = () => {
     <nav className="navbar">
       <div className="navbar-left">
         <Link to="/dashboard" className="navbar-logo">
-          ResumAI.
+          resumAI.
         </Link>
       </div>
       <div className="navbar-right">
