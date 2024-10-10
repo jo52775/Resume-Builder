@@ -35,9 +35,9 @@
 }
 
 .section-content {
-  white-space: normal;
   word-wrap: break-word;
   margin: 0;
+  padding: 0;
 }
 
 p {

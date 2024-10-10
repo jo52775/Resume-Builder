@@ -35,11 +35,11 @@ const ResumeExperience: FC<ExperienceDisplayProps> = ({ formData }) => {
           </span>
         </div>
       </div>
-      <ul className="section-content">
+      <div className="section-content">
         {responsibilities.map((responsibility, index) => (
-          <li key={index}>{parse(responsibility.trim() || "")}</li>
+          <div key={index}>{parse(responsibility.trim() || "")}</div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
