@@ -5,96 +5,95 @@ body {
   background: linear-gradient(320deg, #ebe6f8 0%, #fefefe 50%);
 }
 
-.register_container {
+.register__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
+  overflow-x: hidden;
 }
 
-.register_form-section {
-  background-color: #fff;
+.register__form-section {
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   width: 100%;
   box-sizing: border-box;
 }
 
-h2 {
+.login-header {
+  font-size: 35px;
   text-align: center;
   margin-bottom: 20px;
-  font-family: "Poppins", sans-serif;
 }
 
-.register_form-group {
+.login__tagline {
+  align-items: center;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+.login__form-group {
   margin-bottom: 15px;
 }
 
-.register_form-group label {
+.login__form-group label {
   display: block;
   margin-bottom: 5px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
 }
 
-.register_form-group input {
+.login__form-group input {
   width: calc(100% - 20px);
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 20px;
   margin: 0 auto;
 }
 
-.register_form-section button {
+.register__form-section button {
   width: 100%;
   border: none;
-  border-radius: 4px;
-  padding: 10px 15px;
-  font-weight: bold;
-  font-size: .8em;
-  text-transform: uppercase;
   padding: 0.6em 1.2em;
-  background-color: #ffeba7;
-  color: #5e6681;
-  box-shadow: 0 8px 24px 0;
-  transition: all .3s ease-in-out;
+  font-weight: bold;
+  font-size: 0.8em;
+  background-color: #1abc9c;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
 }
 
-.register_form-section button:hover {
-  background-color: #5e6681;
-  color: #ffeba7;
-  box-shadow: 0 8px 24px 0;
-}
-
-.register_links {
+.login__links {
   margin-top: 15px;
   text-align: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-.register_link {
-  color: #2e3fbe;
+.login__link {
+  color: rgb(75, 70, 70);
   text-decoration: none;
   font-size: 14px;
 }
 
-.register_link:hover {
+.login__link:hover {
   text-decoration: underline;
 }
 
 @media (max-width: 600px) {
-  .register_form-section {
+  .register__form-section {
     padding: 15px;
     max-width: 100%;
   }
 
-  .register_form-group {
+  .login__form-group {
     margin-bottom: 10px;
   }
 
-  .register_form-section button {
+  .register__form-section button {
     width: 100%;
   }
 }

@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
 import Message from "../components/Message";
+import NavbarHome from "../components/NavbarHome";
 
 const Register: FC = () => {
   const [fullName, setFullName] = useState("");
@@ -75,64 +76,68 @@ const Register: FC = () => {
   };
 
   return (
-    <div className="register_container">
-      <div className="register_form-section">
-        <h2>Register</h2>
-        <form onSubmit={handleRegister}>
-          <div className="register_form-group">
-            <label htmlFor="fullName">Full Name</label>
-            <input
-              type="text"
-              id="fullName"
-              name="fullName"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              required
-            />
+    <>
+      <NavbarHome />
+      <div className="register__container">
+        <div className="register__form-section">
+          <h1 className="login-header">Register</h1>
+          <p className="login__tagline">Create an account to get started.</p>
+          <form onSubmit={handleRegister}>
+            <div className="login__form-group">
+              <label htmlFor="fullName">Full Name</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="login__form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="login__form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <div className="login__form-group">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit">Sign up</button>
+          </form>
+          {message && <Message type={message.type} text={message.text} />}
+          <div className="login__links">
+            <Link to="/login" className="login__link">
+              Already have an account? Login here.
+            </Link>
           </div>
-          <div className="register_form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="register_form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="register_form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit">Sign in</button>
-        </form>
-        {message && <Message type={message.type} text={message.text} />}
-        <div className="register_links">
-          <p>Already have an account?</p>
-          <Link to="/login" className="register_link">
-            Login here
-          </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
