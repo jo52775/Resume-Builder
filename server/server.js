@@ -123,7 +123,7 @@ app.post("/logout", async (req, res) => {
 // AI Generation
 app.post("/generate-summary", async (req, res) => {
   const summary = req.body.summary;
-  const prompt = `Based on this resume summary provided: ${summary}, re-create it into a 3-4 sentence version that concisely summarizes the user's key points while providing justification as to why the user is suitable for the role.`;
+  const prompt = `Based on this resume summary provided: ${summary}, re-create it into a 3-4 sentence version that concisely summarizes the user's key points while providing justification as to why the user is suitable for the role. The output should be plain text without any special formatting, such as asterisks, and should clearly present the key points.`;
   try {
     const text = await generateContent(prompt);
     res.json({ content: text });
@@ -142,7 +142,7 @@ app.post("/generate-experience", async (req, res) => {
     endDate,
     city,
   } = req.body;
-  const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. These bullet points should be written in plain text, separated by newline breaks (\n), with no bullet symbols, no parentheses, and no punctuation at the end of the points. Focus on typical responsibilities, achievements, and skills relevant to the position, and include some key responsibilities as described here: ${keyResponsibilities}. Provide the response in a format that can be directly put into the resume.`;
+  const prompt = `Generate 5-7 concise, well-written bullet points for a resume experience section for a role at ${companyName} as ${positionTitle}. Each bullet point should be written in plain text, presented without bullet symbols, parentheses, or punctuation at the end of each point. Focus on typical responsibilities, achievements, and skills relevant to the position, including some key responsibilities as described here: ${keyResponsibilities}. Make sure to separate each bullet point with two newline breaks to ensure clear spacing.`;
   try {
     const text = await generateContent(prompt);
     res.json({ content: text });
@@ -193,8 +193,11 @@ app.post("/save-resume", verifyToken, async (req, res) => {
   console.log("User: ", user);
   console.log("Received resume data:", resumeData);
 
-  if(user.resumes.length == 3){
-    return res.send({message: "You have reached the limit of (3) saved resumes. Please delete a resume to save a new one."});
+  if (user.resumes.length == 3) {
+    return res.send({
+      message:
+        "You have reached the limit of (3) saved resumes. Please delete a resume to save a new one.",
+    });
   }
 
   const resume = new Resume({
@@ -271,61 +274,54 @@ app.get("/verify", verifyToken, async (req, res) => {
 });
 
 // Delete a resume
-app.delete("/delete-resume", verifyToken, async(req,res) => {
+app.delete("/delete-resume", verifyToken, async (req, res) => {
   const user_id = req.user_id;
   const resume_id = req.body.delete_id;
   try {
-    const user = await User.findOne({_id: user_id});
-    await Resume.findOne({_id: resume_id});
-    
+    const user = await User.findOne({ _id: user_id });
+    await Resume.findOne({ _id: resume_id });
+
     // Deleting resume from database
-    await Resume.deleteOne({_id: resume_id});
+    await Resume.deleteOne({ _id: resume_id });
 
     // Removing user reference to deleted resume
     user.resumes.pull(resume_id);
     await user.save();
 
-    res.status(200).send({message: "Resume has been deleted."});
-
+    res.status(200).send({ message: "Resume has been deleted." });
   } catch (error) {
     console.log(error);
-    res.send({message: "Failed to delete the resume."});
+    res.send({ message: "Failed to delete the resume." });
   }
 });
 
 // Change Password
-app.put("/change-password", verifyToken, async(req,res) => {
+app.put("/change-password", verifyToken, async (req, res) => {
   const user_id = req.user_id;
   const old_password = req.body.oldPassword;
   const new_password = req.body.newPassword;
   const confirm_password = req.body.confirmPassword;
-  try{
-
+  try {
     // Verifying old/existing password
-    const user = await User.findOne({_id: user_id});
+    const user = await User.findOne({ _id: user_id });
     const DB_password = user.password;
-    const passwordCompare = await bcrypt.compare(
-      old_password,
-      DB_password
-    );
+    const passwordCompare = await bcrypt.compare(old_password, DB_password);
 
-    if(passwordCompare){
-      if(new_password != confirm_password){
-        return res.send({message: "Passwords do not match."});
+    if (passwordCompare) {
+      if (new_password != confirm_password) {
+        return res.send({ message: "Passwords do not match." });
       }
 
       // Encrypting new password, and updating password in the DB
       const hashedPassword = await bcrypt.hash(new_password, 10);
-      await user.updateOne({password: hashedPassword});
-      res.send({message: "Password updated."});
+      await user.updateOne({ password: hashedPassword });
+      res.send({ message: "Password updated." });
+    } else {
+      res.send({ message: "Old password is incorrect. Please try again" });
     }
-    else{
-      res.send({message: "Old password is incorrect. Please try again"});
-    }
-  }
-  catch(error){
+  } catch (error) {
     console.log(error);
-    res.send({message: "Error changing new password."});
+    res.send({ message: "Error changing new password." });
   }
 });
 
