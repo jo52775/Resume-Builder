@@ -159,8 +159,7 @@ h2 {
 .form-descriptions {
   padding-top: 5px;
   padding-bottom: 15px;
-  font-size: 16px;
-  color: var(--grey-text);
+  font-size: 13px;
 }
 
 .job-description-form-group {
@@ -182,6 +181,8 @@ h2 {
   font-size: 16px;
   box-sizing: border-box;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 100%;
 }
 
 .job-description-form-control:focus {
