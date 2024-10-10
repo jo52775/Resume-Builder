@@ -83,7 +83,7 @@ const Education: FC<EducationProps> = ({
           <label className="education-form-label">Start Date</label>
           <input
             type="date"
-            value={formData.startDate}
+            value={formData.startDate || ""}
             onChange={(e) =>
               setFormData((prev) => ({
                 ...prev,

@@ -23,7 +23,9 @@ const ResumeContact: FC<ResumeContactProps> = ({ formData }) => {
       </div>
       <div className="contact-details-row">
         <p className="section-content">
-          {formData.city} | {formData.phoneNumber} | {formData.email}
+          {[formData.city, formData.phoneNumber, formData.email]
+            .filter(Boolean)
+            .join(" | ")}
           {formData.link && (
             <>
               {" | "}

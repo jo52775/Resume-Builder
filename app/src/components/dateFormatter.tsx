@@ -1,4 +1,5 @@
 export const formatDate = (dateString: string) => {
+  if (!dateString) return "";
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "short",
