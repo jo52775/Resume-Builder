@@ -33,7 +33,7 @@ const ResumeEducation: FC<EducationDisplayProps> = ({ formData }) => {
       </div>
       <div className="education-description">
         <span className="education-description">
-          <span className="education-description">
+          <span className="section-content">
             {parse(formData.description || "")}
           </span>
         </span>

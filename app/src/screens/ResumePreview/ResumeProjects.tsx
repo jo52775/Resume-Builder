@@ -26,7 +26,7 @@ const ResumeProjects: FC<ProjectsDisplayProps> = ({ formData }) => {
           {formatDate(formData.startDate)} - {formatDate(formData.endDate)}
         </span>
       </div>
-      <p className="project-description">{parse(formData.description || "")}</p>
+      <p className="section-content">{parse(formData.description || "")}</p>
     </div>
   );
 };
