@@ -64,7 +64,7 @@ app.post("/register", async (req, res) => {
       await user.save();
 
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
-        expiresIn: "1h",
+        expiresIn: "2h",
       });
 
       res.cookie("tokenCookie", token, {
