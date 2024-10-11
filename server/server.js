@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://resumeai-3xd2.onrender.com",
     credentials: true,
   })
 );
@@ -64,11 +64,12 @@ app.post("/register", async (req, res) => {
       await user.save();
 
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
-        expiresIn: "1h",
+        expiresIn: "2h",
       });
 
       res.cookie("tokenCookie", token, {
         httpOnly: true,
+        secure: true
       });
 
       res.send({ message: "User created" });
@@ -104,6 +105,7 @@ app.post("/login", async (req, res) => {
 
       res.cookie("tokenCookie", token, {
         httpOnly: true,
+        secure: true
       });
       res.json({ message: "login successful" });
     } else {
