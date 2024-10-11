@@ -190,9 +190,6 @@ app.post("/save-resume", verifyToken, async (req, res) => {
 
   const user = await User.findOne({ _id: user_id });
 
-  console.log("User: ", user);
-  console.log("Received resume data:", resumeData);
-
   if (user.resumes.length == 3) {
     return res.send({
       message:

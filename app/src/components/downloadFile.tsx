@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import html2pdf from "html2pdf.js";
 
 interface DownloadHelperProps {
@@ -8,7 +8,7 @@ interface DownloadHelperProps {
 
 const DownloadHelper: React.FC<DownloadHelperProps> = ({
   containerID,
-  fileName = "resume.pdf",
+  fileName,
 }) => {
   const handleDownload = () => {
     const resumeContainer = document.querySelector(
@@ -22,8 +22,14 @@ const DownloadHelper: React.FC<DownloadHelperProps> = ({
 
     resumeContainer.style.border = "none";
 
+    let documentDownloadName = "resume.pdf";
+    
+    if(fileName != ""){
+      documentDownloadName = fileName +".pdf";
+    }
+
     const options = {
-      filename: fileName,
+      filename: documentDownloadName,
       margin: [0.1, 0.1, 0, 0.1],
       image: { type: "jpeg", quality: 1 },
       html2canvas: { scale: 2, useCORS: true },

@@ -37,8 +37,6 @@ const Register: FC = () => {
     fetch("http://localhost:5000/register", options)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-
         switch (data.message) {
           case "User created":
             setMessage({

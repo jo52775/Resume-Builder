@@ -54,7 +54,6 @@ const Navbar: FC = () => {
       }
 
       const data = await response.json();
-      console.log(data.message);
       setProfileFullName(data.fullName);
       setProfileEmail(data.email);
     } catch (error) {
@@ -157,7 +156,7 @@ const Navbar: FC = () => {
                   &times;
                 </span>
                 <h2>Reset Password</h2>
-                <form>
+                <form onSubmit={handleChangePassword}>
                   <label htmlFor="currentPassword">Current Password:</label>
                   <input
                     type="password"
@@ -191,7 +190,6 @@ const Navbar: FC = () => {
                   <button
                     className="popup-button"
                     type="submit"
-                    onClick={handleChangePassword}
                   >
                     Submit
                   </button>

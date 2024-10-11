@@ -37,7 +37,6 @@ const SplitViewManager: FC = () => {
       }
 
       const data = await response.json();
-      console.log(data.message);
     } catch (error) {
       console.log("Error in request for verifying auth.");
     }
@@ -214,7 +213,7 @@ const SplitViewManager: FC = () => {
               skillsFormData={skillsFormData}
               documentTitle={documentTitle}
             />
-            <DownloadHelper containerID="resume-preview-id" />
+            <DownloadHelper containerID="resume-preview-id" fileName={documentTitle}/>
           </div>
           <div id="resume-preview-id" className="resume-preview-container">
             <div className="right-side-scroll">
