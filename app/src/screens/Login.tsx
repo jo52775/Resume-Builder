@@ -72,10 +72,6 @@ const Login: FC = () => {
             <button type="submit">Sign in</button>
           </form>
           <div className="login__links">
-            <Link to="/forgot-password" className="login__link">
-              Forgot Password?
-            </Link>
-            <br />
             <Link to="/register" className="login__link">
               Don’t have an account? Register here.
             </Link>
