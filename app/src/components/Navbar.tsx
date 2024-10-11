@@ -54,7 +54,6 @@ const Navbar: FC = () => {
       }
 
       const data = await response.json();
-      console.log(data.message);
       setProfileFullName(data.fullName);
       setProfileEmail(data.email);
     } catch (error) {

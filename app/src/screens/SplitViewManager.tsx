@@ -37,7 +37,6 @@ const SplitViewManager: FC = () => {
       }
 
       const data = await response.json();
-      console.log(data.message);
     } catch (error) {
       console.log("Error in request for verifying auth.");
     }
