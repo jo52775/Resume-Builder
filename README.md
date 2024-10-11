@@ -14,7 +14,7 @@ An AI-driven tool that simplifies the process of creating, editing, and download
 
 
 ### AI Integration
-- The integration of the Gemini API enhances the resume-building experience by generating tailored content based on what users provide. Users enter their job title, description, and relevant details, which the application then sends to the API. In response, the API generates tailored summaries, skills, and descriptions that further strengthen the resume.
+- The integration of the **Gemini API** enhances the resume-building experience by generating tailored content based on what users provide. Users enter their job title, description, and relevant details, which the application then sends to the API. In response, the API generates tailored summaries, skills, and descriptions that further strengthen the resume.
 
 ## How to Run
 1. Download all dependencies:
