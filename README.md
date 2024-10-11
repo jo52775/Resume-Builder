@@ -1,7 +1,7 @@
 # Resume Builder Application
 
 ## Overview
-An AI-driven tool that simplifies the process of creating, editing, and downloading professional resumes with tailored suggestions based on job titles and user-provided information. This project is built using the MERN stack (MongoDB, Express.js, React, and Node.js) with TypeScript. It also uses the Gemini API for AI-generated content and JSON Web Tokens (JWT) for user authentication.
+An AI-driven tool that simplifies the process of creating, editing, and downloading professional resumes with tailored suggestions based on job titles and user-provided information. This project is built using the **MERN stack (MongoDB, Express.js, React, and Node.js)** with TypeScript. It also uses the Gemini API for AI-generated content and JSON Web Tokens (JWT) for user authentication.
 
 ## Features
 ### User Authentication & Profile Management
