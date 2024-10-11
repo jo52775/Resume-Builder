@@ -30,7 +30,7 @@ const Projects: FC<ProjectsProps> = ({
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("https://resumAI.onrender.com/generate-project", {
+      const response = await fetch("http://localhost:5000/generate-project", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -27,7 +27,7 @@ const SplitViewManager: FC = () => {
   // Authentication
   const verifyAuthToken = async () => {
     try {
-      const response = await fetch("https://resumAI.onrender.com/verify", {
+      const response = await fetch("http://localhost:5000/verify", {
         credentials: "include",
       });
 

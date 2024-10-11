@@ -34,7 +34,7 @@ const Register: FC = () => {
       body: JSON.stringify(registerCredentials),
     };
 
-    fetch("https://resumAI.onrender.com/register", options)
+    fetch("http://localhost:5000/register", options)
       .then((response) => response.json())
       .then((data) => {
         switch (data.message) {

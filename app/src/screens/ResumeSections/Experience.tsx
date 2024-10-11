@@ -33,7 +33,7 @@ const Experience: FC<ExperienceProps> = ({
     setError(null);
     try {
       const response = await fetch(
-        "https://resumAI.onrender.com/generate-experience",
+        "http://localhost:5000/generate-experience",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
