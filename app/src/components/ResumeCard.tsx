@@ -55,6 +55,7 @@ interface ResumeCardProps {
 const ResumeCard: FC<ResumeCardProps> = ({ resumeData }) => {
   const resume_id = `resume-dashboard-id-${resumeData._id}`; // Resume ID for downloading from dashboard
   const delete_id = resumeData._id; // Resume ID for deleting
+  const fileName = resumeData.documentTitle;
   const [deleted, setDeleted] = useState(false);
   const navigate = useNavigate();
 
@@ -95,7 +96,7 @@ const ResumeCard: FC<ResumeCardProps> = ({ resumeData }) => {
           <h2 className="card-title">{resumeData.documentTitle}</h2>
 
           <div className="button-container">
-            <DownloadHelper containerID={resume_id} />
+            <DownloadHelper containerID={resume_id} fileName={fileName}/>
             <button className="delete-resume-button" onClick={deleteResume}>
               <i className="fas fa-trash"></i> Delete
             </button>
