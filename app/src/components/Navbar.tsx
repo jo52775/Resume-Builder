@@ -28,7 +28,7 @@ const Navbar: FC = () => {
       },
     };
 
-    fetch("http://localhost:5000/logout", options)
+    fetch("https://resumAI.onrender.com/logout", options)
       .then((response) => response.json())
       .then((data) => {
         if (data.message === "logout successful") {
@@ -43,7 +43,7 @@ const Navbar: FC = () => {
   // Profile information request
   const displayProfile = async () => {
     try {
-      const response = await fetch("http://localhost:5000/user-profile", {
+      const response = await fetch("https://resumAI.onrender.com/user-profile", {
         credentials: "include",
       });
 
@@ -71,7 +71,7 @@ const Navbar: FC = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/change-password", {
+      const response = await fetch("https://resumAI.onrender.com/change-password", {
         credentials: "include",
         method: "PUT",
         headers: {
