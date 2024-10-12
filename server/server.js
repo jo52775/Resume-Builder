@@ -100,7 +100,7 @@ app.post("/login", async (req, res) => {
       const token = jwt.sign(
         { id: emailExists._id },
         process.env.JWT_SECRET_KEY,
-        { expiresIn: "1h" }
+        { expiresIn: "2h" }
       );
 
       res.cookie("tokenCookie", token, {
