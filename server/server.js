@@ -2,7 +2,6 @@ const express = require("express");
 require("dotenv").config();
 const { generateContent } = require("./gemini");
 
-const path = require("path");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -23,7 +22,6 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../app/dist')));
 
 // Connect to database when running the server
 const uri = process.env.DATABASE_URI;
@@ -326,10 +324,6 @@ app.put("/change-password", verifyToken, async (req, res) => {
     console.log(error);
     res.send({ message: "Error changing new password." });
   }
-});
-
-app.get("*", (req,res) => {
-  res.sendFile(path.join(__dirname, '../app/dist', 'index.html'));
 });
 
 app.listen(5000, () => {
