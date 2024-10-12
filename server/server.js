@@ -69,6 +69,7 @@ app.post("/register", async (req, res) => {
 
       res.cookie("tokenCookie", token, {
         httpOnly: true,
+        secure:true
       });
 
       res.send({ message: "User created" });
@@ -104,6 +105,7 @@ app.post("/login", async (req, res) => {
 
       res.cookie("tokenCookie", token, {
         httpOnly: true,
+        secure: true
       });
       res.json({ message: "login successful" });
     } else {
