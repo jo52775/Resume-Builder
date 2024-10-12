@@ -16,7 +16,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://resumai-app.onrender.com",
     credentials: true,
   })
 );
