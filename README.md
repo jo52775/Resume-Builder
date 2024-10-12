@@ -5,12 +5,14 @@ An AI-driven tool that simplifies the process of creating, editing, and download
 
 ## Features
 ### User Authentication & Profile Management
-- 
+- Upon login/registration, a **JWT** is generated and used in all subsequent API requests that require verification to access user resources. **HTTP-only Cookies** are used to securely transmit the tokens between the user and the server. 
+- Users can view their profile information and change their passwords if desired.
+
 ### Dashboard
 - The dashboard stores resumes, allowing users to easily download them as a **PDFs** or delete them as needed.
   
 ### Real-Time Editing
-- Users can input information into a form, and the resume preview updates instantly to reflect their changes. The integrated **text editor tool** allows for further customizations, ensuring each resume is personalized.
+- The split-screen feature allows users to input information into forms on one side of the screen, while seeing instant updates reflecting their changes in the resume preview on the other side. The integrated **text editor tool** allows for further customizations, ensuring each resume is personalized.
 
 
 ### AI Integration
