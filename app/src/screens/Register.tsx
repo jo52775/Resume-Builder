@@ -34,7 +34,7 @@ const Register: FC = () => {
       body: JSON.stringify(registerCredentials),
     };
 
-    fetch("http://localhost:5000/register", options)
+    fetch("https://resumai-api.onrender.com/register", options)
       .then((response) => response.json())
       .then((data) => {
         switch (data.message) {

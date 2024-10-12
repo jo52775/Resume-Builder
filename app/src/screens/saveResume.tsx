@@ -17,7 +17,7 @@ const SaveResume: FC<SaveResumeProps> = ({
 
   const handleSave = async () => {
     try {
-      const response = await fetch("http://localhost:5000/save-resume", {
+      const response = await fetch("https://resumai-api.onrender.com/save-resume", {
         method: "POST",
         credentials: "include",
         headers: {

@@ -61,7 +61,7 @@ const ResumeCard: FC<ResumeCardProps> = ({ resumeData }) => {
 
   const deleteResume = async () => {
     try {
-      const response = await fetch("http://localhost:5000/delete-resume", {
+      const response = await fetch("https://resumai-api.onrender.com/delete-resume", {
         method: "DELETE",
         credentials: "include",
         headers: {

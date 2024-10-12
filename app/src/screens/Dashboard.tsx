@@ -11,7 +11,7 @@ const Dashboard: FC = () => {
 
   const fetchSavedResumes = async () => {
     try {
-      const response = await fetch("http://localhost:5000/get-resumes", {
+      const response = await fetch("https://resumai-api.onrender.com/get-resumes", {
         credentials: "include",
       });
 
