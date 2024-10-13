@@ -1,7 +1,12 @@
 # [Resume Builder Application](https://resumai-app.onrender.com/)
 
 ## Overview
-An AI-driven tool that simplifies the process of creating, editing, and downloading professional resumes with tailored suggestions based on job titles and user-provided information. This project is built using the **MERN stack (MongoDB, Express.js, React, and Node.js)** with TypeScript. It also uses the Gemini API for AI-generated content and JSON Web Tokens (JWT) for user authentication.
+**Revamp your job seach with ResumAI!** This AI-driven tool simplifies the process of creating, editing, and downloading professional resumes with tailored suggestions based on job titles and user-provided information. 
+
+Built on the **MERN stack (MongoDB, Express.js, React, and Node.js)** with TypeScript. The project also uses the Gemini API for AI-generated content and JSON Web Tokens (JWT) for secure user authentication.
+
+![image](https://github.com/user-attachments/assets/ef02fb34-5b74-4689-a81d-5f6539cd5678)
+
 
 ## Features
 ### User Authentication & Profile Management
@@ -12,8 +17,7 @@ An AI-driven tool that simplifies the process of creating, editing, and download
 - The dashboard stores resumes, allowing users to easily download them as a **PDFs** or delete them as needed.
   
 ### Real-Time Editing
-- The split-screen feature allows users to input information into forms on one side of the screen, while seeing instant updates reflecting their changes in the resume preview on the other side. The integrated **text editor tool** allows for further customizations, ensuring each resume is personalized.
-
+- The split-screen feature allows users to input information into forms on one side of the screen, while seeing instant updates reflecting their changes in the resume preview on the other side. The integrated **text editor tool** allows for further customizations that ensures a personalized resume.
 
 ### AI Integration
 - The integration of the **Gemini API** enhances the resume-building experience by generating tailored content based on what users provide. Users enter their job title, description, and relevant details, which the application then sends to the API. In response, the API generates tailored summaries, skills, and descriptions that further strengthen the resume.
